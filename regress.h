@@ -867,6 +867,26 @@ struct _RegressTestObjClass
    */
   void (*allow_none_vfunc) (RegressTestObj *obj, RegressTestObj *two);
 
+  /**
+   * RegressTestObjClass::static_vfunc:
+   */
+  gboolean (*static_vfunc) (void);
+
+  /**
+   * RegressTestObjClass::static_vfunc_params:
+   * @value:
+   * @error:
+   *
+   * Return: (transfer none):
+   */
+  RegressTestObj *(*static_vfunc_params) (gint value, GError **error);
+
+  /**
+   * RegressTestObjClass::static_vfunc_out:
+   * @two: (out):
+   */
+  void (*static_vfunc_out) (RegressTestObj **two);
+
   guint test_signal;
   guint test_signal_with_static_scope_arg;
 

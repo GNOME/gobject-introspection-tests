@@ -35,6 +35,7 @@ SPDX-FileCopyrightText: 2021 Carlos Garnacho
 
 #pragma once
 
+#include <stddef.h>    /* size_t */
 #include <sys/types.h> /* off_t, time_t */
 
 #include <glib-object.h>
@@ -1074,6 +1075,116 @@ gboolean gi_marshalling_tests_gstrv_out_uninitialized (GStrv *v G_GNUC_UNUSED);
 
 GI_TEST_EXTERN
 void gi_marshalling_tests_gstrv_inout (GStrv *g_strv);
+
+/* Array of GStrv's */
+
+GI_TEST_EXTERN
+GStrv *gi_marshalling_tests_length_array_of_gstrv_transfer_full_return (size_t *out_length);
+
+GI_TEST_EXTERN
+GStrv *gi_marshalling_tests_length_array_of_gstrv_transfer_container_return (size_t *out_length);
+
+GI_TEST_EXTERN
+GStrv *gi_marshalling_tests_length_array_of_gstrv_transfer_none_return (size_t *out_length);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_length_array_of_gstrv_transfer_none_in (GStrv *array, size_t length);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_length_array_of_gstrv_transfer_container_in (GStrv *array, size_t length);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_length_array_of_gstrv_transfer_full_in (GStrv *array, size_t length);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_length_array_of_gstrv_transfer_none_out (GStrv **array_out, size_t *out_length);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_length_array_of_gstrv_transfer_container_out (GStrv **array_out, size_t *out_length);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_length_array_of_gstrv_transfer_full_out (GStrv **array_out, size_t *out_length);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_length_array_of_gstrv_transfer_none_inout (GStrv **array_inout, size_t *inout_length);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_length_array_of_gstrv_transfer_container_inout (GStrv **array_inout, size_t *inout_length);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_length_array_of_gstrv_transfer_full_inout (GStrv **array_inout, size_t *inout_length);
+
+GI_TEST_EXTERN
+GStrv *gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_full_return (void);
+
+GI_TEST_EXTERN
+GStrv *gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_container_return (void);
+
+GI_TEST_EXTERN
+GStrv *gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_none_return (void);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_none_in (GStrv *array);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_container_in (GStrv *array);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_full_in (GStrv *array);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_none_out (GStrv **array_out);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_container_out (GStrv **array_out);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_full_out (GStrv **array_out);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_none_inout (GStrv **array_inout);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_container_inout (GStrv **array_inout);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_full_inout (GStrv **array_inout);
+
+GI_TEST_EXTERN
+GStrv *gi_marshalling_tests_fixed_array_of_gstrv_transfer_full_return (void);
+
+GI_TEST_EXTERN
+GStrv *gi_marshalling_tests_fixed_array_of_gstrv_transfer_container_return (void);
+
+GI_TEST_EXTERN
+GStrv *gi_marshalling_tests_fixed_array_of_gstrv_transfer_none_return (void);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_fixed_array_of_gstrv_transfer_none_in (GStrv *array);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_fixed_array_of_gstrv_transfer_container_in (GStrv *array);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_fixed_array_of_gstrv_transfer_full_in (GStrv *array);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_fixed_array_of_gstrv_transfer_none_out (GStrv **array_out);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_fixed_array_of_gstrv_transfer_container_out (GStrv **array_out);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_fixed_array_of_gstrv_transfer_full_out (GStrv **array_out);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_fixed_array_of_gstrv_transfer_none_inout (GStrv **array_inout);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_fixed_array_of_gstrv_transfer_container_inout (GStrv **array_inout);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_fixed_array_of_gstrv_transfer_full_inout (GStrv **array_inout);
 
 /* GList */
 

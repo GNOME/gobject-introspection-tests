@@ -3269,6 +3269,756 @@ gi_marshalling_tests_gstrv_inout (GStrv *g_strv)
 }
 
 /**
+ * gi_marshalling_tests_length_array_of_gstrv_transfer_full_return:
+ *
+ * Returns: (array length=out_length) (element-type GStrv) (transfer full):
+ */
+GStrv *
+gi_marshalling_tests_length_array_of_gstrv_transfer_full_return (size_t *out_length)
+{
+  GStrv *array = g_new0 (GStrv, 3);
+  GStrv values;
+
+  values = g_new0 (gchar *, 4);
+  values[0] = g_strdup ("0");
+  values[1] = g_strdup ("1");
+  values[2] = g_strdup ("2");
+  values[3] = NULL;
+  array[0] = g_steal_pointer (&values);
+
+  values = g_new0 (gchar *, 4);
+  values[0] = g_strdup ("3");
+  values[1] = g_strdup ("4");
+  values[2] = g_strdup ("5");
+  values[3] = NULL;
+  array[1] = g_steal_pointer (&values);
+
+  values = g_new0 (gchar *, 4);
+  values[0] = g_strdup ("6");
+  values[1] = g_strdup ("7");
+  values[2] = g_strdup ("8");
+  values[3] = NULL;
+  array[2] = g_steal_pointer (&values);
+
+  *out_length = 3;
+
+  return array;
+}
+
+/**
+ * gi_marshalling_tests_length_array_of_gstrv_transfer_container_return:
+ *
+ * Returns: (array length=out_length) (element-type GStrv) (transfer container):
+ */
+GStrv *
+gi_marshalling_tests_length_array_of_gstrv_transfer_container_return (size_t *out_length)
+{
+  GStrv *array = g_new0 (GStrv, 3);
+  static const gchar *values0[] = { "0", "1", "2", NULL };
+  static const gchar *values1[] = { "3", "4", "5", NULL };
+  static const gchar *values2[] = { "6", "7", "8", NULL };
+
+  array[0] = (GStrv) values0;
+  array[1] = (GStrv) values1;
+  array[2] = (GStrv) values2;
+
+  *out_length = 3;
+
+  return array;
+}
+
+/**
+ * gi_marshalling_tests_length_array_of_gstrv_transfer_none_return:
+ *
+ * Returns: (array length=out_length) (element-type GStrv) (transfer none):
+ */
+GStrv *
+gi_marshalling_tests_length_array_of_gstrv_transfer_none_return (size_t *out_length)
+{
+  static const gchar *values0[] = { "0", "1", "2", NULL };
+  static const gchar *values1[] = { "3", "4", "5", NULL };
+  static const gchar *values2[] = { "6", "7", "8", NULL };
+  static const gchar **array[] = { values0, values1, values2 };
+
+  *out_length = 3;
+
+  return (GStrv *) array;
+}
+
+/**
+ * gi_marshalling_tests_length_array_of_gstrv_transfer_none_in:
+ * @array: (array length=length) (element-type GStrv) (transfer none):
+ */
+void
+gi_marshalling_tests_length_array_of_gstrv_transfer_none_in (GStrv *array, size_t length)
+{
+  GStrv g_strv;
+
+  g_assert_cmpint (length, ==, 3);
+
+  g_strv = array[0];
+  g_assert_cmpint (g_strv_length (g_strv), ==, 3);
+  g_assert_cmpstr (g_strv[0], ==, "0");
+  g_assert_cmpstr (g_strv[1], ==, "1");
+  g_assert_cmpstr (g_strv[2], ==, "2");
+
+  g_strv = array[1];
+  g_assert_cmpint (g_strv_length (g_strv), ==, 3);
+  g_assert_cmpstr (g_strv[0], ==, "3");
+  g_assert_cmpstr (g_strv[1], ==, "4");
+  g_assert_cmpstr (g_strv[2], ==, "5");
+
+  g_strv = array[2];
+  g_assert_cmpint (g_strv_length (g_strv), ==, 3);
+  g_assert_cmpstr (g_strv[0], ==, "6");
+  g_assert_cmpstr (g_strv[1], ==, "7");
+  g_assert_cmpstr (g_strv[2], ==, "8");
+}
+
+/**
+ * gi_marshalling_tests_length_array_of_gstrv_transfer_container_in:
+ * @array: (array length=length) (element-type GStrv) (transfer container):
+ */
+void
+gi_marshalling_tests_length_array_of_gstrv_transfer_container_in (GStrv *array, size_t length)
+{
+  gi_marshalling_tests_length_array_of_gstrv_transfer_none_in (array, length);
+
+  g_clear_pointer (&array, g_free);
+}
+
+/**
+ * gi_marshalling_tests_length_array_of_gstrv_transfer_full_in:
+ * @array: (array length=length) (element-type GStrv) (transfer full):
+ */
+void
+gi_marshalling_tests_length_array_of_gstrv_transfer_full_in (GStrv *array, size_t length)
+{
+  gi_marshalling_tests_length_array_of_gstrv_transfer_none_in (array, length);
+
+  g_clear_pointer (&array[0], g_strfreev);
+  g_clear_pointer (&array[1], g_strfreev);
+  g_clear_pointer (&array[2], g_strfreev);
+
+  g_clear_pointer (&array, g_free);
+}
+
+/**
+ * gi_marshalling_tests_length_array_of_gstrv_transfer_none_out:
+ * @array_out: (array length=out_length) (out) (element-type GStrv) (transfer none):
+ * @out_length: (out):
+ */
+void
+gi_marshalling_tests_length_array_of_gstrv_transfer_none_out (GStrv **array_out, size_t *out_length)
+{
+  *array_out = gi_marshalling_tests_length_array_of_gstrv_transfer_none_return (out_length);
+}
+
+/**
+ * gi_marshalling_tests_length_array_of_gstrv_transfer_container_out:
+ * @array_out: (array length=out_length) (out) (element-type GStrv) (transfer container):
+ */
+void
+gi_marshalling_tests_length_array_of_gstrv_transfer_container_out (GStrv **array_out, size_t *out_length)
+{
+  *array_out = gi_marshalling_tests_length_array_of_gstrv_transfer_container_return (out_length);
+}
+
+/**
+ * gi_marshalling_tests_length_array_of_gstrv_transfer_full_out:
+ * @array_out: (array length=out_length) (out) (element-type GStrv) (transfer full):
+ */
+void
+gi_marshalling_tests_length_array_of_gstrv_transfer_full_out (GStrv **array_out, size_t *out_length)
+{
+  *array_out = gi_marshalling_tests_length_array_of_gstrv_transfer_full_return (out_length);
+}
+
+/**
+ * gi_marshalling_tests_length_array_of_gstrv_transfer_full_inout:
+ * @array_inout: (array length=inout_length) (inout) (element-type GStrv) (transfer full):
+ * @inout_length: (inout):
+ */
+void
+gi_marshalling_tests_length_array_of_gstrv_transfer_full_inout (GStrv **array_inout, size_t *inout_length)
+{
+  GStrv *array = g_new0 (GStrv, 4);
+  GStrv values;
+
+  g_assert_nonnull (inout_length);
+  g_assert_nonnull (array_inout);
+  gi_marshalling_tests_length_array_of_gstrv_transfer_full_in (
+    g_steal_pointer (array_inout), *inout_length);
+
+  values = g_new0 (gchar *, 5);
+  values[0] = g_strdup ("-1");
+  values[1] = g_strdup ("0");
+  values[2] = g_strdup ("1");
+  values[3] = g_strdup ("2");
+  values[4] = NULL;
+  array[0] = g_steal_pointer (&values);
+
+  values = g_new0 (gchar *, 5);
+  values[0] = g_strdup ("-1");
+  values[1] = g_strdup ("3");
+  values[2] = g_strdup ("4");
+  values[3] = g_strdup ("5");
+  values[4] = NULL;
+  array[1] = g_steal_pointer (&values);
+
+  values = g_new0 (gchar *, 5);
+  values[0] = g_strdup ("-1");
+  values[1] = g_strdup ("6");
+  values[2] = g_strdup ("7");
+  values[3] = g_strdup ("8");
+  values[4] = NULL;
+  array[2] = g_steal_pointer (&values);
+
+  values = g_new0 (gchar *, 5);
+  values[0] = g_strdup ("-1");
+  values[1] = g_strdup ("9");
+  values[2] = g_strdup ("10");
+  values[3] = g_strdup ("11");
+  values[4] = NULL;
+  array[3] = g_steal_pointer (&values);
+
+  *array_inout = (GStrv *) array;
+  *inout_length = 4;
+}
+
+/**
+ * gi_marshalling_tests_length_array_of_gstrv_transfer_none_inout:
+ * @array_inout: (array length=inout_length) (inout) (element-type GStrv) (transfer none):
+ * @inout_length: (inout):
+ */
+void
+gi_marshalling_tests_length_array_of_gstrv_transfer_none_inout (GStrv **array_inout, size_t *inout_length)
+{
+  static const gchar *values0[] = { "-1", "0", "1", "2", NULL };
+  static const gchar *values1[] = { "-1", "3", "4", "5", NULL };
+  static const gchar *values2[] = { "-1", "6", "7", "8", NULL };
+  static const gchar *values3[] = { "-1", "9", "10", "11", NULL };
+  static const gchar **array[] = { values0, values1, values2, values3 };
+
+  g_assert_nonnull (inout_length);
+  gi_marshalling_tests_length_array_of_gstrv_transfer_none_in (*array_inout, *inout_length);
+
+  *array_inout = (GStrv *) array;
+  *inout_length = 4;
+}
+
+/**
+ * gi_marshalling_tests_length_array_of_gstrv_transfer_container_inout:
+ * @array_inout: (array length=inout_length) (inout) (element-type GStrv) (transfer none):
+ * @inout_length: (inout):
+ */
+void
+gi_marshalling_tests_length_array_of_gstrv_transfer_container_inout (GStrv **array_inout, size_t *inout_length)
+{
+  GStrv *array = g_new0 (GStrv, 4);
+  static const gchar *values0[] = { "-1", "0", "1", "2", NULL };
+  static const gchar *values1[] = { "-1", "3", "4", "5", NULL };
+  static const gchar *values2[] = { "-1", "6", "7", "8", NULL };
+  static const gchar *values3[] = { "-1", "9", "10", "11", NULL };
+
+  g_assert_nonnull (inout_length);
+  g_assert_nonnull (array_inout);
+  gi_marshalling_tests_length_array_of_gstrv_transfer_container_in (*array_inout, *inout_length);
+
+  array[0] = (GStrv) values0;
+  array[1] = (GStrv) values1;
+  array[2] = (GStrv) values2;
+  array[3] = (GStrv) values3;
+
+  *array_inout = (GStrv *) array;
+  *inout_length = 4;
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_full_return:
+ *
+ * Returns: (array zero-terminated) (element-type GStrv) (transfer full):
+ */
+GStrv *
+gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_full_return (void)
+{
+  GStrv *array = g_new0 (GStrv, 4);
+  GStrv values;
+
+  values = g_new0 (gchar *, 4);
+  values[0] = g_strdup ("0");
+  values[1] = g_strdup ("1");
+  values[2] = g_strdup ("2");
+  values[3] = NULL;
+  array[0] = g_steal_pointer (&values);
+
+  values = g_new0 (gchar *, 4);
+  values[0] = g_strdup ("3");
+  values[1] = g_strdup ("4");
+  values[2] = g_strdup ("5");
+  values[3] = NULL;
+  array[1] = g_steal_pointer (&values);
+
+  values = g_new0 (gchar *, 4);
+  values[0] = g_strdup ("6");
+  values[1] = g_strdup ("7");
+  values[2] = g_strdup ("8");
+  values[3] = NULL;
+  array[2] = g_steal_pointer (&values);
+
+  return array;
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_container_return:
+ *
+ * Returns: (array zero-terminated) (element-type GStrv) (transfer container):
+ */
+GStrv *
+gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_container_return (void)
+{
+  GStrv *array = g_new0 (GStrv, 4);
+  static const gchar *values0[] = { "0", "1", "2", NULL };
+  static const gchar *values1[] = { "3", "4", "5", NULL };
+  static const gchar *values2[] = { "6", "7", "8", NULL };
+
+  array[0] = (GStrv) values0;
+  array[1] = (GStrv) values1;
+  array[2] = (GStrv) values2;
+  array[3] = NULL;
+
+  return array;
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_none_return:
+ *
+ * Returns: (array zero-terminated) (element-type GStrv) (transfer none):
+ */
+GStrv *
+gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_none_return (void)
+{
+  static const gchar *values0[] = { "0", "1", "2", NULL };
+  static const gchar *values1[] = { "3", "4", "5", NULL };
+  static const gchar *values2[] = { "6", "7", "8", NULL };
+  static const gchar **array[] = { values0, values1, values2, NULL };
+
+  return (GStrv *) array;
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_of_gstrv_transfer_full_return:
+ *
+ * Returns: (array fixed-size=3) (element-type GStrv) (transfer full):
+ */
+GStrv *
+gi_marshalling_tests_fixed_array_of_gstrv_transfer_full_return (void)
+{
+  GStrv *array = g_new0 (GStrv, 3);
+  GStrv values;
+
+  values = g_new0 (gchar *, 4);
+  values[0] = g_strdup ("0");
+  values[1] = g_strdup ("1");
+  values[2] = g_strdup ("2");
+  values[3] = NULL;
+  array[0] = g_steal_pointer (&values);
+
+  values = g_new0 (gchar *, 4);
+  values[0] = g_strdup ("3");
+  values[1] = g_strdup ("4");
+  values[2] = g_strdup ("5");
+  values[3] = NULL;
+  array[1] = g_steal_pointer (&values);
+
+  values = g_new0 (gchar *, 4);
+  values[0] = g_strdup ("6");
+  values[1] = g_strdup ("7");
+  values[2] = g_strdup ("8");
+  values[3] = NULL;
+  array[2] = g_steal_pointer (&values);
+
+  return array;
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_none_in:
+ * @array: (array zero-terminated) (element-type GStrv) (transfer none):
+ */
+void
+gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_none_in (GStrv *array)
+{
+  GStrv g_strv;
+
+  g_strv = array[0];
+  g_assert_cmpint (g_strv_length (g_strv), ==, 3);
+  g_assert_cmpstr (g_strv[0], ==, "0");
+  g_assert_cmpstr (g_strv[1], ==, "1");
+  g_assert_cmpstr (g_strv[2], ==, "2");
+
+  g_strv = array[1];
+  g_assert_cmpint (g_strv_length (g_strv), ==, 3);
+  g_assert_cmpstr (g_strv[0], ==, "3");
+  g_assert_cmpstr (g_strv[1], ==, "4");
+  g_assert_cmpstr (g_strv[2], ==, "5");
+
+  g_strv = array[2];
+  g_assert_cmpint (g_strv_length (g_strv), ==, 3);
+  g_assert_cmpstr (g_strv[0], ==, "6");
+  g_assert_cmpstr (g_strv[1], ==, "7");
+  g_assert_cmpstr (g_strv[2], ==, "8");
+
+  g_assert_null (array[3]);
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_container_in:
+ * @array: (array zero-terminated) (element-type GStrv) (transfer container):
+ */
+void
+gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_container_in (GStrv *array)
+{
+  gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_none_in (array);
+
+  g_clear_pointer (&array, g_free);
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_full_in:
+ * @array: (array zero-terminated) (element-type GStrv) (transfer full):
+ */
+void
+gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_full_in (GStrv *array)
+{
+  gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_none_in (array);
+
+  for (int i = 0; array && array[i] != NULL; i++)
+    g_clear_pointer (&array[i], g_strfreev);
+
+  g_clear_pointer (&array, g_free);
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_none_out:
+ * @array_out: (array zero-terminated) (out) (element-type GStrv) (transfer none):
+ */
+void
+gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_none_out (GStrv **array_out)
+{
+  *array_out = gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_none_return ();
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_container_out:
+ * @array_out: (array zero-terminated) (out) (element-type GStrv) (transfer container):
+ */
+void
+gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_container_out (GStrv **array_out)
+{
+  *array_out = gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_container_return ();
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_full_out:
+ * @array_out: (array zero-terminated) (out) (element-type GStrv) (transfer full):
+ */
+void
+gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_full_out (GStrv **array_out)
+{
+  *array_out = gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_full_return ();
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_full_inout:
+ * @array_inout: (array zero-terminated) (inout) (element-type GStrv) (transfer full):
+ */
+void
+gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_full_inout (GStrv **array_inout)
+{
+  GStrv *array = g_new0 (GStrv, 5);
+  GStrv values;
+
+  gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_full_in (
+    g_steal_pointer (array_inout));
+
+  values = g_new0 (gchar *, 5);
+  values[0] = g_strdup ("-1");
+  values[1] = g_strdup ("0");
+  values[2] = g_strdup ("1");
+  values[3] = g_strdup ("2");
+  values[4] = NULL;
+  array[0] = g_steal_pointer (&values);
+
+  values = g_new0 (gchar *, 5);
+  values[0] = g_strdup ("-1");
+  values[1] = g_strdup ("3");
+  values[2] = g_strdup ("4");
+  values[3] = g_strdup ("5");
+  values[4] = NULL;
+  array[1] = g_steal_pointer (&values);
+
+  values = g_new0 (gchar *, 5);
+  values[0] = g_strdup ("-1");
+  values[1] = g_strdup ("6");
+  values[2] = g_strdup ("7");
+  values[3] = g_strdup ("8");
+  values[4] = NULL;
+  array[2] = g_steal_pointer (&values);
+
+  values = g_new0 (gchar *, 5);
+  values[0] = g_strdup ("-1");
+  values[1] = g_strdup ("9");
+  values[2] = g_strdup ("10");
+  values[3] = g_strdup ("11");
+  values[4] = NULL;
+  array[3] = g_steal_pointer (&values);
+
+  *array_inout = (GStrv *) array;
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_none_inout:
+ * @array_inout: (array zero-terminated) (inout) (element-type GStrv) (transfer none):
+ */
+void
+gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_none_inout (GStrv **array_inout)
+{
+  static const gchar *values0[] = { "-1", "0", "1", "2", NULL };
+  static const gchar *values1[] = { "-1", "3", "4", "5", NULL };
+  static const gchar *values2[] = { "-1", "6", "7", "8", NULL };
+  static const gchar *values3[] = { "-1", "9", "10", "11", NULL };
+  static const gchar **array[] = { values0, values1, values2, values3, NULL };
+
+  gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_none_in (*array_inout);
+
+  *array_inout = (GStrv *) array;
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_container_inout:
+ * @array_inout: (array zero-terminated) (inout) (element-type GStrv) (transfer container):
+ */
+void
+gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_container_inout (GStrv **array_inout)
+{
+  GStrv *array = g_new0 (GStrv, 4);
+
+  static const gchar *values0[] = { "-1", "0", "1", "2", NULL };
+  static const gchar *values1[] = { "-1", "3", "4", "5", NULL };
+  static const gchar *values2[] = { "-1", "6", "7", "8", NULL };
+  static const gchar *values3[] = { "-1", "9", "10", "11", NULL };
+
+  gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_container_in (*array_inout);
+
+  array[0] = (GStrv) values0;
+  array[1] = (GStrv) values1;
+  array[2] = (GStrv) values2;
+  array[3] = (GStrv) values3;
+
+  *array_inout = (GStrv *) array;
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_of_gstrv_transfer_container_return:
+ *
+ * Returns: (array fixed-size=3) (element-type GStrv) (transfer container):
+ */
+GStrv *
+gi_marshalling_tests_fixed_array_of_gstrv_transfer_container_return (void)
+{
+  GStrv *array = g_new0 (GStrv, 3);
+  static const gchar *values0[] = { "0", "1", "2", NULL };
+  static const gchar *values1[] = { "3", "4", "5", NULL };
+  static const gchar *values2[] = { "6", "7", "8", NULL };
+
+  array[0] = (GStrv) values0;
+  array[1] = (GStrv) values1;
+  array[2] = (GStrv) values2;
+
+  return array;
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_of_gstrv_transfer_none_return:
+ *
+ * Returns: (array fixed-size=3) (element-type GStrv) (transfer none):
+ */
+GStrv *
+gi_marshalling_tests_fixed_array_of_gstrv_transfer_none_return (void)
+{
+  static const gchar *values0[] = { "0", "1", "2", NULL };
+  static const gchar *values1[] = { "3", "4", "5", NULL };
+  static const gchar *values2[] = { "6", "7", "8", NULL };
+  static const gchar **array[] = { values0, values1, values2 };
+
+  return (GStrv *) array;
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_of_gstrv_transfer_none_in:
+ * @array: (array fixed-size=3) (element-type GStrv) (transfer none):
+ */
+void
+gi_marshalling_tests_fixed_array_of_gstrv_transfer_none_in (GStrv *array)
+{
+  GStrv g_strv;
+
+  g_strv = array[0];
+  g_assert_cmpint (g_strv_length (g_strv), ==, 3);
+  g_assert_cmpstr (g_strv[0], ==, "0");
+  g_assert_cmpstr (g_strv[1], ==, "1");
+  g_assert_cmpstr (g_strv[2], ==, "2");
+
+  g_strv = array[1];
+  g_assert_cmpint (g_strv_length (g_strv), ==, 3);
+  g_assert_cmpstr (g_strv[0], ==, "3");
+  g_assert_cmpstr (g_strv[1], ==, "4");
+  g_assert_cmpstr (g_strv[2], ==, "5");
+
+  g_strv = array[2];
+  g_assert_cmpint (g_strv_length (g_strv), ==, 3);
+  g_assert_cmpstr (g_strv[0], ==, "6");
+  g_assert_cmpstr (g_strv[1], ==, "7");
+  g_assert_cmpstr (g_strv[2], ==, "8");
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_of_gstrv_transfer_container_in:
+ * @array: (array fixed-size=3) (element-type GStrv) (transfer container):
+ */
+void
+gi_marshalling_tests_fixed_array_of_gstrv_transfer_container_in (GStrv *array)
+{
+  gi_marshalling_tests_fixed_array_of_gstrv_transfer_none_in (array);
+
+  g_clear_pointer (&array, g_free);
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_of_gstrv_transfer_full_in:
+ * @array: (array fixed-size=3) (element-type GStrv) (transfer full):
+ */
+void
+gi_marshalling_tests_fixed_array_of_gstrv_transfer_full_in (GStrv *array)
+{
+  gi_marshalling_tests_fixed_array_of_gstrv_transfer_none_in (array);
+
+  g_clear_pointer (&array[0], g_strfreev);
+  g_clear_pointer (&array[1], g_strfreev);
+  g_clear_pointer (&array[2], g_strfreev);
+
+  g_clear_pointer (&array, g_free);
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_of_gstrv_transfer_none_out:
+ * @array_out: (array fixed-size=3) (out) (element-type GStrv) (transfer none):
+ */
+void
+gi_marshalling_tests_fixed_array_of_gstrv_transfer_none_out (GStrv **array_out)
+{
+  *array_out = gi_marshalling_tests_fixed_array_of_gstrv_transfer_none_return ();
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_of_gstrv_transfer_container_out:
+ * @array_out: (array fixed-size=3) (out) (element-type GStrv) (transfer container):
+ */
+void
+gi_marshalling_tests_fixed_array_of_gstrv_transfer_container_out (GStrv **array_out)
+{
+  *array_out = gi_marshalling_tests_fixed_array_of_gstrv_transfer_container_return ();
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_of_gstrv_transfer_full_out:
+ * @array_out: (array fixed-size=3) (out) (element-type GStrv) (transfer full):
+ */
+void
+gi_marshalling_tests_fixed_array_of_gstrv_transfer_full_out (GStrv **array_out)
+{
+  *array_out = gi_marshalling_tests_fixed_array_of_gstrv_transfer_full_return ();
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_of_gstrv_transfer_full_inout:
+ * @array_inout: (array fixed-size=3) (inout) (element-type GStrv) (transfer full):
+ */
+void
+gi_marshalling_tests_fixed_array_of_gstrv_transfer_full_inout (GStrv **array_inout)
+{
+  GStrv *array = g_new0 (GStrv, 3);
+  GStrv values;
+
+  gi_marshalling_tests_fixed_array_of_gstrv_transfer_full_in (
+    g_steal_pointer (array_inout));
+
+  values = g_new0 (gchar *, 5);
+  values[0] = g_strdup ("-1");
+  values[1] = g_strdup ("0");
+  values[2] = g_strdup ("1");
+  values[3] = g_strdup ("2");
+  values[4] = NULL;
+  array[0] = g_steal_pointer (&values);
+
+  values = g_new0 (gchar *, 5);
+  values[0] = g_strdup ("-1");
+  values[1] = g_strdup ("3");
+  values[2] = g_strdup ("4");
+  values[3] = g_strdup ("5");
+  values[4] = NULL;
+  array[1] = g_steal_pointer (&values);
+
+  values = g_new0 (gchar *, 5);
+  values[0] = g_strdup ("-1");
+  values[1] = g_strdup ("6");
+  values[2] = g_strdup ("7");
+  values[3] = g_strdup ("8");
+  values[4] = NULL;
+  array[2] = g_steal_pointer (&values);
+
+  *array_inout = (GStrv *) array;
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_of_gstrv_transfer_none_inout:
+ * @array_inout: (array fixed-size=3) (inout) (element-type GStrv) (transfer none):
+ */
+void
+gi_marshalling_tests_fixed_array_of_gstrv_transfer_none_inout (GStrv **array_inout)
+{
+  static const gchar *values0[] = { "-1", "0", "1", "2", NULL };
+  static const gchar *values1[] = { "-1", "3", "4", "5", NULL };
+  static const gchar *values2[] = { "-1", "6", "7", "8", NULL };
+  static const gchar **array[] = { values0, values1, values2 };
+
+  gi_marshalling_tests_fixed_array_of_gstrv_transfer_none_in (*array_inout);
+
+  *array_inout = (GStrv *) array;
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_of_gstrv_transfer_container_inout:
+ * @array_inout: (array fixed-size=3) (inout) (element-type GStrv) (transfer container):
+ */
+void
+gi_marshalling_tests_fixed_array_of_gstrv_transfer_container_inout (GStrv **array_inout)
+{
+  GStrv *array = g_new0 (GStrv, 3);
+  static const gchar *values0[] = { "-1", "0", "1", "2", NULL };
+  static const gchar *values1[] = { "-1", "3", "4", "5", NULL };
+  static const gchar *values2[] = { "-1", "6", "7", "8", NULL };
+
+  gi_marshalling_tests_fixed_array_of_gstrv_transfer_container_in (*array_inout);
+
+  array[0] = (GStrv) values0;
+  array[1] = (GStrv) values1;
+  array[2] = (GStrv) values2;
+
+  *array_inout = (GStrv *) array;
+}
+
+/**
  * gi_marshalling_tests_glist_int_none_return:
  *
  * Returns: (element-type gint) (transfer none):

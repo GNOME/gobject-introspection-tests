@@ -2,6 +2,40 @@
  *vim: tabstop=4 shiftwidth=4 expandtab
  */
 
+/*
+SPDX-FileCopyrightText: 2010-2012 Collabora, Ltd.
+SPDX-FileCopyrightText: 2010 Johan Dahlin
+SPDX-FileCopyrightText: 2010 Sugar Labs
+SPDX-FileCopyrightText: 2010 Zach Goldberg
+SPDX-FileCopyrightText: 2011 Alex Eftimie
+SPDX-FileCopyrightText: 2011-2012 Canonical Ltd.
+SPDX-FileCopyrightText: 2011-2012 Colin Walters <walters@verbum.org>
+SPDX-FileCopyrightText: 2011 Dan Winship
+SPDX-FileCopyrightText: 2011-2012 Giovanni Campagna
+SPDX-FileCopyrightText: 2011 Ignacio Casal Quinteiro
+SPDX-FileCopyrightText: 2011-2012 Jasper St. Pierre
+SPDX-FileCopyrightText: 2011 Laszlo Pandy
+SPDX-FileCopyrightText: 2011 Red Hat, Inc.
+SPDX-FileCopyrightText: 2012 Bastian Winkler
+SPDX-FileCopyrightText: 2012 Epitech
+SPDX-FileCopyrightText: 2012 Gonzalo Odiard
+SPDX-FileCopyrightText: 2012-2013 Martin Pitt
+SPDX-FileCopyrightText: 2012-2013 Paolo Borelli
+SPDX-FileCopyrightText: 2012 Sebastian Pölsterl
+SPDX-FileCopyrightText: 2013 Simon Feltman
+SPDX-FileCopyrightText: 2014 Lionel Landwerlin
+SPDX-FileCopyrightText: 2014 RIFT.io, Inc.
+SPDX-FileCopyrightText: 2014 SuSE
+SPDX-FileCopyrightText: 2016 Endless Mobile, Inc.
+SPDX-FileCopyrightText: 2016-2018, 2023 Philip Chimento <philip.chimento@gmail.com>
+SPDX-FileCopyrightText: 2017 Christoph Reiter
+SPDX-FileCopyrightText: 2018 Tomasz Miąsko
+SPDX-FileCopyrightText: 2019 Stéphane Seng
+SPDX-FileCopyrightText: 2020-2023 Marco Trevisan
+SPDX-FileCopyrightText: 2020, 2024 Simon McVittie
+SPDX-FileCopyrightText: 2021 Carlos Garnacho
+*/
+
 /* This file gets installed, so we can't assume config.h is available */
 #ifdef HAVE_CONFIG_H
 #include "config.h"

@@ -1,3 +1,20 @@
+/*
+SPDX-FileCopyrightText: 2008-2009 Dan Winship
+SPDX-FileCopyrightText: 2008-2010 Colin Walters <walters@verbum.org>
+SPDX-FileCopyrightText: 2008-2011 Johan Dahlin
+SPDX-FileCopyrightText: 2008 Owen Taylor
+SPDX-FileCopyrightText: 2008 Tommi Komulainen
+SPDX-FileCopyrightText: 2008 Tristan Van Berkom
+SPDX-FileCopyrightText: 2009-2010 Andreas Rottmann <a.rottmann@gmx.at>
+SPDX-FileCopyrightText: 2010 litl, LLC
+SPDX-FileCopyrightText: 2010 Pavel Holejsovsky
+SPDX-FileCopyrightText: 2010 Red Hat, Inc.
+SPDX-FileCopyrightText: 2011 Jasper St. Pierre
+SPDX-FileCopyrightText: 2013 Stef Walter
+SPDX-FileCopyrightText: 2015 Christoph Reiter
+SPDX-FileCopyrightText: 2020 Centricular
+*/
+
 #ifndef __REGRESS_ANNOTATION_OBJECT_H__
 #define __REGRESS_ANNOTATION_OBJECT_H__
 

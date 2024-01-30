@@ -1,5 +1,10 @@
 /* -*- mode: C; c-file-style: "gnu"; indent-tabs-mode: nil; -*- */
 
+/*
+SPDX-FileCopyrightText: 2008 Johan Dahlin
+SPDX-FileCopyrightText: 2009 Andreas Rottmann <a.rottmann@gmx.at>
+*/
+
 /* This file gets installed, so we can't assume config.h is available */
 #ifdef HAVE_CONFIG_H
 #include "config.h"

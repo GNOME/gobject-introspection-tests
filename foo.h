@@ -1,3 +1,24 @@
+/*
+SPDX-FileCopyrightText: 2007-2010 Johan Dahlin
+SPDX-FileCopyrightText: 2008-2010 Colin Walters <walters@verbum.org>
+SPDX-FileCopyrightText: 2008-2009, 2011-2012 Dan Winship
+SPDX-FileCopyrightText: 2008 Jürg Billeter
+SPDX-FileCopyrightText: 2008 Lucas Rocha
+SPDX-FileCopyrightText: 2008 Marc-Andre Lureau
+SPDX-FileCopyrightText: 2008 Philip Van Hoof
+SPDX-FileCopyrightText: 2008 Tommi Komulainen
+SPDX-FileCopyrightText: 2009 Andreas Rottmann <a.rottmann@gmx.at>
+SPDX-FileCopyrightText: 2009 Robert Carr
+SPDX-FileCopyrightText: 2010 Collabora, Ltd.
+SPDX-FileCopyrightText: 2010 litl, LLC
+SPDX-FileCopyrightText: 2010 Sugar Labs
+SPDX-FileCopyrightText: 2011 Red Hat, Inc.
+SPDX-FileCopyrightText: 2011 Torsten Schönfeld
+SPDX-FileCopyrightText: 2018 Philip Chimento <philip.chimento@gmail.com>
+SPDX-FileCopyrightText: 2018 Tomasz Miąsko
+SPDX-FileCopyrightText: 2024 Simon McVittie
+*/
+
 #ifndef __REGRESS_FOO_OBJECT_H__
 #define __REGRESS_FOO_OBJECT_H__
 

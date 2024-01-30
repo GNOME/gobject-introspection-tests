@@ -1,3 +1,9 @@
+/*
+SPDX-FileCopyrightText: 2008 Colin Walters <walters@verbum.org>
+SPDX-FileCopyrightText: 2008 Johan Dahlin
+SPDX-FileCopyrightText: 2008-2009 Andreas Rottmann <a.rottmann@gmx.at>
+*/
+
 #ifndef __UTILITY_H__
 #define __UTILITY_H__
 

@@ -1,3 +1,20 @@
+/*
+SPDX-FileCopyrightText: 2007-2010 Johan Dahlin
+SPDX-FileCopyrightText: 2008-2010 Colin Walters <walters@verbum.org>
+SPDX-FileCopyrightText: 2008 Jürg Billeter
+SPDX-FileCopyrightText: 2008 Philip Van Hoof
+SPDX-FileCopyrightText: 2009, 2011-2012 Dan Winship
+SPDX-FileCopyrightText: 2010 Collabora, Ltd.
+SPDX-FileCopyrightText: 2010 litl, LLC
+SPDX-FileCopyrightText: 2010 Sugar Labs
+SPDX-FileCopyrightText: 2011 Owen Taylor
+SPDX-FileCopyrightText: 2011 Red Hat, Inc.
+SPDX-FileCopyrightText: 2011 Torsten Schönfeld
+SPDX-FileCopyrightText: 2018 Christoph Reiter
+SPDX-FileCopyrightText: 2020 Centricular
+SPDX-FileCopyrightText: 2024 Simon McVittie
+*/
+
 /* This file gets installed, so we can't assume config.h is available */
 #ifdef HAVE_CONFIG_H
 #include "config.h"

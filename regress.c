@@ -1,4 +1,51 @@
 /* -*- mode: C; c-file-style: "gnu"; indent-tabs-mode: nil; -*- */
+
+/*
+SPDX-FileCopyrightText: 2008-2015 Colin Walters <walters@verbum.org>
+SPDX-FileCopyrightText: 2008 Johan Bilien
+SPDX-FileCopyrightText: 2008 Lucas Almeida Rocha
+SPDX-FileCopyrightText: 2008, 2010 Owen W. Taylor
+SPDX-FileCopyrightText: 2008 Tommi Komulainen
+SPDX-FileCopyrightText: 2009 Andreas Rottmann <a.rottmann@gmx.at>
+SPDX-FileCopyrightText: 2009 Havoc Pennington
+SPDX-FileCopyrightText: 2009-2010 Johan Dahlin
+SPDX-FileCopyrightText: 2009-2011 litl, LLC
+SPDX-FileCopyrightText: 2009 Mark Lee
+SPDX-FileCopyrightText: 2009 Maxim Ermilov
+SPDX-FileCopyrightText: 2009 Simon van der Linden
+SPDX-FileCopyrightText: 2009-2010 Sugar Labs
+SPDX-FileCopyrightText: 2010-2012, 2015 Collabora, Ltd.
+SPDX-FileCopyrightText: 2010 Jonathan Matthew
+SPDX-FileCopyrightText: 2010 Zach Goldberg
+SPDX-FileCopyrightText: 2011-2012, 2014 Giovanni Campagna
+SPDX-FileCopyrightText: 2011-2013 Martin Pitt
+SPDX-FileCopyrightText: 2011 Pavel Holejsovsky
+SPDX-FileCopyrightText: 2011, 2024 Red Hat, Inc.
+SPDX-FileCopyrightText: 2011 Xavier Claessens
+SPDX-FileCopyrightText: 2012 Bastian Winkler
+SPDX-FileCopyrightText: 2012 Canonical Ltd.
+SPDX-FileCopyrightText: 2012 Coeus Group
+SPDX-FileCopyrightText: 2012 Dieter Verfaillie
+SPDX-FileCopyrightText: 2012 Jasper St. Pierre
+SPDX-FileCopyrightText: 2012 Jon Nordby
+SPDX-FileCopyrightText: 2012 Paolo Borelli
+SPDX-FileCopyrightText: 2012 Simon Feltman
+SPDX-FileCopyrightText: 2012 Torsten Schönfeld
+SPDX-FileCopyrightText: 2014-2015 RIFT.io, Inc.
+SPDX-FileCopyrightText: 2015, 2018 Christoph Reiter
+SPDX-FileCopyrightText: 2015 Debarshi Ray
+SPDX-FileCopyrightText: 2015 Ben Iofel
+SPDX-FileCopyrightText: 2016 Lionel Landwerlin
+SPDX-FileCopyrightText: 2016-2019 Philip Chimento <philip.chimento@gmail.com>
+SPDX-FileCopyrightText: 2017 Endless Mobile, Inc.
+SPDX-FileCopyrightText: 2017 Rico Tzschichholz
+SPDX-FileCopyrightText: 2018-2019 Tomasz Miąsko
+SPDX-FileCopyrightText: 2019, 2021 Emmanuele Bassi
+SPDX-FileCopyrightText: 2021, 2023 Marco Trevisan
+SPDX-FileCopyrightText: 2023 Evan Welsh
+SPDX-FileCopyrightText: 2024 Simon McVittie
+*/
+
 /* This file gets installed, so we can't assume config.h is available */
 #ifdef HAVE_CONFIG_H
 #include "config.h"

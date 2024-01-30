@@ -1,3 +1,7 @@
+/*
+SPDX-FileCopyrightText: 2014 Chun-wei Fan
+*/
+
 #ifndef __GITESTMACROS_H__
 #define __GITESTMACROS_H__
 

@@ -1,5 +1,19 @@
 /* -*- mode: C; c-file-style: "gnu"; indent-tabs-mode: nil; -*- */
 
+/*
+SPDX-FileCopyrightText: 2008-2009 Dan Winship
+SPDX-FileCopyrightText: 2008-2010 Colin Walters <walters@verbum.org>
+SPDX-FileCopyrightText: 2008-2011 Johan Dahlin
+SPDX-FileCopyrightText: 2008 Owen Taylor
+SPDX-FileCopyrightText: 2008 Tristan Van Berkom
+SPDX-FileCopyrightText: 2009 Andreas Rottmann <a.rottmann@gmx.at>
+SPDX-FileCopyrightText: 2010 litl, LLC
+SPDX-FileCopyrightText: 2010 Pavel Holejsovsky
+SPDX-FileCopyrightText: 2010 Red Hat, Inc.
+SPDX-FileCopyrightText: 2011 Jasper St. Pierre
+SPDX-FileCopyrightText: 2015 Christoph Reiter
+*/
+
 /* This file gets installed, so we can't assume config.h is available */
 #ifdef HAVE_CONFIG_H
 #include "config.h"

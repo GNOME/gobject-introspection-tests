@@ -1,3 +1,9 @@
+/*
+SPDX-FileCopyrightText: 2008 Colin Walters <walters@verbum.org>
+SPDX-FileCopyrightText: 2008 Johan Bilien
+SPDX-FileCopyrightText: 2008 Johan Dahlin
+*/
+
 #ifndef __REGRESS_TEST_INHERIT_DRAWABLE_H__
 #define __REGRESS_TEST_INHERIT_DRAWABLE_H__
 

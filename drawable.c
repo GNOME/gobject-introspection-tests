@@ -1,5 +1,11 @@
 /* -*- mode: C; c-file-style: "gnu"; indent-tabs-mode: nil; -*- */
 
+/*
+SPDX-FileCopyrightText: 2008 Colin Walters <walters@verbum.org>
+SPDX-FileCopyrightText: 2008 Johan Bilien
+SPDX-FileCopyrightText: 2008 Johan Dahlin
+*/
+
 /* This file gets installed, so we can't assume config.h is available */
 #ifdef HAVE_CONFIG_H
 #include "config.h"

@@ -61,10 +61,10 @@ typedef struct
 typedef void (*UtilityFileFunc)(const char *path, gpointer user_data);
 
 
-_GI_TEST_EXTERN
+GI_TEST_EXTERN
 GType                 utility_object_get_type          (void) G_GNUC_CONST;
 
-_GI_TEST_EXTERN
+GI_TEST_EXTERN
 void                  utility_object_watch_dir         (UtilityObject *object,
                                                         const char *path,
                                                         UtilityFileFunc func,
@@ -101,5 +101,5 @@ typedef union
   double real;
 } UtilityUnion;
 
-_GI_TEST_EXTERN
+GI_TEST_EXTERN
 void utility_dir_foreach (const char *path, UtilityFileFunc func, gpointer user_data);

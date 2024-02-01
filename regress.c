@@ -44,11 +44,6 @@ SPDX-FileCopyrightText: 2023 Evan Welsh
 SPDX-FileCopyrightText: 2024 Simon McVittie
 */
 
-/* This file gets installed, so we can't assume config.h is available */
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #include <string.h>
 #include <stdlib.h>
 #include <glib-object.h>

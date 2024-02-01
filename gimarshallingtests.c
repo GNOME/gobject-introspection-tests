@@ -32,11 +32,6 @@ SPDX-FileCopyrightText: 2020, 2024 Simon McVittie
 SPDX-FileCopyrightText: 2021 Carlos Garnacho
 */
 
-/* This file gets installed, so we can't assume config.h is available */
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #include "gimarshallingtests.h"
 
 #include <string.h>

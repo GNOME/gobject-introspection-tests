@@ -12,11 +12,6 @@ SPDX-FileCopyrightText: 2011 Jasper St. Pierre
 SPDX-FileCopyrightText: 2015 Christoph Reiter
 */
 
-/* This file gets installed, so we can't assume config.h is available */
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #include "annotation.h"
 
 char backslash_parsing_tester = '\\';

@@ -3,11 +3,6 @@ SPDX-FileCopyrightText: 2008 Johan Dahlin
 SPDX-FileCopyrightText: 2009 Andreas Rottmann <a.rottmann@gmx.at>
 */
 
-/* This file gets installed, so we can't assume config.h is available */
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #include "utility.h"
 
 G_DEFINE_TYPE (UtilityObject, utility_object, G_TYPE_OBJECT);

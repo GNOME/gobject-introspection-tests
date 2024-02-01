@@ -34,10 +34,10 @@ SPDX-FileCopyrightText: 2021 Carlos Garnacho
 
 #pragma once
 
-#include <sys/types.h>  /* off_t */
-#include <time.h>       /* time_t */
+#include <sys/types.h>  /* off_t, time_t */
 
 #include <glib-object.h>
+#include <glib.h>
 
 #ifdef G_OS_UNIX
 #include <sys/socket.h>

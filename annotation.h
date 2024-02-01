@@ -17,9 +17,10 @@ SPDX-FileCopyrightText: 2020 Centricular
 
 #pragma once
 
-#include "gitestmacros.h"
-
 #include <glib-object.h>
+#include <glib.h>
+
+#include "gitestmacros.h"
 
 typedef enum /*< flags,prefix=ANN >*/
 {

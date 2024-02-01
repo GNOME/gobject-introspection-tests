@@ -21,11 +21,12 @@ SPDX-FileCopyrightText: 2024 Simon McVittie
 
 #pragma once
 
-#include <sys/types.h>  /* off_t */
-#include <time.h>       /* time_t */
+#include <stdarg.h>
+#include <sys/types.h>  /* off_t, time_t */
 
-#include <glib-object.h>
 #include <gio/gio.h> /* GAsyncReadyCallback */
+#include <glib-object.h>
+#include <glib.h>
 
 #include "gitestmacros.h"
 #include "utility.h"

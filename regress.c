@@ -44,10 +44,16 @@ SPDX-FileCopyrightText: 2023 Evan Welsh
 SPDX-FileCopyrightText: 2024 Simon McVittie
 */
 
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
+
 #include <glib-object.h>
 #include <gobject/gvaluecollector.h>
+
+#ifndef _GI_DISABLE_CAIRO
+#include <cairo-gobject.h>
+#include <cairo.h>
+#endif
 
 #include "regress.h"
 

@@ -12,6 +12,8 @@ SPDX-FileCopyrightText: 2011 Jasper St. Pierre
 SPDX-FileCopyrightText: 2015 Christoph Reiter
 */
 
+#include <stddef.h>
+
 #include "annotation.h"
 
 char backslash_parsing_tester = '\\';

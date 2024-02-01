@@ -5,7 +5,8 @@ SPDX-FileCopyrightText: 2013 Dieter Verfaillie
 
 #pragma once
 
-#include <gio/gio.h>
+#include <glib-object.h>
+#include <glib.h>
 
 #include "gitestmacros.h"
 

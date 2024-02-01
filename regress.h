@@ -52,16 +52,16 @@ SPDX-FileCopyrightText: 2023 Evan Welsh
 
 #pragma once
 
-#ifndef _GI_DISABLE_CAIRO
-#include <cairo-gobject.h>
-#endif
-#include <glib.h>
-#include <glib-object.h>
-#include <gio/gio.h>
-#include <time.h>
-#include <string.h>
-#include <stdlib.h>
+#include <stdarg.h>
 #include <sys/types.h>
+
+#include <gio/gio.h>
+#include <glib-object.h>
+#include <glib.h>
+
+#ifndef _GI_DISABLE_CAIRO
+#include <cairo.h>
+#endif
 
 #include "gitestmacros.h"
 

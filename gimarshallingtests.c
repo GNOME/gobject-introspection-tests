@@ -32,9 +32,9 @@ SPDX-FileCopyrightText: 2020, 2024 Simon McVittie
 SPDX-FileCopyrightText: 2021 Carlos Garnacho
 */
 
-#include "gimarshallingtests.h"
-
 #include <string.h>
+
+#include "gimarshallingtests.h"
 
 static void gi_marshalling_tests_boxed_struct_free (GIMarshallingTestsBoxedStruct *v);
 

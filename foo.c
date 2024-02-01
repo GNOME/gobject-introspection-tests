@@ -15,6 +15,8 @@ SPDX-FileCopyrightText: 2020 Centricular
 SPDX-FileCopyrightText: 2024 Simon McVittie
 */
 
+#include <time.h>
+
 #include "foo.h"
 
 /**

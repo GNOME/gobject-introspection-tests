@@ -7,6 +7,7 @@ SPDX-FileCopyrightText: 2008-2009 Andreas Rottmann <a.rottmann@gmx.at>
 #pragma once
 
 #include <glib-object.h>
+#include <glib.h>
 
 #include "gitestmacros.h"
 

@@ -3,8 +3,7 @@ SPDX-FileCopyrightText: 2012 Colin Walters <walters@verbum.org>
 SPDX-FileCopyrightText: 2013 Dieter Verfaillie
 */
 
-#ifndef __WARNLIB_H__
-#define __WARNLIB_H__
+#pragma once
 
 #include <gio/gio.h>
 
@@ -45,5 +44,3 @@ void warnlib_whatever_do_boo (WarnLibWhatever *self, int, gpointer);
 
 _GI_TEST_EXTERN
 GType warnlib_whatever_get_type (void) G_GNUC_CONST;
-
-#endif

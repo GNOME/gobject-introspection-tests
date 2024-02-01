@@ -19,8 +19,7 @@ SPDX-FileCopyrightText: 2018 Tomasz Miąsko
 SPDX-FileCopyrightText: 2024 Simon McVittie
 */
 
-#ifndef __REGRESS_FOO_OBJECT_H__
-#define __REGRESS_FOO_OBJECT_H__
+#pragma once
 
 #include <sys/types.h>  /* off_t */
 #include <time.h>       /* time_t */
@@ -607,5 +606,3 @@ void regress_foo_object_a_global_method (UtilityObject *obj);
 
 _GI_TEST_EXTERN
 RegressFooOtherObject * regress_foo_object_append_new_stack_layer (RegressFooObject *obj, int x);
-
-#endif /* __REGRESS_FOO_OBJECT_H__ */

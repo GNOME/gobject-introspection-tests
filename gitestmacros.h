@@ -2,13 +2,10 @@
 SPDX-FileCopyrightText: 2014 Chun-wei Fan
 */
 
-#ifndef __GITESTMACROS_H__
-#define __GITESTMACROS_H__
+#pragma once
 
 #ifndef _GI_EXTERN
 #define _GI_EXTERN extern
 #endif
 
 #define _GI_TEST_EXTERN _GI_EXTERN
-
-#endif

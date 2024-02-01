@@ -50,8 +50,7 @@ SPDX-FileCopyrightText: 2023-2024 Simon McVittie
 SPDX-FileCopyrightText: 2023 Evan Welsh
 */
 
-#ifndef __GITESTTYPES_H__
-#define __GITESTTYPES_H__
+#pragma once
 
 #ifndef _GI_DISABLE_CAIRO
 #include <cairo-gobject.h>
@@ -1722,5 +1721,3 @@ static inline gboolean regress_test_obj_inline_method (RegressTestObj *obj, gboo
 {
   return foo;
 }
-
-#endif /* __GITESTTYPES_H__ */

@@ -15,8 +15,7 @@ SPDX-FileCopyrightText: 2015 Christoph Reiter
 SPDX-FileCopyrightText: 2020 Centricular
 */
 
-#ifndef __REGRESS_ANNOTATION_OBJECT_H__
-#define __REGRESS_ANNOTATION_OBJECT_H__
+#pragma once
 
 #include "gitestmacros.h"
 
@@ -326,6 +325,3 @@ GObject * regress_annotation_transfer_floating (GObject *object);
  * Constant to define a calculated large value
  */
 #define REGRESS_ANNOTATION_CALCULATED_LARGE_DIV (1000 / G_GINT64_CONSTANT (10000000))
-
-#endif /* __REGRESS_ANNOTATION_OBJECT_H__ */
-

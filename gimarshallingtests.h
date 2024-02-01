@@ -32,6 +32,8 @@ SPDX-FileCopyrightText: 2020, 2024 Simon McVittie
 SPDX-FileCopyrightText: 2021 Carlos Garnacho
 */
 
+#pragma once
+
 #include <sys/types.h>  /* off_t */
 #include <time.h>       /* time_t */
 
@@ -42,9 +44,6 @@ SPDX-FileCopyrightText: 2021 Carlos Garnacho
 #endif
 
 #include "gitestmacros.h"
-
-#ifndef __GI_MARSHALLING_TESTS_H__
-#define __GI_MARSHALLING_TESTS_H__
 
 typedef struct _GIMarshallingTestsSimpleStruct GIMarshallingTestsSimpleStruct;
 typedef struct _GIMarshallingTestsBoxedStruct GIMarshallingTestsBoxedStruct;
@@ -2541,5 +2540,3 @@ void gi_marshalling_tests_signals_object_emit_boxed_struct (GIMarshallingTestsSi
 
 _GI_TEST_EXTERN
 void gi_marshalling_tests_signals_object_emit_boxed_struct_full (GIMarshallingTestsSignalsObject *object);
-
-#endif /* _GI_MARSHALLING_TESTS_H_ */

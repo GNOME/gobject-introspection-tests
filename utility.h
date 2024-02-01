@@ -4,8 +4,7 @@ SPDX-FileCopyrightText: 2008 Johan Dahlin
 SPDX-FileCopyrightText: 2008-2009 Andreas Rottmann <a.rottmann@gmx.at>
 */
 
-#ifndef __UTILITY_H__
-#define __UTILITY_H__
+#pragma once
 
 #include <glib-object.h>
 
@@ -104,5 +103,3 @@ typedef union
 
 _GI_TEST_EXTERN
 void utility_dir_foreach (const char *path, UtilityFileFunc func, gpointer user_data);
-
-#endif /* __UTILITY_H__ */

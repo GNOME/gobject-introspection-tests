@@ -4921,7 +4921,7 @@ regress_get_variant (void)
  * @len: (out): Length of @arr
  *
  * Test flat array output with transfer none.
- * 
+ *
  * Similar to:
  * - mm_modem_peek_ports() with structs
  * - gdk_query_visual_types() with enums
@@ -5006,7 +5006,7 @@ regress_test_array_struct_out_caller_alloc (RegressTestStructA *arr, gsize len)
  *
  * Test flat array input with transfer full.
  *
- * Similar to: 
+ * Similar to:
  * - gsf_property_settings_free() with structs but they contain pointers
  * - g_byte_array_new_take() with guint8s
  */

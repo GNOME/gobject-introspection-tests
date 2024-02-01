@@ -212,7 +212,7 @@ void     regress_annotation_object_hidden_self  (gpointer object);
 
 
 _GI_TEST_EXTERN
-void     regress_annotation_init                (int              *argc, 
+void     regress_annotation_init                (int              *argc,
 					 char           ***argv);
 
 _GI_TEST_EXTERN

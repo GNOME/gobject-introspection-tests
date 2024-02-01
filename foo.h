@@ -139,7 +139,7 @@ struct _RegressFooObjectClass
 
   /* Intended to match GFile */
   void (*read_fn) (RegressFooObject *object, int offset, int length);
-  
+
   /* Test reserved stuff */
   GCallback _reserved[4];
 };
@@ -349,8 +349,8 @@ typedef gboolean (* RegressFooCallback) (RegressFooObject *regress_foo, gboolean
 /* @ */
 /* @: */
 
-typedef struct _RegressFooStruct           RegressFooStruct; 
-typedef struct _RegressFooStructPrivate    RegressFooStructPrivate; 
+typedef struct _RegressFooStruct           RegressFooStruct;
+typedef struct _RegressFooStructPrivate    RegressFooStructPrivate;
 
 struct _RegressFooStruct
 {
@@ -400,7 +400,7 @@ struct _RegressFooEventExpose
   gint8 send_event;
   gint count;
 };
-  
+
 union _RegressFooEvent
 {
   int type;

@@ -269,7 +269,7 @@ regress_foo_object_external_type (RegressFooObject *object)
   return NULL;
 }
 
-void                  
+void
 regress_foo_object_take_all (RegressFooObject *object, int x, ...)
 {
 
@@ -450,7 +450,7 @@ GType
 regress_foo_boxed_get_type (void)
 {
   static GType our_type = 0;
-  
+
   if (our_type == 0)
     our_type = g_boxed_type_register_static ("RegressFooBoxed",
 					     (GBoxedCopyFunc) regress_foo_boxed_copy,
@@ -497,7 +497,7 @@ GType
 regress_foo_dbus_data_get_type (void)
 {
   static GType our_type = 0;
-  
+
   if (our_type == 0)
     our_type = g_boxed_type_register_static ("RegressFooDBusData",
 					     (GBoxedCopyFunc) regress_foo_dbus_data_copy,
@@ -519,7 +519,7 @@ GType
 regress_foo_brect_get_type (void)
 {
   static GType our_type = 0;
-  
+
   if (our_type == 0)
     our_type = g_boxed_type_register_static ("RegressFooBRect",
 					     (GBoxedCopyFunc) regress_foo_brect_copy,
@@ -541,7 +541,7 @@ GType
 regress_foo_bunion_get_type (void)
 {
   static GType our_type = 0;
-  
+
   if (our_type == 0)
     our_type = g_boxed_type_register_static ("RegressFooBUnion",
 					     (GBoxedCopyFunc) regress_foo_bunion_copy,

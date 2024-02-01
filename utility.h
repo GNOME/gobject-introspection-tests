@@ -79,7 +79,7 @@ typedef enum
   UTILITY_ENUM_C
 } UtilityEnumType;
 
-/* The shift operators here should imply bitfield */ 
+/* The shift operators here should imply bitfield */
 typedef enum
 {
   UTILITY_FLAG_A = 1 << 0,

@@ -1,7 +1,3 @@
-/* -*- mode: C; c-file-style: "gnu"; indent-tabs-mode: nil; -*-
- *vim: tabstop=4 shiftwidth=4 expandtab
- */
-
 /*
 SPDX-FileCopyrightText: 2010-2012 Collabora, Ltd.
 SPDX-FileCopyrightText: 2010 Johan Dahlin

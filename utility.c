@@ -1,5 +1,3 @@
-/* -*- mode: C; c-file-style: "gnu"; indent-tabs-mode: nil; -*- */
-
 /*
 SPDX-FileCopyrightText: 2008 Johan Dahlin
 SPDX-FileCopyrightText: 2009 Andreas Rottmann <a.rottmann@gmx.at>

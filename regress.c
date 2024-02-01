@@ -1,5 +1,3 @@
-/* -*- mode: C; c-file-style: "gnu"; indent-tabs-mode: nil; -*- */
-
 /*
 SPDX-FileCopyrightText: 2008-2015 Colin Walters <walters@verbum.org>
 SPDX-FileCopyrightText: 2008 Johan Bilien

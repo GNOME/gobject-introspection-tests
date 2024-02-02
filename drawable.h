@@ -27,7 +27,6 @@ struct _RegressTestInheritDrawableClass
 GI_TEST_EXTERN
 GType regress_test_inherit_drawable_get_type (void) G_GNUC_CONST;
 
-
 GI_TEST_EXTERN
 void regress_test_inherit_drawable_do_foo (RegressTestInheritDrawable *drawable, int x);
 

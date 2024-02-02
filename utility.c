@@ -16,13 +16,11 @@ G_DEFINE_TYPE (UtilityObject, utility_object, G_TYPE_OBJECT);
 static void
 utility_object_class_init (UtilityObjectClass *klass)
 {
-
 }
 
 static void
 utility_object_init (UtilityObject *object)
 {
-
 }
 
 void
@@ -32,7 +30,6 @@ utility_object_watch_dir (UtilityObject *object,
                           gpointer user_data,
                           GDestroyNotify destroy)
 {
-
 }
 
 /**
@@ -45,5 +42,4 @@ utility_object_watch_dir (UtilityObject *object,
 void
 utility_dir_foreach (const char *path, UtilityFileFunc func, gpointer user_data)
 {
-
 }

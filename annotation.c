@@ -20,14 +20,16 @@ char backslash_parsing_tester = '\\';
 
 G_DEFINE_TYPE (RegressAnnotationObject, regress_annotation_object, G_TYPE_OBJECT);
 
-enum {
+enum
+{
   PROP_0,
   PROP_STRING_PROPERTY,
   PROP_FUNCTION_PROPERTY,
   PROP_TAB_PROPERTY
 };
 
-enum {
+enum
+{
   STRING_SIGNAL,
   LIST_SIGNAL,
   DOC_EMPTY_ARG_PARSING,
@@ -38,10 +40,10 @@ enum {
 static guint regress_annotation_object_signals[LAST_SIGNAL] = { 0 };
 
 static void
-regress_annotation_object_set_property (GObject         *object,
-                                        guint            prop_id,
-                                        const GValue    *value,
-                                        GParamSpec      *pspec)
+regress_annotation_object_set_property (GObject *object,
+                                        guint prop_id,
+                                        const GValue *value,
+                                        GParamSpec *pspec)
 {
   switch (prop_id)
     {
@@ -58,10 +60,10 @@ regress_annotation_object_set_property (GObject         *object,
 }
 
 static void
-regress_annotation_object_get_property (GObject         *object,
-                                        guint            prop_id,
-                                        GValue          *value,
-                                        GParamSpec      *pspec)
+regress_annotation_object_get_property (GObject *object,
+                                        guint prop_id,
+                                        GValue *value,
+                                        GParamSpec *pspec)
 {
   switch (prop_id)
     {
@@ -100,12 +102,12 @@ regress_annotation_object_class_init (RegressAnnotationObjectClass *klass)
    */
   regress_annotation_object_signals[STRING_SIGNAL] =
     g_signal_new ("string-signal",
-		  G_OBJECT_CLASS_TYPE (gobject_class),
-		  G_SIGNAL_RUN_LAST,
-		  0,
-		  NULL, NULL,
-		  (GSignalCMarshaller)g_cclosure_marshal_VOID__POINTER,
-		  G_TYPE_NONE, 1, G_TYPE_POINTER);
+                  G_OBJECT_CLASS_TYPE (gobject_class),
+                  G_SIGNAL_RUN_LAST,
+                  0,
+                  NULL, NULL,
+                  (GSignalCMarshaller) g_cclosure_marshal_VOID__POINTER,
+                  G_TYPE_NONE, 1, G_TYPE_POINTER);
 
   /**
    * RegressAnnotationObject::list-signal:
@@ -117,12 +119,12 @@ regress_annotation_object_class_init (RegressAnnotationObjectClass *klass)
    */
   regress_annotation_object_signals[LIST_SIGNAL] =
     g_signal_new ("list-signal",
-		  G_OBJECT_CLASS_TYPE (gobject_class),
-		  G_SIGNAL_RUN_LAST,
-		  0,
-		  NULL, NULL,
-		  (GSignalCMarshaller)g_cclosure_marshal_VOID__POINTER,
-		  G_TYPE_NONE, 1, G_TYPE_POINTER);
+                  G_OBJECT_CLASS_TYPE (gobject_class),
+                  G_SIGNAL_RUN_LAST,
+                  0,
+                  NULL, NULL,
+                  (GSignalCMarshaller) g_cclosure_marshal_VOID__POINTER,
+                  G_TYPE_NONE, 1, G_TYPE_POINTER);
 
   /**
    * RegressAnnotationObject::doc-empty-arg-parsing:
@@ -133,12 +135,12 @@ regress_annotation_object_class_init (RegressAnnotationObjectClass *klass)
    */
   regress_annotation_object_signals[DOC_EMPTY_ARG_PARSING] =
     g_signal_new ("doc-empty-arg-parsing",
-		  G_OBJECT_CLASS_TYPE (gobject_class),
-		  G_SIGNAL_RUN_LAST,
-		  0,
-		  NULL, NULL,
-		  (GSignalCMarshaller)g_cclosure_marshal_VOID__POINTER,
-		  G_TYPE_NONE, 1, G_TYPE_POINTER);
+                  G_OBJECT_CLASS_TYPE (gobject_class),
+                  G_SIGNAL_RUN_LAST,
+                  0,
+                  NULL, NULL,
+                  (GSignalCMarshaller) g_cclosure_marshal_VOID__POINTER,
+                  G_TYPE_NONE, 1, G_TYPE_POINTER);
 
   /**
    * RegressAnnotationObject::attribute-signal:
@@ -152,12 +154,12 @@ regress_annotation_object_class_init (RegressAnnotationObjectClass *klass)
    */
   regress_annotation_object_signals[ATTRIBUTE_SIGNAL] =
     g_signal_new ("attribute-signal",
-		  G_OBJECT_CLASS_TYPE (gobject_class),
-		  G_SIGNAL_RUN_LAST,
-		  0,
-		  NULL, NULL,
-		  NULL, /* marshaller */
-		  G_TYPE_STRING,
+                  G_OBJECT_CLASS_TYPE (gobject_class),
+                  G_SIGNAL_RUN_LAST,
+                  0,
+                  NULL, NULL,
+                  NULL, /* marshaller */
+                  G_TYPE_STRING,
                   2,
                   G_TYPE_STRING,
                   G_TYPE_STRING);
@@ -187,6 +189,8 @@ regress_annotation_object_class_init (RegressAnnotationObjectClass *klass)
                                                          "This property is a function pointer",
                                                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
+  /* clang-format off */
+
 	  /**
 	   * RegressAnnotationObject:tab-property:
 	   *
@@ -202,12 +206,13 @@ regress_annotation_object_class_init (RegressAnnotationObjectClass *klass)
                                                         "This property is a thing",
                                                         NULL,
                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
+  /* clang-format on */
 }
 
 static void
 regress_annotation_object_init (RegressAnnotationObject *object)
 {
-
 }
 
 /**
@@ -253,7 +258,6 @@ regress_annotation_object_in (RegressAnnotationObject *object, int *inarg)
   return *inarg;
 }
 
-
 /**
  * regress_annotation_object_inout:
  * @object: a #GObject
@@ -283,7 +287,6 @@ regress_annotation_object_inout2 (RegressAnnotationObject *object, int *inoutarg
 {
   return *inoutarg += 1;
 }
-
 
 /**
  * regress_annotation_object_inout3:
@@ -317,7 +320,6 @@ regress_annotation_object_calleeowns (RegressAnnotationObject *object, GObject *
   return 1;
 }
 
-
 /**
  * regress_annotation_object_calleesowns:
  * @object: a #GObject
@@ -336,7 +338,6 @@ regress_annotation_object_calleesowns (RegressAnnotationObject *object,
   return 1;
 }
 
-
 /**
  * regress_annotation_object_get_strings:
  * @object: a #GObject
@@ -346,7 +347,7 @@ regress_annotation_object_calleesowns (RegressAnnotationObject *object,
  *
  * Return value: (element-type utf8) (transfer full): list of strings
  */
-GList*
+GList *
 regress_annotation_object_get_strings (RegressAnnotationObject *object)
 {
   GList *list = NULL;
@@ -364,11 +365,11 @@ regress_annotation_object_get_strings (RegressAnnotationObject *object)
  *
  * Return value: (element-type utf8 GObject) (transfer full): hash table
  */
-GHashTable*
+GHashTable *
 regress_annotation_object_get_hash (RegressAnnotationObject *object)
 {
   GHashTable *hash = g_hash_table_new_full (g_str_hash, g_str_equal,
-					    g_free, g_object_unref);
+                                            g_free, g_object_unref);
   g_hash_table_insert (hash, g_strdup ("one"), g_object_ref (object));
   g_hash_table_insert (hash, g_strdup ("two"), g_object_ref (object));
   return hash;
@@ -381,7 +382,6 @@ regress_annotation_object_get_hash (RegressAnnotationObject *object)
 void
 regress_annotation_object_with_voidp (RegressAnnotationObject *object, void *data)
 {
-
 }
 
 /**
@@ -394,7 +394,7 @@ regress_annotation_object_with_voidp (RegressAnnotationObject *object, void *dat
  *
  * Return value: (element-type RegressAnnotationObject) (transfer container): list of objects
  */
-GSList*
+GSList *
 regress_annotation_object_get_objects (RegressAnnotationObject *object)
 {
   GSList *list = NULL;
@@ -410,7 +410,7 @@ regress_annotation_object_get_objects (RegressAnnotationObject *object)
  *
  * Return value: (transfer full): The object
  **/
-GObject*
+GObject *
 regress_annotation_object_create_object (RegressAnnotationObject *object)
 {
   return G_OBJECT (g_object_ref (object));
@@ -422,10 +422,9 @@ regress_annotation_object_create_object (RegressAnnotationObject *object)
  *
  **/
 void
-regress_annotation_object_use_buffer   (RegressAnnotationObject *object,
-                                        guchar           *bytes)
+regress_annotation_object_use_buffer (RegressAnnotationObject *object,
+                                      guchar *bytes)
 {
-
 }
 
 /**
@@ -436,10 +435,9 @@ regress_annotation_object_use_buffer   (RegressAnnotationObject *object,
  * Test taking a zero-terminated array
  **/
 void
-regress_annotation_object_compute_sum  (RegressAnnotationObject *object,
-                                        int              *nums)
+regress_annotation_object_compute_sum (RegressAnnotationObject *object,
+                                       int *nums)
 {
-
 }
 
 /**
@@ -452,11 +450,10 @@ regress_annotation_object_compute_sum  (RegressAnnotationObject *object,
  * Test taking an array with length parameter
  **/
 void
-regress_annotation_object_compute_sum_n(RegressAnnotationObject *object,
-                                        int              *nums,
-                                        int               n_nums)
+regress_annotation_object_compute_sum_n (RegressAnnotationObject *object,
+                                         int *nums,
+                                         int n_nums)
 {
-
 }
 
 /**
@@ -469,11 +466,10 @@ regress_annotation_object_compute_sum_n(RegressAnnotationObject *object,
  * Test taking a zero-terminated array with length parameter
  **/
 void
-regress_annotation_object_compute_sum_nz(RegressAnnotationObject *object,
-                                         int             *nums,
-                                         int              n_nums)
+regress_annotation_object_compute_sum_nz (RegressAnnotationObject *object,
+                                          int *nums,
+                                          int n_nums)
 {
-
 }
 
 /**
@@ -485,11 +481,10 @@ regress_annotation_object_compute_sum_nz(RegressAnnotationObject *object,
  * Test taking a zero-terminated array with length parameter
  **/
 void
-regress_annotation_object_parse_args(RegressAnnotationObject *object,
-                                     int              *argc,
-                                     char           ***argv)
+regress_annotation_object_parse_args (RegressAnnotationObject *object,
+                                      int *argc,
+                                      char ***argv)
 {
-
 }
 
 /**
@@ -502,8 +497,8 @@ regress_annotation_object_parse_args(RegressAnnotationObject *object,
  * Returns: some boolean
  **/
 gboolean
-regress_annotation_object_string_out(RegressAnnotationObject *object,
-                                     char            **str_out)
+regress_annotation_object_string_out (RegressAnnotationObject *object,
+                                      char **str_out)
 {
   return FALSE;
 }
@@ -521,7 +516,6 @@ regress_annotation_object_foreach (RegressAnnotationObject *object,
                                    RegressAnnotationForeachFunc func,
                                    gpointer user_data)
 {
-
 }
 
 /**
@@ -537,7 +531,6 @@ regress_annotation_object_set_data (RegressAnnotationObject *object,
                                     const guchar *data,
                                     gsize length)
 {
-
 }
 
 /**
@@ -553,7 +546,6 @@ regress_annotation_object_set_data2 (RegressAnnotationObject *object,
                                      const gchar *data,
                                      gsize length)
 {
-
 }
 
 /**
@@ -570,7 +562,6 @@ regress_annotation_object_set_data3 (RegressAnnotationObject *object,
                                      gpointer data,
                                      gsize length)
 {
-
 }
 
 /**
@@ -580,7 +571,7 @@ regress_annotation_object_set_data3 (RegressAnnotationObject *object,
  *
  * Returns: (transfer none): %NULL always
  **/
-GObject*
+GObject *
 regress_annotation_object_allow_none (RegressAnnotationObject *object, const gchar *somearg)
 {
   return NULL;
@@ -593,7 +584,7 @@ regress_annotation_object_allow_none (RegressAnnotationObject *object, const gch
  * Returns: (transfer none): An object, not referenced
  **/
 
-GObject*
+GObject *
 regress_annotation_object_notrans (RegressAnnotationObject *object)
 {
   return NULL;
@@ -606,7 +597,7 @@ regress_annotation_object_notrans (RegressAnnotationObject *object)
  * Returns: (transfer none): %NULL always
  * Deprecated: 0.12: Use regress_annotation_object_create_object() instead.
  **/
-GObject*
+GObject *
 regress_annotation_object_do_not_use (RegressAnnotationObject *object)
 {
   return NULL;
@@ -662,7 +653,6 @@ regress_annotation_object_hidden_self (gpointer object)
 void
 regress_annotation_init (int *argc, char ***argv)
 {
-
 }
 
 /**
@@ -713,7 +703,7 @@ regress_annotation_versioned (void)
  * @properties: (array length=n_properties) (element-type utf8):
  */
 void
-regress_annotation_string_array_length (guint n_properties, const gchar * const properties[])
+regress_annotation_string_array_length (guint n_properties, const gchar *const properties[])
 {
 }
 
@@ -778,7 +768,7 @@ regress_annotation_ptr_array (GPtrArray *array)
  */
 gint
 regress_annotation_attribute_func (RegressAnnotationObject *object,
-                                   const gchar      *data)
+                                   const gchar *data)
 {
   return 42;
 }
@@ -790,12 +780,9 @@ regress_annotation_attribute_func (RegressAnnotationObject *object,
 void
 regress_annotation_invalid_regress_annotation (int foo)
 {
-
 }
 
-
 char backslash_parsing_tester_2 = '\\';
-
 
 /**
  * regress_annotation_test_parsing_bug630862:
@@ -804,12 +791,11 @@ char backslash_parsing_tester_2 = '\\';
  *
  * Returns: (transfer none): An object, note the colon:in here
  */
-GObject  *
+GObject *
 regress_annotation_test_parsing_bug630862 (void)
 {
   return NULL;
 }
-
 
 /**
  * regress_annotation_space_after_comment_bug631690:
@@ -826,7 +812,7 @@ regress_annotation_space_after_comment_bug631690 (void)
  *
  * Returns: (type filename): An annotated filename
  */
-gchar*
+gchar *
 regress_annotation_return_filename (void)
 {
   return g_strdup ("a utf-8 filename");

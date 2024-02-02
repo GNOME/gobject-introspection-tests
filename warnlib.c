@@ -23,14 +23,14 @@ typedef WarnLibWhateverIface WarnLibWhateverInterface;
 G_DEFINE_INTERFACE (WarnLibWhatever, warnlib_whatever, G_TYPE_OBJECT)
 
 static void
-warnlib_whatever_default_init(WarnLibWhateverIface *iface G_GNUC_UNUSED)
+warnlib_whatever_default_init (WarnLibWhateverIface *iface G_GNUC_UNUSED)
 {
 }
 
 void
 warnlib_whatever_do_moo (WarnLibWhatever *self, int x, gpointer y)
 {
-  WARNLIB_WHATEVER_GET_IFACE(self)->do_moo (self, x, y);
+  WARNLIB_WHATEVER_GET_IFACE (self)->do_moo (self, x, y);
 }
 
 /**
@@ -44,5 +44,5 @@ warnlib_whatever_do_moo (WarnLibWhatever *self, int x, gpointer y)
 void
 warnlib_whatever_do_boo (WarnLibWhatever *self, int x, gpointer y)
 {
-  WARNLIB_WHATEVER_GET_IFACE(self)->do_boo (self, x, y);
+  WARNLIB_WHATEVER_GET_IFACE (self)->do_boo (self, x, y);
 }

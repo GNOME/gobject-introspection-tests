@@ -11,19 +11,16 @@ G_DEFINE_ABSTRACT_TYPE (RegressTestInheritDrawable, regress_test_inherit_drawabl
 static void
 regress_test_inherit_drawable_class_init (RegressTestInheritDrawableClass *klass)
 {
-
 }
 
 static void
 regress_test_inherit_drawable_init (RegressTestInheritDrawable *drawable)
 {
-
 }
 
 void
 regress_test_inherit_drawable_do_foo (RegressTestInheritDrawable *drawable, int x)
 {
-
 }
 
 /**
@@ -56,5 +53,5 @@ void
 regress_test_inherit_drawable_do_foo_maybe_throw (RegressTestInheritDrawable *drawable, int x, GError **error)
 {
   if (x != 42)
-    g_set_error(error, 0, 12, "The answer should be 42!");
+    g_set_error (error, 0, 12, "The answer should be 42!");
 }

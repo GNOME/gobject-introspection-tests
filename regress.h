@@ -227,10 +227,10 @@ GI_TEST_EXTERN
 char **regress_test_strv_out (void);
 
 GI_TEST_EXTERN
-const char * const * regress_test_strv_out_c (void);
+const char *const *regress_test_strv_out_c (void);
 
 GI_TEST_EXTERN
-void   regress_test_strv_outarg (const char ***retp);
+void regress_test_strv_outarg (const char ***retp);
 
 GI_TEST_EXTERN
 int regress_test_array_fixed_size_int_in (int *ints);
@@ -243,10 +243,10 @@ int *regress_test_array_fixed_size_int_return (void);
 
 /* transfer tests */
 GI_TEST_EXTERN
-int *regress_test_array_int_full_out(int *len);
+int *regress_test_array_int_full_out (int *len);
 
 GI_TEST_EXTERN
-int *regress_test_array_int_none_out(int *len);
+int *regress_test_array_int_none_out (int *len);
 
 GI_TEST_EXTERN
 void regress_test_array_int_null_in (int *arr, int len);
@@ -278,10 +278,10 @@ GI_TEST_EXTERN
 void regress_test_glist_nothing_in2 (GList *in);
 
 GI_TEST_EXTERN
-void regress_test_glist_null_in(GSList *in);
+void regress_test_glist_null_in (GSList *in);
 
 GI_TEST_EXTERN
-void regress_test_glist_null_out(GSList **out_list);
+void regress_test_glist_null_out (GSList **out_list);
 
 /* GSList */
 GI_TEST_EXTERN
@@ -303,10 +303,10 @@ GI_TEST_EXTERN
 void regress_test_gslist_nothing_in2 (GSList *in);
 
 GI_TEST_EXTERN
-void regress_test_gslist_null_in(GSList *in);
+void regress_test_gslist_null_in (GSList *in);
 
 GI_TEST_EXTERN
-void regress_test_gslist_null_out(GSList **out_list);
+void regress_test_gslist_null_out (GSList **out_list);
 
 /* GHashTable */
 GI_TEST_EXTERN
@@ -365,14 +365,14 @@ GI_TEST_EXTERN
 int regress_test_closure_one_arg (GClosure *closure, int arg);
 
 GI_TEST_EXTERN
-GVariant *regress_test_closure_variant (GClosure *closure, GVariant* arg);
+GVariant *regress_test_closure_variant (GClosure *closure, GVariant *arg);
 
 /* value */
 GI_TEST_EXTERN
-int regress_test_int_value_arg(const GValue *v);
+int regress_test_int_value_arg (const GValue *v);
 
 GI_TEST_EXTERN
-const GValue *regress_test_value_return(int i);
+const GValue *regress_test_value_return (int i);
 
 /* foreign structs */
 #ifndef _GI_DISABLE_CAIRO
@@ -381,7 +381,6 @@ cairo_t *regress_test_cairo_context_full_return (void);
 
 GI_TEST_EXTERN
 void regress_test_cairo_context_none_in (cairo_t *context);
-
 
 GI_TEST_EXTERN
 cairo_surface_t *regress_test_cairo_surface_none_return (void);
@@ -399,7 +398,6 @@ void regress_test_cairo_surface_full_out (cairo_surface_t **surface);
 /* versioning (deprecated, since, stability) */
 GI_TEST_EXTERN
 void regress_test_versioning (void);
-
 
 GI_TEST_EXTERN
 GVariant *regress_test_gvariant_i (void);
@@ -487,11 +485,10 @@ typedef enum
 #define REGRESS_TEST_EVALUE_DEPRECATED REGRESS_TEST_EVALUE1
 
 GI_TEST_EXTERN
-const gchar * regress_test_enum_param(RegressTestEnum e);
+const gchar *regress_test_enum_param (RegressTestEnum e);
 
 GI_TEST_EXTERN
-const gchar * regress_test_unsigned_enum_param(RegressTestEnumUnsigned e);
-
+const gchar *regress_test_unsigned_enum_param (RegressTestEnumUnsigned e);
 
 GI_TEST_EXTERN
 void regress_global_get_flags_out (RegressTestFlags *v);
@@ -568,7 +565,6 @@ typedef enum
 GI_TEST_EXTERN
 GQuark regress_atest_error_quark (void);
 
-
 /* constants */
 
 #define REGRESS_NEGATIVE_INT_CONSTANT -42
@@ -578,12 +574,12 @@ GQuark regress_atest_error_quark (void);
 #define REGRESS_Mixed_Case_Constant 4423
 #define REGRESS_BOOL_CONSTANT TRUE
 #define REGRESS_G_GINT64_CONSTANT (G_GINT64_CONSTANT (1000))
-#define REGRESS_GUINT64_CONSTANT ((guint64) -1)
+#define REGRESS_GUINT64_CONSTANT ((guint64) - 1)
 #define REGRESS_GOOD_EXPR_CONSTANT (1 + 2 * (3 + 2) << 13 - 4 >> REGRESS_ATEST_ERROR_CODE2)
 #define REGRESS_BAD_EXPR_CONSTANT (1 + SOMETHING_UNDEFINED)
 
 typedef guint64 RegressTestTypeGUInt64;
-#define REGRESS_GUINT64_CONSTANTA ((RegressTestTypeGUInt64) -1)
+#define REGRESS_GUINT64_CONSTANTA ((RegressTestTypeGUInt64) - 1)
 
 /* structures */
 typedef struct _RegressTestStructA RegressTestStructA;
@@ -602,7 +598,7 @@ struct _RegressTestStructA
 
 GI_TEST_EXTERN
 void regress_test_struct_a_clone (RegressTestStructA *a,
-				  RegressTestStructA *a_out);
+                                  RegressTestStructA *a_out);
 
 GI_TEST_EXTERN
 void regress_test_struct_a_parse (RegressTestStructA *a_out, const gchar *string);
@@ -618,7 +614,7 @@ struct _RegressTestStructB
 
 GI_TEST_EXTERN
 void regress_test_struct_b_clone (RegressTestStructB *b,
-			  RegressTestStructB *b_out);
+                                  RegressTestStructB *b_out);
 
 /* This one has a non-basic member */
 struct _RegressTestStructC
@@ -640,39 +636,40 @@ struct _RegressTestStructC
 struct _RegressTestStructD
 {
   RegressTestStructA **array1;
-  gpointer            *array2;
-  gpointer             field;
-  GList               *list;
-  GPtrArray           *garray;
+  gpointer *array2;
+  gpointer field;
+  GList *list;
+  GPtrArray *garray;
 };
 
 /* This one has an array of anonymous unions, inspired by GValue */
 struct RegressTestStructE
 {
   GType some_type;
-  union {
-    gint	v_int;
-    guint	v_uint;
-    glong	v_long;
-    gulong	v_ulong;
-    gint64      v_int64;
-    guint64     v_uint64;
-    gfloat	v_float;
-    gdouble	v_double;
-    gpointer	v_pointer;
+  union
+  {
+    gint v_int;
+    guint v_uint;
+    glong v_long;
+    gulong v_ulong;
+    gint64 v_int64;
+    guint64 v_uint64;
+    gfloat v_float;
+    gdouble v_double;
+    gpointer v_pointer;
   } some_union[2];
 };
 
 /* This one has members with const or volatile modifiers. */
 struct _RegressTestStructF
 {
-  volatile gint   ref_count;
-  const gint     *data1;
-  const gint     *const data2;
-  const gint     *const *const data3;
-  const gint    **const* data4;
-  volatile gint  *const data5;
-  const gint     *volatile data6;
+  volatile gint ref_count;
+  const gint *data1;
+  const gint *const data2;
+  const gint *const *const data3;
+  const gint **const *data4;
+  volatile gint *const data5;
+  const gint *volatile data6;
   volatile unsigned const char data7;
 };
 
@@ -699,18 +696,17 @@ struct _RegressTestSimpleBoxedA
 
 /* Intentionally uses _get_gtype */
 GI_TEST_EXTERN
-GType                   regress_test_simple_boxed_a_get_gtype     (void);
+GType regress_test_simple_boxed_a_get_gtype (void);
 
 GI_TEST_EXTERN
-RegressTestSimpleBoxedA *regress_test_simple_boxed_a_copy         (RegressTestSimpleBoxedA *a);
+RegressTestSimpleBoxedA *regress_test_simple_boxed_a_copy (RegressTestSimpleBoxedA *a);
 
 GI_TEST_EXTERN
-gboolean                regress_test_simple_boxed_a_equals       (RegressTestSimpleBoxedA *a,
-                                                          RegressTestSimpleBoxedA *other_a);
+gboolean regress_test_simple_boxed_a_equals (RegressTestSimpleBoxedA *a,
+                                             RegressTestSimpleBoxedA *other_a);
 
 GI_TEST_EXTERN
 const RegressTestSimpleBoxedA *regress_test_simple_boxed_a_const_return (void);
-
 
 struct _RegressTestSimpleBoxedB
 {
@@ -718,15 +714,14 @@ struct _RegressTestSimpleBoxedB
   RegressTestSimpleBoxedA nested_a;
 };
 
+GI_TEST_EXTERN
+GType regress_test_simple_boxed_b_get_type (void);
 
 GI_TEST_EXTERN
-GType             regress_test_simple_boxed_b_get_type (void);
-
-GI_TEST_EXTERN
-RegressTestSimpleBoxedB *regress_test_simple_boxed_b_copy     (RegressTestSimpleBoxedB *b);
+RegressTestSimpleBoxedB *regress_test_simple_boxed_b_copy (RegressTestSimpleBoxedB *b);
 
 /* opaque boxed */
-#define REGRESS_TEST_TYPE_BOXED (regress_test_boxed_get_type())
+#define REGRESS_TEST_TYPE_BOXED (regress_test_boxed_get_type ())
 
 typedef struct _RegressTestBoxed RegressTestBoxed;
 typedef struct _RegressTestBoxedPrivate RegressTestBoxedPrivate;
@@ -740,34 +735,32 @@ struct _RegressTestBoxed
 };
 
 GI_TEST_EXTERN
-GType      regress_test_boxed_get_type (void);
+GType regress_test_boxed_get_type (void);
 
 GI_TEST_EXTERN
-RegressTestBoxed *regress_test_boxed_new      (void);
+RegressTestBoxed *regress_test_boxed_new (void);
 
 GI_TEST_EXTERN
-RegressTestBoxed *regress_test_boxed_new_alternative_constructor1  (int i);
+RegressTestBoxed *regress_test_boxed_new_alternative_constructor1 (int i);
 
 GI_TEST_EXTERN
-RegressTestBoxed *regress_test_boxed_new_alternative_constructor2  (int i, int j);
+RegressTestBoxed *regress_test_boxed_new_alternative_constructor2 (int i, int j);
 
 GI_TEST_EXTERN
-RegressTestBoxed *regress_test_boxed_new_alternative_constructor3  (char *s);
-
-
-GI_TEST_EXTERN
-RegressTestBoxed *regress_test_boxed_copy     (RegressTestBoxed *boxed);
+RegressTestBoxed *regress_test_boxed_new_alternative_constructor3 (char *s);
 
 GI_TEST_EXTERN
-gboolean   regress_test_boxed_equals   (RegressTestBoxed *boxed,
-					RegressTestBoxed *other);
-
+RegressTestBoxed *regress_test_boxed_copy (RegressTestBoxed *boxed);
 
 GI_TEST_EXTERN
-void       regress_test_boxeds_not_a_method (RegressTestBoxed *boxed);
+gboolean regress_test_boxed_equals (RegressTestBoxed *boxed,
+                                    RegressTestBoxed *other);
 
 GI_TEST_EXTERN
-void       regress_test_boxeds_not_a_static (void);
+void regress_test_boxeds_not_a_method (RegressTestBoxed *boxed);
+
+GI_TEST_EXTERN
+void regress_test_boxeds_not_a_static (void);
 
 typedef struct _RegressTestBoxedB RegressTestBoxedB;
 
@@ -776,7 +769,6 @@ struct _RegressTestBoxedB
   gint8 some_int8;
   glong some_long;
 };
-
 
 GI_TEST_EXTERN
 GType regress_test_boxed_b_get_type (void);
@@ -808,10 +800,8 @@ RegressTestBoxedC *regress_test_boxed_c_new (void);
  */
 typedef struct _RegressTestBoxedD RegressTestBoxedD;
 
-
 GI_TEST_EXTERN
 GType regress_test_boxed_d_get_type (void);
-
 
 GI_TEST_EXTERN
 RegressTestBoxedD *regress_test_boxed_d_new (const char *a_string, int a_int);
@@ -822,18 +812,17 @@ RegressTestBoxedD *regress_test_boxed_d_copy (RegressTestBoxedD *boxed);
 GI_TEST_EXTERN
 void regress_test_boxed_d_free (RegressTestBoxedD *boxed);
 
-
 GI_TEST_EXTERN
 int regress_test_boxed_d_get_magic (RegressTestBoxedD *boxed);
 
 /* gobject */
-#define REGRESS_TEST_TYPE_OBJ              (regress_test_obj_get_type ())
-#define REGRESS_TEST_OBJECT(object)        (G_TYPE_CHECK_INSTANCE_CAST ((object), REGRESS_TEST_TYPE_OBJ, RegressTestObj))
-#define REGRESS_TEST_IS_OBJECT(object)     (G_TYPE_CHECK_INSTANCE_TYPE ((object), REGRESS_TEST_TYPE_OBJ))
-#define REGRESS_TEST_OBJ_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), REGRESS_TEST_TYPE_OBJ, RegressTestObjClass))
+#define REGRESS_TEST_TYPE_OBJ (regress_test_obj_get_type ())
+#define REGRESS_TEST_OBJECT(object) (G_TYPE_CHECK_INSTANCE_CAST ((object), REGRESS_TEST_TYPE_OBJ, RegressTestObj))
+#define REGRESS_TEST_IS_OBJECT(object) (G_TYPE_CHECK_INSTANCE_TYPE ((object), REGRESS_TEST_TYPE_OBJ))
+#define REGRESS_TEST_OBJ_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), REGRESS_TEST_TYPE_OBJ, RegressTestObjClass))
 
-typedef struct _RegressTestObj          RegressTestObj;
-typedef struct _RegressTestObjClass     RegressTestObjClass;
+typedef struct _RegressTestObj RegressTestObj;
+typedef struct _RegressTestObjClass RegressTestObjClass;
 
 /**
  * RegressTestObj:
@@ -850,7 +839,7 @@ struct _RegressTestObj
   gint8 some_int8;
   float some_float;
   double some_double;
-  char* string;
+  char *string;
   GType gtype;
   gint name_conflict;
   GByteArray *byte_array;
@@ -884,157 +873,150 @@ struct _RegressTestObjClass
 };
 
 GI_TEST_EXTERN
-GType      regress_test_obj_get_type (void);
+GType regress_test_obj_get_type (void);
 
 GI_TEST_EXTERN
-RegressTestObj*   regress_test_obj_new (RegressTestObj *obj);
+RegressTestObj *regress_test_obj_new (RegressTestObj *obj);
 
 GI_TEST_EXTERN
-RegressTestObj*   regress_constructor (void);
+RegressTestObj *regress_constructor (void);
 
 GI_TEST_EXTERN
-RegressTestObj*   regress_test_obj_new_from_file (const char *x, GError **error);
+RegressTestObj *regress_test_obj_new_from_file (const char *x, GError **error);
 
 GI_TEST_EXTERN
-void       regress_test_obj_set_bare (RegressTestObj *obj, GObject *bare);
+void regress_test_obj_set_bare (RegressTestObj *obj, GObject *bare);
 
 GI_TEST_EXTERN
-void       regress_test_obj_set_string (RegressTestObj *obj, const char *str);
+void regress_test_obj_set_string (RegressTestObj *obj, const char *str);
 
 GI_TEST_EXTERN
 const char *regress_test_obj_get_string (RegressTestObj *obj);
 
 GI_TEST_EXTERN
-void       regress_test_obj_emit_sig_with_obj (RegressTestObj *obj);
+void regress_test_obj_emit_sig_with_obj (RegressTestObj *obj);
 
 GI_TEST_EXTERN
-void       regress_test_obj_emit_sig_with_obj_full (RegressTestObj *obj);
+void regress_test_obj_emit_sig_with_obj_full (RegressTestObj *obj);
 
 GI_TEST_EXTERN
-void       regress_test_obj_emit_sig_with_gstrv_full (RegressTestObj *obj);
+void regress_test_obj_emit_sig_with_gstrv_full (RegressTestObj *obj);
 
 GI_TEST_EXTERN
-void       regress_test_obj_emit_sig_with_foreign_struct (RegressTestObj *obj);
+void regress_test_obj_emit_sig_with_foreign_struct (RegressTestObj *obj);
 
 GI_TEST_EXTERN
-void       regress_test_obj_emit_sig_with_int64 (RegressTestObj *obj);
+void regress_test_obj_emit_sig_with_int64 (RegressTestObj *obj);
 
 GI_TEST_EXTERN
-void       regress_test_obj_emit_sig_with_uint64 (RegressTestObj *obj);
+void regress_test_obj_emit_sig_with_uint64 (RegressTestObj *obj);
 
 GI_TEST_EXTERN
-void       regress_test_obj_emit_sig_with_array_len_prop (RegressTestObj *obj);
+void regress_test_obj_emit_sig_with_array_len_prop (RegressTestObj *obj);
 
 GI_TEST_EXTERN
-void       regress_test_obj_emit_sig_with_inout_int (RegressTestObj *obj);
+void regress_test_obj_emit_sig_with_inout_int (RegressTestObj *obj);
 
 GI_TEST_EXTERN
-void       regress_test_obj_emit_sig_with_error (RegressTestObj *self);
+void regress_test_obj_emit_sig_with_error (RegressTestObj *self);
 
 GI_TEST_EXTERN
-void       regress_test_obj_emit_sig_with_null_error (RegressTestObj *self);
+void regress_test_obj_emit_sig_with_null_error (RegressTestObj *self);
 
 GI_TEST_EXTERN
-int        regress_test_obj_instance_method (RegressTestObj *obj);
+int regress_test_obj_instance_method (RegressTestObj *obj);
 
 GI_TEST_EXTERN
-void       regress_test_obj_instance_method_full (RegressTestObj *obj);
+void regress_test_obj_instance_method_full (RegressTestObj *obj);
 
 GI_TEST_EXTERN
-double     regress_test_obj_static_method (int x);
+double regress_test_obj_static_method (int x);
 
 GI_TEST_EXTERN
-void       regress_forced_method (RegressTestObj *obj);
-
+void regress_forced_method (RegressTestObj *obj);
 
 GI_TEST_EXTERN
 void regress_test_array_fixed_out_objects (RegressTestObj ***objs);
 
 #if (defined(__GNUC__) || defined(__clang__)) && defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
-# define G_GCC_STATIC static
+#define G_GCC_STATIC static
 #else
-# define G_GCC_STATIC
+#define G_GCC_STATIC
 #endif
 GI_TEST_EXTERN
 void regress_test_array_static_in_int (int x[G_GCC_STATIC 10]);
 
 GI_TEST_EXTERN
-void regress_test_obj_torture_signature_0 (RegressTestObj    *obj,
-                                   int        x,
-                                   double     *y,
-                                   int        *z,
-                                   const char *foo,
-                                   int        *q,
-                                   guint       m);
+void regress_test_obj_torture_signature_0 (RegressTestObj *obj,
+                                           int x,
+                                           double *y,
+                                           int *z,
+                                           const char *foo,
+                                           int *q,
+                                           guint m);
 
 GI_TEST_EXTERN
-gboolean regress_test_obj_torture_signature_1 (RegressTestObj    *obj,
-                                       int        x,
-                                       double     *y,
-                                       int        *z,
-                                       const char *foo,
-                                       int        *q,
-                                       guint       m,
-                                       GError    **error);
-
+gboolean regress_test_obj_torture_signature_1 (RegressTestObj *obj,
+                                               int x,
+                                               double *y,
+                                               int *z,
+                                               const char *foo,
+                                               int *q,
+                                               guint m,
+                                               GError **error);
 
 GI_TEST_EXTERN
 gboolean regress_test_obj_skip_return_val (RegressTestObj *obj,
-                                           gint            a,
-                                           gint           *out_b,
-                                           gdouble         c,
-                                           gint           *inout_d,
-                                           gint           *out_sum,
-                                           gint            num1,
-                                           gint            num2,
-                                           GError        **error);
-
+                                           gint a,
+                                           gint *out_b,
+                                           gdouble c,
+                                           gint *inout_d,
+                                           gint *out_sum,
+                                           gint num1,
+                                           gint num2,
+                                           GError **error);
 
 GI_TEST_EXTERN
 gboolean regress_test_obj_skip_return_val_no_out (RegressTestObj *obj,
-                                                  gint            a,
-                                                  GError        **error);
-
+                                                  gint a,
+                                                  GError **error);
 
 GI_TEST_EXTERN
 gboolean regress_test_obj_skip_param (RegressTestObj *obj,
-                                      gint            a,
-                                      gint           *out_b,
-                                      gdouble         c,
-                                      gint           *inout_d,
-                                      gint           *out_sum,
-                                      gint            num1,
-                                      gint            num2,
-                                      GError        **error);
-
+                                      gint a,
+                                      gint *out_b,
+                                      gdouble c,
+                                      gint *inout_d,
+                                      gint *out_sum,
+                                      gint num1,
+                                      gint num2,
+                                      GError **error);
 
 GI_TEST_EXTERN
 gboolean regress_test_obj_skip_out_param (RegressTestObj *obj,
-                                          gint            a,
-                                          gint           *out_b,
-                                          gdouble         c,
-                                          gint           *inout_d,
-                                          gint           *out_sum,
-                                          gint            num1,
-                                          gint            num2,
-                                          GError        **error);
-
+                                          gint a,
+                                          gint *out_b,
+                                          gdouble c,
+                                          gint *inout_d,
+                                          gint *out_sum,
+                                          gint num1,
+                                          gint num2,
+                                          GError **error);
 
 GI_TEST_EXTERN
 gboolean regress_test_obj_skip_inout_param (RegressTestObj *obj,
-                                            gint            a,
-                                            gint           *out_b,
-                                            gdouble         c,
-                                            gint           *inout_d,
-                                            gint           *out_sum,
-                                            gint            num1,
-                                            gint            num2,
-                                            GError        **error);
+                                            gint a,
+                                            gint *out_b,
+                                            gdouble c,
+                                            gint *inout_d,
+                                            gint *out_sum,
+                                            gint num1,
+                                            gint num2,
+                                            GError **error);
 
 /* virtual */
 GI_TEST_EXTERN
-int        regress_test_obj_do_matrix (RegressTestObj *obj, const char *somestr);
-
+int regress_test_obj_do_matrix (RegressTestObj *obj, const char *somestr);
 
 GI_TEST_EXTERN
 void regress_func_obj_null_in (RegressTestObj *obj);
@@ -1045,23 +1027,23 @@ void regress_test_obj_null_out (RegressTestObj **obj);
 void regress_func_obj_nullable_in (RegressTestObj *obj);
 
 void regress_test_obj_not_nullable_typed_gpointer_in (RegressTestObj *obj,
-                                                      gpointer        input);
+                                                      gpointer input);
 
 void regress_test_obj_not_nullable_element_typed_gpointer_in (RegressTestObj *obj,
-                                                              gpointer        input,
-                                                              guint           count);
+                                                              gpointer input,
+                                                              guint count);
 
 GI_TEST_EXTERN
 void regress_test_obj_name_conflict (RegressTestObj *obj);
 
 /* inheritance */
-#define REGRESS_TEST_TYPE_SUB_OBJ           (regress_test_sub_obj_get_type ())
-#define REGRESS_TEST_SUB_OBJECT(object)     (G_TYPE_CHECK_INSTANCE_CAST ((object), REGRESS_TEST_TYPE_SUB_OBJ, RegressTestSubObj))
-#define REGRESS_TEST_IS_SUB_OBJECT(object)  (G_TYPE_CHECK_INSTANCE_TYPE ((object), REGRESS_TEST_TYPE_SUB_OBJ))
+#define REGRESS_TEST_TYPE_SUB_OBJ (regress_test_sub_obj_get_type ())
+#define REGRESS_TEST_SUB_OBJECT(object) (G_TYPE_CHECK_INSTANCE_CAST ((object), REGRESS_TEST_TYPE_SUB_OBJ, RegressTestSubObj))
+#define REGRESS_TEST_IS_SUB_OBJECT(object) (G_TYPE_CHECK_INSTANCE_TYPE ((object), REGRESS_TEST_TYPE_SUB_OBJ))
 #define REGRESS_TEST_SUB_OBJ_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), REGRESS_TEST_TYPE_SUB_OBJ, RegressTestSubObjClass))
 
-typedef struct _RegressTestSubObj         RegressTestSubObj;
-typedef struct _RegressTestSubObjClass    RegressTestSubObjClass;
+typedef struct _RegressTestSubObj RegressTestSubObj;
+typedef struct _RegressTestSubObjClass RegressTestSubObjClass;
 
 struct _RegressTestSubObj
 {
@@ -1076,27 +1058,26 @@ struct _RegressTestSubObjClass
   RegressTestObjClass parent_class;
 };
 
+GI_TEST_EXTERN
+GType regress_test_sub_obj_get_type (void);
 
 GI_TEST_EXTERN
-GType       regress_test_sub_obj_get_type (void);
+RegressTestObj *regress_test_sub_obj_new (void);
 
 GI_TEST_EXTERN
-RegressTestObj* regress_test_sub_obj_new (void);
+void regress_test_sub_obj_unset_bare (RegressTestSubObj *obj);
 
 GI_TEST_EXTERN
-void        regress_test_sub_obj_unset_bare (RegressTestSubObj *obj);
-
-GI_TEST_EXTERN
-int         regress_test_sub_obj_instance_method (RegressTestSubObj *obj);
+int regress_test_sub_obj_instance_method (RegressTestSubObj *obj);
 
 /* fundamental object */
-#define REGRESS_TEST_TYPE_FUNDAMENTAL_OBJECT            (regress_test_fundamental_object_get_type())
-#define REGRESS_TEST_IS_FUNDAMENTAL_OBJECT(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), REGRESS_TEST_TYPE_FUNDAMENTAL_OBJECT))
+#define REGRESS_TEST_TYPE_FUNDAMENTAL_OBJECT (regress_test_fundamental_object_get_type ())
+#define REGRESS_TEST_IS_FUNDAMENTAL_OBJECT(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), REGRESS_TEST_TYPE_FUNDAMENTAL_OBJECT))
 #define REGRESS_TEST_IS_FUNDAMENTAL_OBJECT_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), REGRESS_TEST_TYPE_FUNDAMENTAL_OBJECT))
-#define REGRESS_TEST_FUNDAMENTAL_OBJECT_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), REGRESS_TEST_TYPE_FUNDAMENTAL_OBJECT, RegressTestFundamentalObjectClass))
-#define REGRESS_TEST_FUNDAMENTAL_OBJECT(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), REGRESS_TEST_TYPE_FUNDAMENTAL_OBJECT, RegressTestFundamentalObject))
-#define REGRESS_TEST_FUNDAMENTAL_OBJECT_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), REGRESS_TEST_TYPE_FUNDAMENTAL_OBJECT, RegressTestFundamentalObjectClass))
-#define REGRESS_TEST_FUNDAMENTAL_OBJECT_CAST(obj)       ((RegressTestFundamentalObject*)(obj))
+#define REGRESS_TEST_FUNDAMENTAL_OBJECT_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), REGRESS_TEST_TYPE_FUNDAMENTAL_OBJECT, RegressTestFundamentalObjectClass))
+#define REGRESS_TEST_FUNDAMENTAL_OBJECT(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), REGRESS_TEST_TYPE_FUNDAMENTAL_OBJECT, RegressTestFundamentalObject))
+#define REGRESS_TEST_FUNDAMENTAL_OBJECT_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), REGRESS_TEST_TYPE_FUNDAMENTAL_OBJECT, RegressTestFundamentalObjectClass))
+#define REGRESS_TEST_FUNDAMENTAL_OBJECT_CAST(obj) ((RegressTestFundamentalObject *) (obj))
 
 typedef struct _RegressTestFundamentalObject RegressTestFundamentalObject;
 typedef struct _RegressTestFundamentalObjectClass RegressTestFundamentalObjectClass;
@@ -1105,17 +1086,18 @@ typedef struct _RegressTestFundamentalObjectClass RegressTestFundamentalObjectCl
  *
  * Returns: (transfer full):
  */
-typedef RegressTestFundamentalObject * (*RegressTestFundamentalObjectCopyFunction) (const RegressTestFundamentalObject *obj);
+typedef RegressTestFundamentalObject *(*RegressTestFundamentalObjectCopyFunction) (const RegressTestFundamentalObject *obj);
 typedef void (*RegressTestFundamentalObjectFinalizeFunction) (RegressTestFundamentalObject *obj);
 
-
-struct _RegressTestFundamentalObject {
+struct _RegressTestFundamentalObject
+{
   GTypeInstance instance;
   gint refcount;
   guint flags;
 };
 
-struct _RegressTestFundamentalObjectClass {
+struct _RegressTestFundamentalObjectClass
+{
   GTypeClass type_class;
 
   RegressTestFundamentalObjectCopyFunction copy;
@@ -1123,21 +1105,21 @@ struct _RegressTestFundamentalObjectClass {
 };
 
 GI_TEST_EXTERN
-GType 		       regress_test_fundamental_object_get_type (void);
+GType regress_test_fundamental_object_get_type (void);
 
 GI_TEST_EXTERN
-RegressTestFundamentalObject* regress_test_fundamental_object_ref      (RegressTestFundamentalObject *fundamental_object);
+RegressTestFundamentalObject *regress_test_fundamental_object_ref (RegressTestFundamentalObject *fundamental_object);
 
 GI_TEST_EXTERN
-void 		       regress_test_fundamental_object_unref 	(RegressTestFundamentalObject *fundamental_object);
+void regress_test_fundamental_object_unref (RegressTestFundamentalObject *fundamental_object);
 
-#define REGRESS_TEST_VALUE_HOLDS_FUNDAMENTAL_OBJECT(value)  (G_VALUE_HOLDS(value, REGRESS_TEST_TYPE_FUNDAMENTAL_OBJECT))
-
-GI_TEST_EXTERN
-void 		       regress_test_value_set_fundamental_object (GValue *value, RegressTestFundamentalObject *fundamental_object);
+#define REGRESS_TEST_VALUE_HOLDS_FUNDAMENTAL_OBJECT(value) (G_VALUE_HOLDS (value, REGRESS_TEST_TYPE_FUNDAMENTAL_OBJECT))
 
 GI_TEST_EXTERN
-RegressTestFundamentalObject* regress_test_value_get_fundamental_object (const GValue *value);
+void regress_test_value_set_fundamental_object (GValue *value, RegressTestFundamentalObject *fundamental_object);
+
+GI_TEST_EXTERN
+RegressTestFundamentalObject *regress_test_value_get_fundamental_object (const GValue *value);
 
 typedef struct _RegressTestFundamentalSubObject RegressTestFundamentalSubObject;
 typedef struct _RegressTestFundamentalSubObjectClass RegressTestFundamentalSubObjectClass;
@@ -1148,15 +1130,16 @@ struct _RegressTestFundamentalSubObject
   char *data;
 };
 
-struct _RegressTestFundamentalSubObjectClass {
+struct _RegressTestFundamentalSubObjectClass
+{
   RegressTestFundamentalObjectClass fundamental_object_class;
 };
 
-
 GI_TEST_EXTERN
-GType regress_test_fundamental_sub_object_get_type(void);
+GType regress_test_fundamental_sub_object_get_type (void);
 
-struct _RegressTestFundamentalObjectNoGetSetFunc {
+struct _RegressTestFundamentalObjectNoGetSetFunc
+{
   /* This is not really an RegressTestFundamentalObject but we "inherit"
    * the structure from it */
   /* < private > */
@@ -1166,7 +1149,8 @@ struct _RegressTestFundamentalObjectNoGetSetFunc {
   char *data;
 };
 
-struct _RegressTestFundamentalObjectNoGetSetFuncClass {
+struct _RegressTestFundamentalObjectNoGetSetFuncClass
+{
   RegressTestFundamentalObjectClass fundamental_object_class;
 };
 
@@ -1176,12 +1160,14 @@ typedef struct _RegressTestFundamentalObjectNoGetSetFuncClass RegressTestFundame
 GI_TEST_EXTERN
 GType regress_test_fundamental_object_no_get_set_func_get_type (void);
 
-struct _RegressTestFundamentalSubObjectNoGetSetFunc {
+struct _RegressTestFundamentalSubObjectNoGetSetFunc
+{
   /* < private > */
   RegressTestFundamentalObjectNoGetSetFunc fundamental_object;
 };
 
-struct _RegressTestFundamentalSubObjectNoGetSetFuncClass {
+struct _RegressTestFundamentalSubObjectNoGetSetFuncClass
+{
   RegressTestFundamentalObjectNoGetSetFuncClass fundamental_object_class;
 };
 
@@ -1250,13 +1236,13 @@ typedef RegressTestObj *(*RegressTestCallbackReturnFull) (void);
  * @two: (array length=two_length) (element-type utf8):
  * @two_length:
  */
-typedef int (*RegressTestCallbackArray) (int *one, gsize one_length, const char** two, int two_length);
+typedef int (*RegressTestCallbackArray) (int *one, gsize one_length, const char **two, int two_length);
 /**
  * RegressTestCallbackArrayInOut:
  * @ints: (inout) (array length=length):
  * @length: (inout):
  */
-typedef void (* RegressTestCallbackArrayInOut) (int **ints, int *length);
+typedef void (*RegressTestCallbackArrayInOut) (int **ints, int *length);
 
 GI_TEST_EXTERN
 void regress_test_simple_callback (RegressTestSimpleCallback callback);
@@ -1278,23 +1264,22 @@ int regress_test_array_inout_callback (RegressTestCallbackArrayInOut callback);
 
 GI_TEST_EXTERN
 int regress_test_callback_user_data (RegressTestCallbackUserData callback,
-                             gpointer user_data);
+                                     gpointer user_data);
 
 GI_TEST_EXTERN
 void regress_test_callback_return_full (RegressTestCallbackReturnFull callback);
 
 GI_TEST_EXTERN
 int regress_test_callback_destroy_notify (RegressTestCallbackUserData callback,
-                                  gpointer user_data,
-                                  GDestroyNotify notify);
+                                          gpointer user_data,
+                                          GDestroyNotify notify);
 
 GI_TEST_EXTERN
 int regress_test_callback_destroy_notify_no_user_data (RegressTestCallbackUserData callback,
-                                  GDestroyNotify notify);
+                                                       GDestroyNotify notify);
 
 GI_TEST_EXTERN
 int regress_test_callback_thaw_notifications (void);
-
 
 GI_TEST_EXTERN
 void regress_test_callback_async (RegressTestCallbackUserData callback, gpointer user_data);
@@ -1302,15 +1287,14 @@ void regress_test_callback_async (RegressTestCallbackUserData callback, gpointer
 GI_TEST_EXTERN
 int regress_test_callback_thaw_async (void);
 
-
 GI_TEST_EXTERN
 void regress_test_async_ready_callback (GAsyncReadyCallback callback);
 
 GI_TEST_EXTERN
-void regress_test_function_async (int                 io_priority,
-                                  GCancellable       *cancellable,
+void regress_test_function_async (int io_priority,
+                                  GCancellable *cancellable,
                                   GAsyncReadyCallback callback,
-                                  gpointer            user_data);
+                                  gpointer user_data);
 
 GI_TEST_EXTERN
 gboolean regress_test_function_finish (GAsyncResult *res, GError **error);
@@ -1326,17 +1310,17 @@ void regress_test_obj_static_method_callback (RegressTestCallback callback);
 
 GI_TEST_EXTERN
 RegressTestObj *regress_test_obj_new_callback (RegressTestCallbackUserData callback,
-                                gpointer user_data,
-                                GDestroyNotify notify);
+                                               gpointer user_data,
+                                               GDestroyNotify notify);
 
 GI_TEST_EXTERN
-void regress_test_obj_new_async (const char          *x G_GNUC_UNUSED,
-                                 GCancellable        *cancellable G_GNUC_UNUSED,
-                                 GAsyncReadyCallback  callback G_GNUC_UNUSED,
-                                 gpointer             user_data G_GNUC_UNUSED);
+void regress_test_obj_new_async (const char *x G_GNUC_UNUSED,
+                                 GCancellable *cancellable G_GNUC_UNUSED,
+                                 GAsyncReadyCallback callback G_GNUC_UNUSED,
+                                 gpointer user_data G_GNUC_UNUSED);
 GI_TEST_EXTERN
-RegressTestObj *regress_test_obj_new_finish (GAsyncResult  *res G_GNUC_UNUSED,
-                                             GError       **error G_GNUC_UNUSED);
+RegressTestObj *regress_test_obj_new_finish (GAsyncResult *res G_GNUC_UNUSED,
+                                             GError **error G_GNUC_UNUSED);
 
 GI_TEST_EXTERN
 void regress_test_hash_table_callback (GHashTable *data, RegressTestCallbackHashtable callback);
@@ -1350,22 +1334,22 @@ void regress_test_null_gerror_callback (RegressTestCallbackGError callback);
 GI_TEST_EXTERN
 void regress_test_owned_gerror_callback (RegressTestCallbackOwnedGError callback);
 
-
 GI_TEST_EXTERN
 void regress_test_skip_unannotated_callback (RegressTestCallback callback);
 
 typedef struct _RegressTestInterface RegressTestInterface;
 
 /* interface */
-#define REGRESS_TEST_TYPE_INTERFACE              (regress_test_interface_get_type ())
-#define REGRESS_TEST_INTERFACE(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), REGRESS_TEST_TYPE_INTERFACE, RegressTestInterface))
-#define REGRESS_TEST_IS_INTERFACE(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), REGRESS_TEST_TYPE_INTERFACE))
-#define REGRESS_TEST_INTERFACE_GET_IFACE(obj)    (G_TYPE_INSTANCE_GET_INTERFACE ((obj), REGRESS_TEST_TYPE_INTERFACE, RegressTestInterfaceIface))
+#define REGRESS_TEST_TYPE_INTERFACE (regress_test_interface_get_type ())
+#define REGRESS_TEST_INTERFACE(object) (G_TYPE_CHECK_INSTANCE_CAST ((object), REGRESS_TEST_TYPE_INTERFACE, RegressTestInterface))
+#define REGRESS_TEST_IS_INTERFACE(object) (G_TYPE_CHECK_INSTANCE_TYPE ((object), REGRESS_TEST_TYPE_INTERFACE))
+#define REGRESS_TEST_INTERFACE_GET_IFACE(obj) (G_TYPE_INSTANCE_GET_INTERFACE ((obj), REGRESS_TEST_TYPE_INTERFACE, RegressTestInterfaceIface))
 
 typedef struct _RegressTestInterfaceIface RegressTestInterfaceIface;
 
-struct _RegressTestInterfaceIface {
-    GTypeInterface base_iface;
+struct _RegressTestInterfaceIface
+{
+  GTypeInterface base_iface;
 };
 
 GI_TEST_EXTERN
@@ -1375,10 +1359,10 @@ GI_TEST_EXTERN
 void regress_test_interface_emit_signal (RegressTestInterface *self);
 
 /* gobject with non-standard prefix */
-#define REGRESS_TEST_TYPE_WI_802_1X              (regress_test_wi_802_1x_get_type ())
-#define REGRESS_TEST_WI_802_1X(object)        (G_TYPE_CHECK_INSTANCE_CAST ((object), REGRESS_TEST_TYPE_WI_802_1X, RegressTestWi8021x))
-#define REGRESS_TEST_IS_WI_802_1X(object)     (G_TYPE_CHECK_INSTANCE_TYPE ((object), REGRESS_TEST_TYPE_WI_802_1X))
-#define REGRESS_TEST_WI_802_1X_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), REGRESS_TEST_TYPE_WI_802_1X, RegressTestWi8021xClass))
+#define REGRESS_TEST_TYPE_WI_802_1X (regress_test_wi_802_1x_get_type ())
+#define REGRESS_TEST_WI_802_1X(object) (G_TYPE_CHECK_INSTANCE_CAST ((object), REGRESS_TEST_TYPE_WI_802_1X, RegressTestWi8021x))
+#define REGRESS_TEST_IS_WI_802_1X(object) (G_TYPE_CHECK_INSTANCE_TYPE ((object), REGRESS_TEST_TYPE_WI_802_1X))
+#define REGRESS_TEST_WI_802_1X_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), REGRESS_TEST_TYPE_WI_802_1X, RegressTestWi8021xClass))
 
 typedef struct
 {
@@ -1392,26 +1376,25 @@ typedef struct
   GObjectClass parent_class;
 } RegressTestWi8021xClass;
 
+GI_TEST_EXTERN
+GType regress_test_wi_802_1x_get_type (void);
 
 GI_TEST_EXTERN
-GType        regress_test_wi_802_1x_get_type (void);
+RegressTestWi8021x *regress_test_wi_802_1x_new (void);
 
 GI_TEST_EXTERN
-RegressTestWi8021x* regress_test_wi_802_1x_new (void);
+gboolean regress_test_wi_802_1x_get_testbool (RegressTestWi8021x *obj);
 
 GI_TEST_EXTERN
-gboolean     regress_test_wi_802_1x_get_testbool (RegressTestWi8021x *obj);
+void regress_test_wi_802_1x_set_testbool (RegressTestWi8021x *obj, gboolean v);
 
 GI_TEST_EXTERN
-void         regress_test_wi_802_1x_set_testbool (RegressTestWi8021x *obj, gboolean v);
-
-GI_TEST_EXTERN
-int          regress_test_wi_802_1x_static_method (int x);
+int regress_test_wi_802_1x_static_method (int x);
 
 /* floating gobject */
-#define REGRESS_TEST_TYPE_FLOATING           (regress_test_floating_get_type ())
-#define REGRESS_TEST_FLOATING(object)        (G_TYPE_CHECK_INSTANCE_CAST ((object), REGRESS_TEST_TYPE_FLOATING, RegressTestFloating))
-#define REGRESS_TEST_IS_FLOATING(object)     (G_TYPE_CHECK_INSTANCE_TYPE ((object), REGRESS_TEST_TYPE_FLOATING))
+#define REGRESS_TEST_TYPE_FLOATING (regress_test_floating_get_type ())
+#define REGRESS_TEST_FLOATING(object) (G_TYPE_CHECK_INSTANCE_CAST ((object), REGRESS_TEST_TYPE_FLOATING, RegressTestFloating))
+#define REGRESS_TEST_IS_FLOATING(object) (G_TYPE_CHECK_INSTANCE_TYPE ((object), REGRESS_TEST_TYPE_FLOATING))
 #define REGRESS_TEST_FLOATING_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), REGRESS_TEST_TYPE_FLOATING, RegressTestFloatingClass))
 
 typedef struct
@@ -1424,43 +1407,41 @@ typedef struct
   GInitiallyUnownedClass parent_class;
 } RegressTestFloatingClass;
 
+GI_TEST_EXTERN
+GType regress_test_floating_get_type (void);
 
 GI_TEST_EXTERN
-GType        regress_test_floating_get_type (void);
-
-GI_TEST_EXTERN
-RegressTestFloating* regress_test_floating_new (void);
+RegressTestFloating *regress_test_floating_new (void);
 
 /* Function signature torture tests */
 
 GI_TEST_EXTERN
-void regress_test_torture_signature_0 (int        x,
-                               double     *y,
-                               int        *z,
-                               const char *foo,
-                               int        *q,
-                               guint       m);
+void regress_test_torture_signature_0 (int x,
+                                       double *y,
+                                       int *z,
+                                       const char *foo,
+                                       int *q,
+                                       guint m);
 
 GI_TEST_EXTERN
-gboolean regress_test_torture_signature_1 (int        x,
-                                   double     *y,
-                                   int        *z,
-                                   const char *foo,
-                                   int        *q,
-                                   guint       m,
-                                   GError    **error);
+gboolean regress_test_torture_signature_1 (int x,
+                                           double *y,
+                                           int *z,
+                                           const char *foo,
+                                           int *q,
+                                           guint m,
+                                           GError **error);
 
 GI_TEST_EXTERN
-void regress_test_torture_signature_2 (int                  x,
-				       RegressTestCallbackUserData  callback,
-				       gpointer              user_data,
-				       GDestroyNotify        notify,
-				       double               *y,
-				       int                  *z,
-				       const char           *foo,
-				       int                  *q,
-				       guint                 m);
-
+void regress_test_torture_signature_2 (int x,
+                                       RegressTestCallbackUserData callback,
+                                       gpointer user_data,
+                                       GDestroyNotify notify,
+                                       double *y,
+                                       int *z,
+                                       const char *foo,
+                                       int *q,
+                                       guint m);
 
 GI_TEST_EXTERN
 GValue *regress_test_date_in_gvalue (void);
@@ -1471,10 +1452,8 @@ GValue *regress_test_strv_in_gvalue (void);
 GI_TEST_EXTERN
 GValue *regress_test_null_strv_in_gvalue (void);
 
-
 GI_TEST_EXTERN
-GObject * _regress_this_is_a_private_symbol (void);
-
+GObject *_regress_this_is_a_private_symbol (void);
 
 GI_TEST_EXTERN
 void regress_test_multiline_doc_comments (void);
@@ -1494,11 +1473,10 @@ typedef struct
   double v;
 } RegressSkippedStructure;
 
-
 GI_TEST_EXTERN
 void regress_random_function_with_skipped_structure (int x,
-						     RegressSkippedStructure *foo,
-						     double v);
+                                                     RegressSkippedStructure *foo,
+                                                     double v);
 
 /**
  * RegressIntset:
@@ -1523,7 +1501,6 @@ typedef RegressIntset RegressIntsetAlias;
  */
 typedef GPtrArray RegressPtrArrayAlias;
 
-
 GI_TEST_EXTERN
 void regress_introspectable_via_alias (RegressPtrArrayAlias *data);
 
@@ -1533,7 +1510,6 @@ void regress_introspectable_via_alias (RegressPtrArrayAlias *data);
  * Typedef'd va_list for additional reasons
  */
 typedef va_list RegressVaListAlias;
-
 
 GI_TEST_EXTERN
 void regress_not_introspectable_via_alias (RegressVaListAlias ok);
@@ -1545,13 +1521,13 @@ void regress_not_introspectable_via_alias (RegressVaListAlias ok);
  */
 typedef RegressTestBoxed RegressAliasedTestBoxed;
 
-
 GI_TEST_EXTERN
 void regress_aliased_caller_alloc (RegressAliasedTestBoxed *boxed);
 
 /* private testing */
 
-typedef struct {
+typedef struct
+{
   gint this_is_public_before;
   /* < private > */
   gint this_is_private;
@@ -1559,27 +1535,28 @@ typedef struct {
   gint this_is_public_after;
 } RegressTestPrivateStruct;
 
-typedef enum {
+typedef enum
+{
   REGRESS_TEST_PUBLIC_ENUM_BEFORE = 1 << 0,
   /* <private> */
-  REGRESS_TEST_PRIVATE_ENUM       = 1 << 1,
+  REGRESS_TEST_PRIVATE_ENUM = 1 << 1,
   /* <public> */
-  REGRESS_TEST_PUBLIC_ENUM_AFTER  = 1 << 2,
+  REGRESS_TEST_PUBLIC_ENUM_AFTER = 1 << 2,
 } RegressTestPrivateEnum;
 
-typedef struct {
+typedef struct
+{
   gint just_int;
   gint array[10];
 } RegressTestStructFixedArray;
 
-
 GI_TEST_EXTERN
 void regress_test_struct_fixed_array_frob (RegressTestStructFixedArray *str);
 
-typedef struct {
+typedef struct
+{
   gchar name[32];
 } RegressLikeXklConfigItem;
-
 
 GI_TEST_EXTERN
 void regress_like_xkl_config_item_set_name (RegressLikeXklConfigItem *self,
@@ -1592,20 +1569,22 @@ void regress_like_xkl_config_item_set_name (RegressLikeXklConfigItem *self,
 #endif
 
 /* https://bugzilla.gnome.org/show_bug.cgi?id=662888 */
-#define REGRESS_LONG_STRING_CONSTANT \
-	"TYPE,VALUE,ENCODING,CHARSET,LANGUAGE,DOM,INTL,POSTAL,PARCEL," \
-	"HOME,WORK,PREF,VOICE,FAX,MSG,CELL,PAGER,BBS,MODEM,CAR,ISDN,VIDEO," \
-	"AOL,APPLELINK,ATTMAIL,CIS,EWORLD,INTERNET,IBMMAIL,MCIMAIL," \
-	"POWERSHARE,PRODIGY,TLX,X400,GIF,CGM,WMF,BMP,MET,PMB,DIB,PICT,TIFF," \
-	"PDF,PS,JPEG,QTIME,MPEG,MPEG2,AVI,WAVE,AIFF,PCM,X509,PGP"
+#define REGRESS_LONG_STRING_CONSTANT                                   \
+  "TYPE,VALUE,ENCODING,CHARSET,LANGUAGE,DOM,INTL,POSTAL,PARCEL,"       \
+  "HOME,WORK,PREF,VOICE,FAX,MSG,CELL,PAGER,BBS,MODEM,CAR,ISDN,VIDEO,"  \
+  "AOL,APPLELINK,ATTMAIL,CIS,EWORLD,INTERNET,IBMMAIL,MCIMAIL,"         \
+  "POWERSHARE,PRODIGY,TLX,X400,GIF,CGM,WMF,BMP,MET,PMB,DIB,PICT,TIFF," \
+  "PDF,PS,JPEG,QTIME,MPEG,MPEG2,AVI,WAVE,AIFF,PCM,X509,PGP"
 
 GI_TEST_EXTERN
-void regress_has_parameter_named_attrs (int        foo,
-                                        gpointer   attributes);
+void regress_has_parameter_named_attrs (int foo,
+                                        gpointer attributes);
 
-typedef struct {
+typedef struct
+{
   int dummy;
-  struct {
+  struct
+  {
     const char *name;
     guint x;
   } attributes[32];
@@ -1619,8 +1598,8 @@ typedef struct {
 #define _DONTSCANTHIS 1
 
 /* https://bugzilla.gnome.org/show_bug.cgi?id=685022 */
-#define REGRESS_MININT64 ((gint64) G_GINT64_CONSTANT(0x8000000000000000))
-#define REGRESS_MAXUINT64 (G_GINT64_CONSTANT(0xffffffffffffffffU))
+#define REGRESS_MININT64 ((gint64) G_GINT64_CONSTANT (0x8000000000000000))
+#define REGRESS_MAXUINT64 (G_GINT64_CONSTANT (0xffffffffffffffffU))
 
 /* https://bugzilla.gnome.org/show_bug.cgi?id=698367 */
 #ifndef __GI_SCANNER__
@@ -1636,21 +1615,26 @@ typedef struct {
 
 /* This struct is one pattern by which padding can be consumed, if
  * you're willing to take a hard dependency on anonymous unions. */
-typedef struct {
+typedef struct
+{
   int x;
 
-  union {
+  union
+  {
     RegressLikeGnomeKeyringPasswordSchema *a[2];
 
     guint padding[4];
   };
 } RegressAnAnonymousUnion;
 
-typedef struct {
+typedef struct
+{
   int x;
 
-  union {
-    struct {
+  union
+  {
+    struct
+    {
       RegressLikeGnomeKeyringPasswordSchema *a;
       RegressLikeXklConfigItem *b;
     };
@@ -1664,8 +1648,9 @@ regress_get_variant (void);
 
 typedef struct _RegressTestReferenceCounters RegressTestReferenceCounters;
 
-struct _RegressTestReferenceCounters {
-  grefcount       refcount;
+struct _RegressTestReferenceCounters
+{
+  grefcount refcount;
   gatomicrefcount atomicrefcount;
 };
 
@@ -1688,11 +1673,11 @@ GI_TEST_EXTERN
 void regress_test_array_struct_in_none (RegressTestStructA *arr, gsize len);
 
 GI_TEST_EXTERN
-void regress_test_obj_function_async (RegressTestObj     *self,
-                                      int                 io_priority,
-                                      GCancellable       *cancellable,
+void regress_test_obj_function_async (RegressTestObj *self,
+                                      int io_priority,
+                                      GCancellable *cancellable,
                                       GAsyncReadyCallback callback,
-                                      gpointer            user_data);
+                                      gpointer user_data);
 
 GI_TEST_EXTERN
 gboolean regress_test_obj_function_finish (RegressTestObj *self, GAsyncResult *res, GError **error);
@@ -1700,24 +1685,26 @@ gboolean regress_test_obj_function_finish (RegressTestObj *self, GAsyncResult *r
 GI_TEST_EXTERN
 gboolean regress_test_obj_function_sync (RegressTestObj *self, int io_priority);
 
-static inline gboolean regress_test_inline_function(gboolean foo);
+static inline gboolean regress_test_inline_function (gboolean foo);
 /*
  * regress_test_inline_function:
  *
  * An inline function that should be exposed as such
  */
-static inline gboolean regress_test_inline_function (gboolean foo)
+static inline gboolean
+regress_test_inline_function (gboolean foo)
 {
   return foo;
 }
 
-static inline gboolean regress_test_obj_inline_method(RegressTestObj *obj, gboolean foo);
+static inline gboolean regress_test_obj_inline_method (RegressTestObj *obj, gboolean foo);
 /*
  * regress_test_obj_inline_method:
  *
  * An inline function that should be exposed as such
  */
-static inline gboolean regress_test_obj_inline_method (RegressTestObj *obj, gboolean foo)
+static inline gboolean
+regress_test_obj_inline_method (RegressTestObj *obj, gboolean foo)
 {
   return foo;
 }

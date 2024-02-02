@@ -41,7 +41,7 @@ typedef enum /*< flags,prefix=ANN >*/
  * This is a callback.
  * Return value: (transfer none): array of ints
  */
-typedef const gint* (*RegressAnnotationCallback) (const gint *in);
+typedef const gint *(*RegressAnnotationCallback) (const gint *in);
 
 /**
  * RegressAnnotationListCallback:
@@ -50,7 +50,7 @@ typedef const gint* (*RegressAnnotationCallback) (const gint *in);
  * This is a callback taking a list.
  * Return value: (transfer container) (element-type utf8): list of strings
  */
-typedef GList* (*RegressAnnotationListCallback) (GList *in);
+typedef GList *(*RegressAnnotationListCallback) (GList *in);
 
 /**
  * RegressAnnotationNotifyFunc:
@@ -66,12 +66,12 @@ typedef void (*RegressAnnotationNotifyFunc) (gpointer data);
  *
  * This is an object used to test annotations.
  */
-typedef struct _RegressAnnotationObject          RegressAnnotationObject;
-typedef struct _RegressAnnotationObjectClass     RegressAnnotationObjectClass;
+typedef struct _RegressAnnotationObject RegressAnnotationObject;
+typedef struct _RegressAnnotationObjectClass RegressAnnotationObjectClass;
 
 typedef void (*RegressAnnotationForeachFunc) (RegressAnnotationObject *object,
-                                       const char *item,
-                                       gpointer user_data);
+                                              const char *item,
+                                              gpointer user_data);
 
 struct _RegressAnnotationObject
 {
@@ -84,177 +84,166 @@ struct _RegressAnnotationObjectClass
 };
 
 GI_TEST_EXTERN
-GType    regress_annotation_object_get_type (void);
+GType regress_annotation_object_get_type (void);
 
 GI_TEST_EXTERN
-gint     regress_annotation_object_method       (RegressAnnotationObject *object);
+gint regress_annotation_object_method (RegressAnnotationObject *object);
 
 GI_TEST_EXTERN
-gint     regress_annotation_object_out          (RegressAnnotationObject *object,
-					 int              *outarg);
+gint regress_annotation_object_out (RegressAnnotationObject *object,
+                                    int *outarg);
 
 GI_TEST_EXTERN
-GObject* regress_annotation_object_create_object(RegressAnnotationObject *object);
+GObject *regress_annotation_object_create_object (RegressAnnotationObject *object);
 
 GI_TEST_EXTERN
-GObject* regress_annotation_object_allow_none   (RegressAnnotationObject *object,
-					 const gchar      *somearg);
+GObject *regress_annotation_object_allow_none (RegressAnnotationObject *object,
+                                               const gchar *somearg);
 
 GI_TEST_EXTERN
-GObject* regress_annotation_object_notrans      (RegressAnnotationObject *object);
+GObject *regress_annotation_object_notrans (RegressAnnotationObject *object);
 
 GI_TEST_EXTERN
-gint     regress_annotation_object_inout        (RegressAnnotationObject *object,
-					 int              *inoutarg);
+gint regress_annotation_object_inout (RegressAnnotationObject *object,
+                                      int *inoutarg);
 
 GI_TEST_EXTERN
-gint     regress_annotation_object_inout2       (RegressAnnotationObject *object,
-					 int              *inoutarg);
+gint regress_annotation_object_inout2 (RegressAnnotationObject *object,
+                                       int *inoutarg);
 
 GI_TEST_EXTERN
-gint     regress_annotation_object_inout3       (RegressAnnotationObject *object,
-					 int              *inoutarg);
+gint regress_annotation_object_inout3 (RegressAnnotationObject *object,
+                                       int *inoutarg);
 
 GI_TEST_EXTERN
-gint     regress_annotation_object_in           (RegressAnnotationObject *object,
-					 int              *inarg);
+gint regress_annotation_object_in (RegressAnnotationObject *object,
+                                   int *inarg);
 
 GI_TEST_EXTERN
-gint     regress_annotation_object_calleeowns   (RegressAnnotationObject *object,
-					 GObject          **toown);
+gint regress_annotation_object_calleeowns (RegressAnnotationObject *object,
+                                           GObject **toown);
 
 GI_TEST_EXTERN
-gint     regress_annotation_object_calleesowns  (RegressAnnotationObject *object,
-					 GObject          **toown1,
-					 GObject          **toown2);
+gint regress_annotation_object_calleesowns (RegressAnnotationObject *object,
+                                            GObject **toown1,
+                                            GObject **toown2);
 
 GI_TEST_EXTERN
-GList*   regress_annotation_object_get_strings  (RegressAnnotationObject *object);
+GList *regress_annotation_object_get_strings (RegressAnnotationObject *object);
 
 GI_TEST_EXTERN
-GHashTable*regress_annotation_object_get_hash   (RegressAnnotationObject *object);
+GHashTable *regress_annotation_object_get_hash (RegressAnnotationObject *object);
 
 GI_TEST_EXTERN
-void     regress_annotation_object_with_voidp   (RegressAnnotationObject *object,
-					 void             *data);
+void regress_annotation_object_with_voidp (RegressAnnotationObject *object,
+                                           void *data);
 
 GI_TEST_EXTERN
-GSList*  regress_annotation_object_get_objects  (RegressAnnotationObject *object);
-
-
-GI_TEST_EXTERN
-void     regress_annotation_object_use_buffer   (RegressAnnotationObject *object,
-					 guchar           *bytes);
-
+GSList *regress_annotation_object_get_objects (RegressAnnotationObject *object);
 
 GI_TEST_EXTERN
-void     regress_annotation_object_compute_sum  (RegressAnnotationObject *object,
-					 int              *nums);
-
-
-GI_TEST_EXTERN
-void     regress_annotation_object_compute_sum_n(RegressAnnotationObject *object,
-					 int              *nums,
-					 int               n_nums);
+void regress_annotation_object_use_buffer (RegressAnnotationObject *object,
+                                           guchar *bytes);
 
 GI_TEST_EXTERN
-void     regress_annotation_object_compute_sum_nz(RegressAnnotationObject *object,
-                                          int             *nums,
-                                          int              n_nums);
+void regress_annotation_object_compute_sum (RegressAnnotationObject *object,
+                                            int *nums);
 
 GI_TEST_EXTERN
-void     regress_annotation_object_parse_args   (RegressAnnotationObject *object,
-                                         int              *argc,
-                                         char           ***argv);
+void regress_annotation_object_compute_sum_n (RegressAnnotationObject *object,
+                                              int *nums,
+                                              int n_nums);
 
 GI_TEST_EXTERN
-gboolean regress_annotation_object_string_out   (RegressAnnotationObject *object,
-                                         char            **str_out);
+void regress_annotation_object_compute_sum_nz (RegressAnnotationObject *object,
+                                               int *nums,
+                                               int n_nums);
 
 GI_TEST_EXTERN
-void     regress_annotation_object_foreach      (RegressAnnotationObject *object,
-                                         RegressAnnotationForeachFunc func,
-                                         gpointer user_data);
-
-
-GI_TEST_EXTERN
-void     regress_annotation_object_set_data     (RegressAnnotationObject *object,
-                                         const guchar     *data,
-                                         gsize             length);
+void regress_annotation_object_parse_args (RegressAnnotationObject *object,
+                                           int *argc,
+                                           char ***argv);
 
 GI_TEST_EXTERN
-void     regress_annotation_object_set_data2    (RegressAnnotationObject *object,
-                                         const gchar      *data,
-                                         gsize             length);
+gboolean regress_annotation_object_string_out (RegressAnnotationObject *object,
+                                               char **str_out);
 
 GI_TEST_EXTERN
-void     regress_annotation_object_set_data3    (RegressAnnotationObject *object,
-                                         gpointer          data,
-                                         gsize             length);
-
-
-GI_TEST_EXTERN
-GObject* regress_annotation_object_do_not_use   (RegressAnnotationObject *object);
+void regress_annotation_object_foreach (RegressAnnotationObject *object,
+                                        RegressAnnotationForeachFunc func,
+                                        gpointer user_data);
 
 GI_TEST_EXTERN
-void     regress_annotation_object_watch        (RegressAnnotationObject *object,
-                                         RegressAnnotationForeachFunc func,
-                                         gpointer user_data);
+void regress_annotation_object_set_data (RegressAnnotationObject *object,
+                                         const guchar *data,
+                                         gsize length);
 
 GI_TEST_EXTERN
-void     regress_annotation_object_watch_full   (RegressAnnotationObject *object,
-                                         RegressAnnotationForeachFunc func,
-                                         gpointer user_data,
-                                         GDestroyNotify destroy);
+void regress_annotation_object_set_data2 (RegressAnnotationObject *object,
+                                          const gchar *data,
+                                          gsize length);
 
 GI_TEST_EXTERN
-void     regress_annotation_object_hidden_self  (gpointer object);
-
-
-GI_TEST_EXTERN
-void     regress_annotation_init                (int              *argc,
-					 char           ***argv);
+void regress_annotation_object_set_data3 (RegressAnnotationObject *object,
+                                          gpointer data,
+                                          gsize length);
 
 GI_TEST_EXTERN
-char **  regress_annotation_return_array        (int             *length);
+GObject *regress_annotation_object_do_not_use (RegressAnnotationObject *object);
 
 GI_TEST_EXTERN
-void     regress_annotation_versioned           (void);
+void regress_annotation_object_watch (RegressAnnotationObject *object,
+                                      RegressAnnotationForeachFunc func,
+                                      gpointer user_data);
 
 GI_TEST_EXTERN
-char **  regress_annotation_string_zero_terminated (void);
+void regress_annotation_object_watch_full (RegressAnnotationObject *object,
+                                           RegressAnnotationForeachFunc func,
+                                           gpointer user_data,
+                                           GDestroyNotify destroy);
 
 GI_TEST_EXTERN
-void     regress_annotation_string_zero_terminated_out (char ***out);
-
-
-GI_TEST_EXTERN
-void     regress_annotation_string_array_length (guint n_properties, const gchar * const properties[]);
-
+void regress_annotation_object_hidden_self (gpointer object);
 
 GI_TEST_EXTERN
-void     regress_annotation_object_extra_annos (RegressAnnotationObject *object);
-
-
-GI_TEST_EXTERN
-void     regress_annotation_custom_destroy (RegressAnnotationCallback callback,
-                                    RegressAnnotationNotifyFunc destroy,
-                                    gpointer data);
+void regress_annotation_init (int *argc,
+                              char ***argv);
 
 GI_TEST_EXTERN
-char *   regress_annotation_get_source_file (void);
+char **regress_annotation_return_array (int *length);
 
 GI_TEST_EXTERN
-void     regress_annotation_set_source_file (const char *fname);
-
-
-GI_TEST_EXTERN
-gint     regress_annotation_attribute_func (RegressAnnotationObject *object,
-                                    const gchar      *data);
-
+void regress_annotation_versioned (void);
 
 GI_TEST_EXTERN
-void     regress_annotation_invalid_regress_annotation (int foo);
+char **regress_annotation_string_zero_terminated (void);
+
+GI_TEST_EXTERN
+void regress_annotation_string_zero_terminated_out (char ***out);
+
+GI_TEST_EXTERN
+void regress_annotation_string_array_length (guint n_properties, const gchar *const properties[]);
+
+GI_TEST_EXTERN
+void regress_annotation_object_extra_annos (RegressAnnotationObject *object);
+
+GI_TEST_EXTERN
+void regress_annotation_custom_destroy (RegressAnnotationCallback callback,
+                                        RegressAnnotationNotifyFunc destroy,
+                                        gpointer data);
+
+GI_TEST_EXTERN
+char *regress_annotation_get_source_file (void);
+
+GI_TEST_EXTERN
+void regress_annotation_set_source_file (const char *fname);
+
+GI_TEST_EXTERN
+gint regress_annotation_attribute_func (RegressAnnotationObject *object,
+                                        const gchar *data);
+
+GI_TEST_EXTERN
+void regress_annotation_invalid_regress_annotation (int foo);
 
 /**
  * RegressAnnotationStruct:
@@ -290,23 +279,19 @@ struct RegressAnnotationFields
 };
 
 GI_TEST_EXTERN
-void    regress_annotation_ptr_array (GPtrArray *array);
-
+void regress_annotation_ptr_array (GPtrArray *array);
 
 GI_TEST_EXTERN
-GObject  * regress_annotation_test_parsing_bug630862 (void);
-
+GObject *regress_annotation_test_parsing_bug630862 (void);
 
 GI_TEST_EXTERN
 void regress_annotation_space_after_comment_bug631690 (void);
 
+GI_TEST_EXTERN
+gchar *regress_annotation_return_filename (void);
 
 GI_TEST_EXTERN
-gchar* regress_annotation_return_filename (void);
-
-
-GI_TEST_EXTERN
-GObject * regress_annotation_transfer_floating (GObject *object);
+GObject *regress_annotation_transfer_floating (GObject *object);
 
 /* This one we can handle properly */
 #define REGRESS_ANNOTATION_CALCULATED_DEFINE (10 * 10)

@@ -18,10 +18,10 @@ GI_TEST_EXTERN
 gboolean warnlib_throw_unpaired (GError **error);
 
 /* interface */
-#define WARNLIB_TYPE_WHATEVER              (warnlib_whatever_get_type ())
-#define WARNLIB_WHATEVER(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), WARNLIB_TYPE_WHATEVER, WarnLibWhatever))
-#define WARNLIB_IS_WHATEVER(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), WARNLIB_TYPE_WHATEVER))
-#define WARNLIB_WHATEVER_GET_IFACE(obj)    (G_TYPE_INSTANCE_GET_INTERFACE ((obj), WARNLIB_TYPE_WHATEVER, WarnLibWhateverIface))
+#define WARNLIB_TYPE_WHATEVER (warnlib_whatever_get_type ())
+#define WARNLIB_WHATEVER(object) (G_TYPE_CHECK_INSTANCE_CAST ((object), WARNLIB_TYPE_WHATEVER, WarnLibWhatever))
+#define WARNLIB_IS_WHATEVER(object) (G_TYPE_CHECK_INSTANCE_TYPE ((object), WARNLIB_TYPE_WHATEVER))
+#define WARNLIB_WHATEVER_GET_IFACE(obj) (G_TYPE_INSTANCE_GET_INTERFACE ((obj), WARNLIB_TYPE_WHATEVER, WarnLibWhateverIface))
 
 typedef struct _WarnLibWhateverIface WarnLibWhateverIface;
 typedef struct _WarnLibWhatever WarnLibWhatever;

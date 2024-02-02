@@ -11,12 +11,12 @@ SPDX-FileCopyrightText: 2008-2009 Andreas Rottmann <a.rottmann@gmx.at>
 
 #include "gitestmacros.h"
 
-#define UTILITY_TYPE_OBJECT              (utility_object_get_type ())
-#define UTILITY_OBJECT(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), UTILITY_TYPE_OBJECT, UtilityObject))
-#define UTILITY_IS_OBJECT(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), UTILITY_TYPE_OBJECT))
+#define UTILITY_TYPE_OBJECT (utility_object_get_type ())
+#define UTILITY_OBJECT(object) (G_TYPE_CHECK_INSTANCE_CAST ((object), UTILITY_TYPE_OBJECT, UtilityObject))
+#define UTILITY_IS_OBJECT(object) (G_TYPE_CHECK_INSTANCE_TYPE ((object), UTILITY_TYPE_OBJECT))
 
-typedef struct _UtilityObject          UtilityObject;
-typedef struct _UtilityObjectClass     UtilityObjectClass;
+typedef struct _UtilityObject UtilityObject;
+typedef struct _UtilityObjectClass UtilityObjectClass;
 
 struct _UtilityObject
 {
@@ -56,21 +56,20 @@ typedef union
 typedef struct
 {
   const char *data;
-  gsize       length;
+  gsize length;
 } UtilityBuffer;
 
-typedef void (*UtilityFileFunc)(const char *path, gpointer user_data);
-
-
-GI_TEST_EXTERN
-GType                 utility_object_get_type          (void) G_GNUC_CONST;
+typedef void (*UtilityFileFunc) (const char *path, gpointer user_data);
 
 GI_TEST_EXTERN
-void                  utility_object_watch_dir         (UtilityObject *object,
-                                                        const char *path,
-                                                        UtilityFileFunc func,
-                                                        gpointer user_data,
-                                                        GDestroyNotify destroy);
+GType utility_object_get_type (void) G_GNUC_CONST;
+
+GI_TEST_EXTERN
+void utility_object_watch_dir (UtilityObject *object,
+                               const char *path,
+                               UtilityFileFunc func,
+                               gpointer user_data,
+                               GDestroyNotify destroy);
 
 typedef enum
 {

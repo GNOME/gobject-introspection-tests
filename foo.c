@@ -50,7 +50,7 @@ typedef struct
 } PrivateStruct;
 
 void
-regress_foo_private_function (RegressFooObject *regress_foo)
+regress_foo_private_function (RegressFooObject *regress_foo G_GNUC_UNUSED)
 {
 }
 
@@ -79,7 +79,7 @@ regress_foo_interface_do_regress_foo (RegressFooInterface *self, int x)
 }
 
 void
-regress_foo_interface_static_method (int x)
+regress_foo_interface_static_method (int x G_GNUC_UNUSED)
 {
 }
 
@@ -100,7 +100,7 @@ static guint regress_foo_object_signals[LAST_SIGNAL] = { 0 };
 
 static void
 regress_foo_regress_foo_interface_init (gpointer g_iface,
-                                        gpointer iface_data)
+                                        gpointer iface_data G_GNUC_UNUSED)
 {
   RegressFooInterfaceIface *iface = (RegressFooInterfaceIface *) g_iface;
   iface->do_regress_foo = regress_foo_do_regress_foo;
@@ -136,7 +136,8 @@ regress_foo_sub_interface_get_type (void)
 }
 
 static void
-regress_foo_sub_interface_class_init (gpointer g_class, gpointer class_data)
+regress_foo_sub_interface_class_init (gpointer g_class G_GNUC_UNUSED,
+                                      gpointer class_data G_GNUC_UNUSED)
 {
   regress_foo_subiface_signals[SUBIFACE_DESTROY_EVENT] =
     g_signal_new ("destroy-event", REGRESS_FOO_TYPE_SUBINTERFACE,
@@ -171,7 +172,7 @@ G_DEFINE_TYPE_EXTENDED (RegressFooObject, regress_foo_object, G_TYPE_OBJECT, 0, 
 static void
 regress_foo_object_set_property (GObject *object,
                                  guint prop_id,
-                                 const GValue *value,
+                                 const GValue *value G_GNUC_UNUSED,
                                  GParamSpec *pspec)
 {
   switch (prop_id)
@@ -189,7 +190,7 @@ regress_foo_object_set_property (GObject *object,
 static void
 regress_foo_object_get_property (GObject *object,
                                  guint prop_id,
-                                 GValue *value,
+                                 GValue *value G_GNUC_UNUSED,
                                  GParamSpec *pspec)
 {
   switch (prop_id)
@@ -239,7 +240,7 @@ regress_foo_object_class_init (RegressFooObjectClass *klass)
 }
 
 static void
-regress_foo_object_init (RegressFooObject *object)
+regress_foo_object_init (RegressFooObject *object G_GNUC_UNUSED)
 {
 }
 
@@ -262,28 +263,32 @@ regress_foo_object_new_as_super (void)
  * Returns: (transfer none): %NULL always
  */
 UtilityObject *
-regress_foo_object_external_type (RegressFooObject *object)
+regress_foo_object_external_type (RegressFooObject *object G_GNUC_UNUSED)
 {
   return NULL;
 }
 
 void
-regress_foo_object_take_all (RegressFooObject *object, int x, ...)
+regress_foo_object_take_all (RegressFooObject *object G_GNUC_UNUSED,
+                             int x G_GNUC_UNUSED,
+                             ...)
 {
 }
 
 void
-regress_foo_do_regress_foo (RegressFooInterface *self, int x)
+regress_foo_do_regress_foo (RegressFooInterface *self G_GNUC_UNUSED,
+                            int x G_GNUC_UNUSED)
 {
 }
 
 void
-regress_foo_object_is_it_time_yet (RegressFooObject *object, time_t time)
+regress_foo_object_is_it_time_yet (RegressFooObject *object G_GNUC_UNUSED,
+                                   time_t time G_GNUC_UNUSED)
 {
 }
 
 void
-regress_foo_object_seek (RegressFooObject *object, off_t offset)
+regress_foo_object_seek (RegressFooObject *object G_GNUC_UNUSED, off_t offset G_GNUC_UNUSED)
 {
 }
 
@@ -295,19 +300,20 @@ regress_foo_object_seek (RegressFooObject *object, off_t offset)
  * Not sure why this test is here...
  */
 RegressFooObjectCookie
-regress_foo_object_new_cookie (RegressFooObject *object, const char *target)
+regress_foo_object_new_cookie (RegressFooObject *object G_GNUC_UNUSED,
+                               const char *target G_GNUC_UNUSED)
 {
   return NULL;
 }
 
 const char *
-regress_foo_object_get_name (RegressFooObject *object)
+regress_foo_object_get_name (RegressFooObject *object G_GNUC_UNUSED)
 {
   return "regress_foo";
 }
 
 char *
-regress_foo_object_dup_name (RegressFooObject *object)
+regress_foo_object_dup_name (RegressFooObject *object G_GNUC_UNUSED)
 {
   return g_strdup ("regress_foo");
 }
@@ -321,7 +327,9 @@ regress_foo_object_dup_name (RegressFooObject *object)
  * Read some stuff.
  */
 void
-regress_foo_object_read (RegressFooObject *object, int offset, int length)
+regress_foo_object_read (RegressFooObject *object G_GNUC_UNUSED,
+                         int offset G_GNUC_UNUSED,
+                         int length G_GNUC_UNUSED)
 {
 }
 
@@ -332,19 +340,19 @@ regress_foo_object_read (RegressFooObject *object, int offset, int length)
  * This is only useful from C.
  */
 void
-regress_foo_object_skipped_method (RegressFooObject *object)
+regress_foo_object_skipped_method (RegressFooObject *object G_GNUC_UNUSED)
 {
 }
 
 G_DEFINE_ABSTRACT_TYPE (RegressFooSubobject, regress_foo_subobject, REGRESS_FOO_TYPE_OBJECT);
 
 static void
-regress_foo_subobject_class_init (RegressFooSubobjectClass *klass)
+regress_foo_subobject_class_init (RegressFooSubobjectClass *klass G_GNUC_UNUSED)
 {
 }
 
 static void
-regress_foo_subobject_init (RegressFooSubobject *object)
+regress_foo_subobject_init (RegressFooSubobject *object G_GNUC_UNUSED)
 {
 }
 
@@ -369,13 +377,15 @@ regress_foo_init (void)
 }
 
 int
-regress_foo_init_argv (int argc, char **argv)
+regress_foo_init_argv (int argc G_GNUC_UNUSED,
+                       char **argv G_GNUC_UNUSED)
 {
   return REGRESS_FOO_SUCCESS_INT;
 }
 
 int
-regress_foo_init_argv_address (int *argc, char ***argv)
+regress_foo_init_argv_address (int *argc G_GNUC_UNUSED,
+                               char ***argv G_GNUC_UNUSED)
 {
   return REGRESS_FOO_SUCCESS_INT;
 }
@@ -398,7 +408,7 @@ regress_foo_enum_type_get_type (void)
 }
 
 int
-regress_foo_enum_method (RegressFooEnumType regress_foo_enum)
+regress_foo_enum_method (RegressFooEnumType regress_foo_enum G_GNUC_UNUSED)
 {
   return 0;
 }
@@ -460,7 +470,7 @@ regress_foo_boxed_new (void)
 }
 
 void
-regress_foo_boxed_method (RegressFooBoxed *boxed)
+regress_foo_boxed_method (RegressFooBoxed *boxed G_GNUC_UNUSED)
 {
 }
 
@@ -543,7 +553,7 @@ regress_foo_bunion_get_type (void)
 }
 
 void
-regress_foo_test_unsigned (unsigned int uint)
+regress_foo_test_unsigned (unsigned int uint G_GNUC_UNUSED)
 {
 }
 
@@ -552,7 +562,7 @@ regress_foo_test_unsigned (unsigned int uint)
  * @array: (array zero-terminated=1):
  */
 void
-regress_foo_test_string_array (char **array)
+regress_foo_test_string_array (char **array G_GNUC_UNUSED)
 {
 }
 
@@ -561,7 +571,7 @@ regress_foo_test_string_array (char **array)
  * @array: (array zero-terminated=1):
  */
 void
-regress_foo_test_string_array_with_g (gchar **array)
+regress_foo_test_string_array_with_g (gchar **array G_GNUC_UNUSED)
 {
 }
 
@@ -599,7 +609,8 @@ regress_foo_rectangle_new (int x, int y, int width, int height)
  * @r2: source rectangle
  */
 void
-regress_foo_rectangle_add (RegressFooRectangle *r1, const RegressFooRectangle *r2)
+regress_foo_rectangle_add (RegressFooRectangle *r1 G_GNUC_UNUSED,
+                           const RegressFooRectangle *r2 G_GNUC_UNUSED)
 {
 }
 
@@ -662,7 +673,8 @@ regress_foo_error_quark (void)
 }
 
 void
-regress_foo_some_variant (guint x, va_list args)
+regress_foo_some_variant (guint x G_GNUC_UNUSED,
+                          va_list args G_GNUC_UNUSED)
 {
 }
 
@@ -691,12 +703,12 @@ typedef struct _RegressFooTileHandlerClass RegressFooTileHandlerClass;
 G_DEFINE_TYPE (RegressFooTileHandler, regress_foo_tile_handler, REGRESS_FOO_TYPE_OBJECT);
 
 static void
-regress_foo_tile_handler_class_init (RegressFooTileHandlerClass *klass)
+regress_foo_tile_handler_class_init (RegressFooTileHandlerClass *klass G_GNUC_UNUSED)
 {
 }
 
 static void
-regress_foo_tile_handler_init (RegressFooTileHandler *object)
+regress_foo_tile_handler_init (RegressFooTileHandler *object G_GNUC_UNUSED)
 {
 }
 
@@ -713,17 +725,17 @@ struct _RegressFooBufferClass
 G_DEFINE_TYPE (RegressFooBuffer, regress_foo_buffer, REGRESS_FOO_TYPE_TILE_HANDLER);
 
 static void
-regress_foo_buffer_class_init (RegressFooBufferClass *klass)
+regress_foo_buffer_class_init (RegressFooBufferClass *klass G_GNUC_UNUSED)
 {
 }
 
 static void
-regress_foo_buffer_init (RegressFooBuffer *object)
+regress_foo_buffer_init (RegressFooBuffer *object G_GNUC_UNUSED)
 {
 }
 
 void
-regress_foo_buffer_some_method (RegressFooBuffer *buffer)
+regress_foo_buffer_some_method (RegressFooBuffer *buffer G_GNUC_UNUSED)
 {
 }
 
@@ -740,12 +752,12 @@ struct _RegressFooOtherObjectClass
 G_DEFINE_TYPE (RegressFooOtherObject, regress_foo_other_object, G_TYPE_OBJECT);
 
 static void
-regress_foo_other_object_class_init (RegressFooOtherObjectClass *klass)
+regress_foo_other_object_class_init (RegressFooOtherObjectClass *klass G_GNUC_UNUSED)
 {
 }
 
 static void
-regress_foo_other_object_init (RegressFooOtherObject *object)
+regress_foo_other_object_init (RegressFooOtherObject *object G_GNUC_UNUSED)
 {
 }
 
@@ -759,7 +771,7 @@ regress_foo_other_object_init (RegressFooOtherObject *object)
  * exposed to language bindings.
  */
 void
-regress_foo_skip_me (RegressFooSkippable fs)
+regress_foo_skip_me (RegressFooSkippable fs G_GNUC_UNUSED)
 {
 }
 
@@ -788,7 +800,8 @@ regress_foo_foreign_struct_copy (RegressFooForeignStruct *original)
  *
  */
 void
-regress_foo_test_varargs_callback (gint i, RegressFooVarargsCallback callback)
+regress_foo_test_varargs_callback (gint i G_GNUC_UNUSED,
+                                   RegressFooVarargsCallback callback G_GNUC_UNUSED)
 {
 }
 
@@ -797,7 +810,7 @@ regress_foo_test_varargs_callback (gint i, RegressFooVarargsCallback callback)
  *
  */
 void
-regress_foo_test_varargs_callback2 (RegressFooVarargsCallback callback)
+regress_foo_test_varargs_callback2 (RegressFooVarargsCallback callback G_GNUC_UNUSED)
 {
 }
 
@@ -806,8 +819,8 @@ regress_foo_test_varargs_callback2 (RegressFooVarargsCallback callback)
  *
  */
 void
-regress_foo_test_varargs_callback3 (RegressFooVarargsCallback callback,
-                                    RegressFooVarargsCallback callback2)
+regress_foo_test_varargs_callback3 (RegressFooVarargsCallback callback G_GNUC_UNUSED,
+                                    RegressFooVarargsCallback callback2 G_GNUC_UNUSED)
 {
 }
 
@@ -819,7 +832,8 @@ regress_foo_test_varargs_callback3 (RegressFooVarargsCallback callback,
  * Returns: (transfer none):
  */
 RegressFooOtherObject *
-regress_foo_object_append_new_stack_layer (RegressFooObject *obj, int x)
+regress_foo_object_append_new_stack_layer (RegressFooObject *obj G_GNUC_UNUSED,
+                                           int x G_GNUC_UNUSED)
 {
   return NULL;
 }

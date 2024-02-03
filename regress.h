@@ -1704,7 +1704,7 @@ static inline gboolean regress_test_obj_inline_method (RegressTestObj *obj, gboo
  * An inline function that should be exposed as such
  */
 static inline gboolean
-regress_test_obj_inline_method (RegressTestObj *obj, gboolean foo)
+regress_test_obj_inline_method (RegressTestObj *obj G_GNUC_UNUSED, gboolean foo)
 {
   return foo;
 }

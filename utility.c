@@ -14,21 +14,21 @@ G_DEFINE_TYPE (UtilityObject, utility_object, G_TYPE_OBJECT);
  **/
 
 static void
-utility_object_class_init (UtilityObjectClass *klass)
+utility_object_class_init (UtilityObjectClass *klass G_GNUC_UNUSED)
 {
 }
 
 static void
-utility_object_init (UtilityObject *object)
+utility_object_init (UtilityObject *object G_GNUC_UNUSED)
 {
 }
 
 void
-utility_object_watch_dir (UtilityObject *object,
-                          const char *path,
-                          UtilityFileFunc func,
-                          gpointer user_data,
-                          GDestroyNotify destroy)
+utility_object_watch_dir (UtilityObject *object G_GNUC_UNUSED,
+                          const char *path G_GNUC_UNUSED,
+                          UtilityFileFunc func G_GNUC_UNUSED,
+                          gpointer user_data G_GNUC_UNUSED,
+                          GDestroyNotify destroy G_GNUC_UNUSED)
 {
 }
 
@@ -40,6 +40,8 @@ utility_object_watch_dir (UtilityObject *object,
  *
  */
 void
-utility_dir_foreach (const char *path, UtilityFileFunc func, gpointer user_data)
+utility_dir_foreach (const char *path G_GNUC_UNUSED,
+                     UtilityFileFunc func G_GNUC_UNUSED,
+                     gpointer user_data G_GNUC_UNUSED)
 {
 }

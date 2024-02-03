@@ -42,7 +42,7 @@ static guint regress_annotation_object_signals[LAST_SIGNAL] = { 0 };
 static void
 regress_annotation_object_set_property (GObject *object,
                                         guint prop_id,
-                                        const GValue *value,
+                                        const GValue *value G_GNUC_UNUSED,
                                         GParamSpec *pspec)
 {
   switch (prop_id)
@@ -62,7 +62,7 @@ regress_annotation_object_set_property (GObject *object,
 static void
 regress_annotation_object_get_property (GObject *object,
                                         guint prop_id,
-                                        GValue *value,
+                                        GValue *value G_GNUC_UNUSED,
                                         GParamSpec *pspec)
 {
   switch (prop_id)
@@ -211,7 +211,7 @@ regress_annotation_object_class_init (RegressAnnotationObjectClass *klass)
 }
 
 static void
-regress_annotation_object_init (RegressAnnotationObject *object)
+regress_annotation_object_init (RegressAnnotationObject *object G_GNUC_UNUSED)
 {
 }
 
@@ -222,7 +222,7 @@ regress_annotation_object_init (RegressAnnotationObject *object)
  * Return value: an int
  **/
 gint
-regress_annotation_object_method (RegressAnnotationObject *object)
+regress_annotation_object_method (RegressAnnotationObject *object G_GNUC_UNUSED)
 {
   return 1;
 }
@@ -237,7 +237,8 @@ regress_annotation_object_method (RegressAnnotationObject *object)
  * Return value: an int
  */
 gint
-regress_annotation_object_out (RegressAnnotationObject *object, int *outarg)
+regress_annotation_object_out (RegressAnnotationObject *object G_GNUC_UNUSED,
+                               int *outarg)
 {
   *outarg = 2;
   return 1;
@@ -253,7 +254,8 @@ regress_annotation_object_out (RegressAnnotationObject *object, int *outarg)
  * Return value: an int
  */
 gint
-regress_annotation_object_in (RegressAnnotationObject *object, int *inarg)
+regress_annotation_object_in (RegressAnnotationObject *object G_GNUC_UNUSED,
+                              int *inarg)
 {
   return *inarg;
 }
@@ -268,7 +270,8 @@ regress_annotation_object_in (RegressAnnotationObject *object, int *inarg)
  * Return value: an int
  */
 gint
-regress_annotation_object_inout (RegressAnnotationObject *object, int *inoutarg)
+regress_annotation_object_inout (RegressAnnotationObject *object G_GNUC_UNUSED,
+                                 int *inoutarg)
 {
   return *inoutarg += 1;
 }
@@ -283,7 +286,8 @@ regress_annotation_object_inout (RegressAnnotationObject *object, int *inoutarg)
  * Return value: an int
  */
 gint
-regress_annotation_object_inout2 (RegressAnnotationObject *object, int *inoutarg)
+regress_annotation_object_inout2 (RegressAnnotationObject *object G_GNUC_UNUSED,
+                                  int *inoutarg)
 {
   return *inoutarg += 1;
 }
@@ -298,7 +302,8 @@ regress_annotation_object_inout2 (RegressAnnotationObject *object, int *inoutarg
  * Return value: an int
  */
 gint
-regress_annotation_object_inout3 (RegressAnnotationObject *object, int *inoutarg)
+regress_annotation_object_inout3 (RegressAnnotationObject *object G_GNUC_UNUSED,
+                                  int *inoutarg)
 {
   if (inoutarg)
     return *inoutarg + 1;
@@ -315,7 +320,8 @@ regress_annotation_object_inout3 (RegressAnnotationObject *object, int *inoutarg
  * Return value: an int
  */
 gint
-regress_annotation_object_calleeowns (RegressAnnotationObject *object, GObject **toown)
+regress_annotation_object_calleeowns (RegressAnnotationObject *object G_GNUC_UNUSED,
+                                      GObject **toown G_GNUC_UNUSED)
 {
   return 1;
 }
@@ -331,9 +337,9 @@ regress_annotation_object_calleeowns (RegressAnnotationObject *object, GObject *
  * Return value: an int
  */
 gint
-regress_annotation_object_calleesowns (RegressAnnotationObject *object,
-                                       GObject **toown1,
-                                       GObject **toown2)
+regress_annotation_object_calleesowns (RegressAnnotationObject *object G_GNUC_UNUSED,
+                                       GObject **toown1 G_GNUC_UNUSED,
+                                       GObject **toown2 G_GNUC_UNUSED)
 {
   return 1;
 }
@@ -348,7 +354,7 @@ regress_annotation_object_calleesowns (RegressAnnotationObject *object,
  * Return value: (element-type utf8) (transfer full): list of strings
  */
 GList *
-regress_annotation_object_get_strings (RegressAnnotationObject *object)
+regress_annotation_object_get_strings (RegressAnnotationObject *object G_GNUC_UNUSED)
 {
   GList *list = NULL;
   list = g_list_prepend (list, g_strdup ("regress_annotation"));
@@ -380,7 +386,8 @@ regress_annotation_object_get_hash (RegressAnnotationObject *object)
  * @data: Opaque pointer handle
  */
 void
-regress_annotation_object_with_voidp (RegressAnnotationObject *object, void *data)
+regress_annotation_object_with_voidp (RegressAnnotationObject *object G_GNUC_UNUSED,
+                                      void *data G_GNUC_UNUSED)
 {
 }
 
@@ -422,8 +429,8 @@ regress_annotation_object_create_object (RegressAnnotationObject *object)
  *
  **/
 void
-regress_annotation_object_use_buffer (RegressAnnotationObject *object,
-                                      guchar *bytes)
+regress_annotation_object_use_buffer (RegressAnnotationObject *object G_GNUC_UNUSED,
+                                      guchar *bytes G_GNUC_UNUSED)
 {
 }
 
@@ -435,8 +442,8 @@ regress_annotation_object_use_buffer (RegressAnnotationObject *object,
  * Test taking a zero-terminated array
  **/
 void
-regress_annotation_object_compute_sum (RegressAnnotationObject *object,
-                                       int *nums)
+regress_annotation_object_compute_sum (RegressAnnotationObject *object G_GNUC_UNUSED,
+                                       int *nums G_GNUC_UNUSED)
 {
 }
 
@@ -450,9 +457,9 @@ regress_annotation_object_compute_sum (RegressAnnotationObject *object,
  * Test taking an array with length parameter
  **/
 void
-regress_annotation_object_compute_sum_n (RegressAnnotationObject *object,
-                                         int *nums,
-                                         int n_nums)
+regress_annotation_object_compute_sum_n (RegressAnnotationObject *object G_GNUC_UNUSED,
+                                         int *nums G_GNUC_UNUSED,
+                                         int n_nums G_GNUC_UNUSED)
 {
 }
 
@@ -466,9 +473,9 @@ regress_annotation_object_compute_sum_n (RegressAnnotationObject *object,
  * Test taking a zero-terminated array with length parameter
  **/
 void
-regress_annotation_object_compute_sum_nz (RegressAnnotationObject *object,
-                                          int *nums,
-                                          int n_nums)
+regress_annotation_object_compute_sum_nz (RegressAnnotationObject *object G_GNUC_UNUSED,
+                                          int *nums G_GNUC_UNUSED,
+                                          int n_nums G_GNUC_UNUSED)
 {
 }
 
@@ -481,9 +488,9 @@ regress_annotation_object_compute_sum_nz (RegressAnnotationObject *object,
  * Test taking a zero-terminated array with length parameter
  **/
 void
-regress_annotation_object_parse_args (RegressAnnotationObject *object,
-                                      int *argc,
-                                      char ***argv)
+regress_annotation_object_parse_args (RegressAnnotationObject *object G_GNUC_UNUSED,
+                                      int *argc G_GNUC_UNUSED,
+                                      char ***argv G_GNUC_UNUSED)
 {
 }
 
@@ -497,8 +504,8 @@ regress_annotation_object_parse_args (RegressAnnotationObject *object,
  * Returns: some boolean
  **/
 gboolean
-regress_annotation_object_string_out (RegressAnnotationObject *object,
-                                      char **str_out)
+regress_annotation_object_string_out (RegressAnnotationObject *object G_GNUC_UNUSED,
+                                      char **str_out G_GNUC_UNUSED)
 {
   return FALSE;
 }
@@ -512,9 +519,9 @@ regress_annotation_object_string_out (RegressAnnotationObject *object,
  * Test taking a call-scoped callback
  **/
 void
-regress_annotation_object_foreach (RegressAnnotationObject *object,
-                                   RegressAnnotationForeachFunc func,
-                                   gpointer user_data)
+regress_annotation_object_foreach (RegressAnnotationObject *object G_GNUC_UNUSED,
+                                   RegressAnnotationForeachFunc func G_GNUC_UNUSED,
+                                   gpointer user_data G_GNUC_UNUSED)
 {
 }
 
@@ -527,9 +534,9 @@ regress_annotation_object_foreach (RegressAnnotationObject *object,
  * Test taking a guchar * with a length.
  **/
 void
-regress_annotation_object_set_data (RegressAnnotationObject *object,
-                                    const guchar *data,
-                                    gsize length)
+regress_annotation_object_set_data (RegressAnnotationObject *object G_GNUC_UNUSED,
+                                    const guchar *data G_GNUC_UNUSED,
+                                    gsize length G_GNUC_UNUSED)
 {
 }
 
@@ -542,9 +549,9 @@ regress_annotation_object_set_data (RegressAnnotationObject *object,
  * Test taking a gchar * with a length.
  **/
 void
-regress_annotation_object_set_data2 (RegressAnnotationObject *object,
-                                     const gchar *data,
-                                     gsize length)
+regress_annotation_object_set_data2 (RegressAnnotationObject *object G_GNUC_UNUSED,
+                                     const gchar *data G_GNUC_UNUSED,
+                                     gsize length G_GNUC_UNUSED)
 {
 }
 
@@ -558,9 +565,9 @@ regress_annotation_object_set_data2 (RegressAnnotationObject *object,
  * type.
  **/
 void
-regress_annotation_object_set_data3 (RegressAnnotationObject *object,
-                                     gpointer data,
-                                     gsize length)
+regress_annotation_object_set_data3 (RegressAnnotationObject *object G_GNUC_UNUSED,
+                                     gpointer data G_GNUC_UNUSED,
+                                     gsize length G_GNUC_UNUSED)
 {
 }
 
@@ -572,7 +579,8 @@ regress_annotation_object_set_data3 (RegressAnnotationObject *object,
  * Returns: (transfer none): %NULL always
  **/
 GObject *
-regress_annotation_object_allow_none (RegressAnnotationObject *object, const gchar *somearg)
+regress_annotation_object_allow_none (RegressAnnotationObject *object G_GNUC_UNUSED,
+                                      const gchar *somearg G_GNUC_UNUSED)
 {
   return NULL;
 }
@@ -585,7 +593,7 @@ regress_annotation_object_allow_none (RegressAnnotationObject *object, const gch
  **/
 
 GObject *
-regress_annotation_object_notrans (RegressAnnotationObject *object)
+regress_annotation_object_notrans (RegressAnnotationObject *object G_GNUC_UNUSED)
 {
   return NULL;
 }
@@ -598,7 +606,7 @@ regress_annotation_object_notrans (RegressAnnotationObject *object)
  * Deprecated: 0.12: Use regress_annotation_object_create_object() instead.
  **/
 GObject *
-regress_annotation_object_do_not_use (RegressAnnotationObject *object)
+regress_annotation_object_do_not_use (RegressAnnotationObject *object G_GNUC_UNUSED)
 {
   return NULL;
 }
@@ -613,9 +621,9 @@ regress_annotation_object_do_not_use (RegressAnnotationObject *object)
  * regress_annotation_object_watch_full().
  */
 void
-regress_annotation_object_watch (RegressAnnotationObject *object,
-                                 RegressAnnotationForeachFunc func,
-                                 gpointer user_data)
+regress_annotation_object_watch (RegressAnnotationObject *object G_GNUC_UNUSED,
+                                 RegressAnnotationForeachFunc func G_GNUC_UNUSED,
+                                 gpointer user_data G_GNUC_UNUSED)
 {
 }
 
@@ -629,10 +637,10 @@ regress_annotation_object_watch (RegressAnnotationObject *object,
  * Test overriding via the "Rename To" annotation.
  */
 void
-regress_annotation_object_watch_full (RegressAnnotationObject *object,
-                                      RegressAnnotationForeachFunc func,
-                                      gpointer user_data,
-                                      GDestroyNotify destroy)
+regress_annotation_object_watch_full (RegressAnnotationObject *object G_GNUC_UNUSED,
+                                      RegressAnnotationForeachFunc func G_GNUC_UNUSED,
+                                      gpointer user_data G_GNUC_UNUSED,
+                                      GDestroyNotify destroy G_GNUC_UNUSED)
 {
 }
 
@@ -641,7 +649,7 @@ regress_annotation_object_watch_full (RegressAnnotationObject *object,
  * @object: (type RegressAnnotationObject): A #RegressAnnotationObject
  **/
 void
-regress_annotation_object_hidden_self (gpointer object)
+regress_annotation_object_hidden_self (gpointer object G_GNUC_UNUSED)
 {
 }
 
@@ -651,7 +659,8 @@ regress_annotation_object_hidden_self (gpointer object)
  * @argv: (inout) (array length=argc): The arguments.
  **/
 void
-regress_annotation_init (int *argc, char ***argv)
+regress_annotation_init (int *argc G_GNUC_UNUSED,
+                         char ***argv G_GNUC_UNUSED)
 {
 }
 
@@ -662,7 +671,7 @@ regress_annotation_init (int *argc, char ***argv)
  * Return value: (transfer full) (array length=length): The return value
  **/
 char **
-regress_annotation_return_array (int *length)
+regress_annotation_return_array (int *length G_GNUC_UNUSED)
 {
   return NULL;
 }
@@ -683,7 +692,7 @@ regress_annotation_string_zero_terminated (void)
  * @out: (array zero-terminated=1) (inout):
  **/
 void
-regress_annotation_string_zero_terminated_out (char ***out)
+regress_annotation_string_zero_terminated_out (char ***out G_GNUC_UNUSED)
 {
 }
 
@@ -703,7 +712,8 @@ regress_annotation_versioned (void)
  * @properties: (array length=n_properties) (element-type utf8):
  */
 void
-regress_annotation_string_array_length (guint n_properties, const gchar *const properties[])
+regress_annotation_string_array_length (guint n_properties G_GNUC_UNUSED,
+                                        const gchar *const properties[] G_GNUC_UNUSED)
 {
 }
 
@@ -711,7 +721,7 @@ regress_annotation_string_array_length (guint n_properties, const gchar *const p
  * regress_annotation_object_extra_annos: (attributes org.foobar=testvalue)
  */
 void
-regress_annotation_object_extra_annos (RegressAnnotationObject *object)
+regress_annotation_object_extra_annos (RegressAnnotationObject *object G_GNUC_UNUSED)
 {
 }
 
@@ -723,9 +733,9 @@ regress_annotation_object_extra_annos (RegressAnnotationObject *object)
  * detection, and fixing it via annotations.
  */
 void
-regress_annotation_custom_destroy (RegressAnnotationCallback callback,
-                                   RegressAnnotationNotifyFunc destroy,
-                                   gpointer data)
+regress_annotation_custom_destroy (RegressAnnotationCallback callback G_GNUC_UNUSED,
+                                   RegressAnnotationNotifyFunc destroy G_GNUC_UNUSED,
+                                   gpointer data G_GNUC_UNUSED)
 {
 }
 
@@ -746,7 +756,7 @@ regress_annotation_get_source_file (void)
  *
  */
 void
-regress_annotation_set_source_file (const char *fname)
+regress_annotation_set_source_file (const char *fname G_GNUC_UNUSED)
 {
 }
 
@@ -755,7 +765,7 @@ regress_annotation_set_source_file (const char *fname)
  * @array: (element-type GObject.Value): the array
  */
 void
-regress_annotation_ptr_array (GPtrArray *array)
+regress_annotation_ptr_array (GPtrArray *array G_GNUC_UNUSED)
 {
 }
 
@@ -767,8 +777,8 @@ regress_annotation_ptr_array (GPtrArray *array)
  * Returns: (attributes some.other.annotation=value2 yet.another.annotation=another_value): The return value.
  */
 gint
-regress_annotation_attribute_func (RegressAnnotationObject *object,
-                                   const gchar *data)
+regress_annotation_attribute_func (RegressAnnotationObject *object G_GNUC_UNUSED,
+                                   const gchar *data G_GNUC_UNUSED)
 {
   return 42;
 }
@@ -778,7 +788,7 @@ regress_annotation_attribute_func (RegressAnnotationObject *object,
  * @foo: some text (e.g. example) or else
  */
 void
-regress_annotation_invalid_regress_annotation (int foo)
+regress_annotation_invalid_regress_annotation (int foo G_GNUC_UNUSED)
 {
 }
 
@@ -825,7 +835,7 @@ regress_annotation_return_filename (void)
  * Returns: (transfer floating): A floating object
  */
 GObject *
-regress_annotation_transfer_floating (GObject *object)
+regress_annotation_transfer_floating (GObject *object G_GNUC_UNUSED)
 {
   return NULL;
 }

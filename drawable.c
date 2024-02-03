@@ -9,17 +9,18 @@ SPDX-FileCopyrightText: 2008 Johan Dahlin
 G_DEFINE_ABSTRACT_TYPE (RegressTestInheritDrawable, regress_test_inherit_drawable, G_TYPE_OBJECT);
 
 static void
-regress_test_inherit_drawable_class_init (RegressTestInheritDrawableClass *klass)
+regress_test_inherit_drawable_class_init (RegressTestInheritDrawableClass *klass G_GNUC_UNUSED)
 {
 }
 
 static void
-regress_test_inherit_drawable_init (RegressTestInheritDrawable *drawable)
+regress_test_inherit_drawable_init (RegressTestInheritDrawable *drawable G_GNUC_UNUSED)
 {
 }
 
 void
-regress_test_inherit_drawable_do_foo (RegressTestInheritDrawable *drawable, int x)
+regress_test_inherit_drawable_do_foo (RegressTestInheritDrawable *drawable G_GNUC_UNUSED,
+                                      int x G_GNUC_UNUSED)
 {
 }
 
@@ -30,7 +31,9 @@ regress_test_inherit_drawable_do_foo (RegressTestInheritDrawable *drawable, int 
  * @y: (out):
  */
 void
-regress_test_inherit_drawable_get_origin (RegressTestInheritDrawable *drawable, int *x, int *y)
+regress_test_inherit_drawable_get_origin (RegressTestInheritDrawable *drawable G_GNUC_UNUSED,
+                                          int *x,
+                                          int *y)
 {
   *x = 0;
   *y = 0;
@@ -43,14 +46,18 @@ regress_test_inherit_drawable_get_origin (RegressTestInheritDrawable *drawable, 
  * @height: (out):
  */
 void
-regress_test_inherit_drawable_get_size (RegressTestInheritDrawable *drawable, guint *width, guint *height)
+regress_test_inherit_drawable_get_size (RegressTestInheritDrawable *drawable G_GNUC_UNUSED,
+                                        guint *width,
+                                        guint *height)
 {
   *width = 42;
   *height = 42;
 }
 
 void
-regress_test_inherit_drawable_do_foo_maybe_throw (RegressTestInheritDrawable *drawable, int x, GError **error)
+regress_test_inherit_drawable_do_foo_maybe_throw (RegressTestInheritDrawable *drawable G_GNUC_UNUSED,
+                                                  int x,
+                                                  GError **error)
 {
   if (x != 42)
     g_set_error (error, 0, 12, "The answer should be 42!");

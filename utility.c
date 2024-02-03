@@ -23,6 +23,14 @@ utility_object_init (UtilityObject *object G_GNUC_UNUSED)
 {
 }
 
+/**
+ * utility_object_watch_dir:
+ * @object:
+ * @path:
+ * @func:
+ * @user_data: (closure func):
+ * @destroy: (destroy func):
+ */
 void
 utility_object_watch_dir (UtilityObject *object G_GNUC_UNUSED,
                           const char *path G_GNUC_UNUSED,

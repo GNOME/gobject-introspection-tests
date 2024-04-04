@@ -2,7 +2,7 @@
 
 This is a git submodule containing C source files.
 These files are compiled into shared libraries intended for testing language
-bindings for the GNOME platform. 
+bindings for the GNOME platform.
 They are also used to test the `g-ir-scanner` tool from [gobject-introspection].
 
 [gobject-introspection]: https://gitlab.gnome.org/GNOME/gobject-introspection
@@ -32,27 +32,46 @@ Include this repository as a git submodule in your sources.
 git submodule add https://gitlab.gnome.org/GNOME/gobject-introspection-tests.git
 ```
 
-Add code to your build system to build the modules you want to use.
+If you use the Meson build system, you can also add it as a Meson subproject,
+and simply write:
+
+```meson
+gi_tests = subproject('gobject-introspection-tests')
+```
+
+The subproject exports variables `gimarshallingtests_typelib`,
+`regress_typelib`, `utility_typelib`, and `warnlib_typelib` which you can access
+with `gi_tests.get_variable('regress_typelib')` etc.
+You will have to decide which modules you want to use.
 Most language bindings will want to use at least Regress and GIMarshallingTests.
+
+Now you can write tests that load the module, call each of its functions with
+the expected input, and check for the expected output.
+You will need to add the build folder to the environment variables
+`LD_LIBRARY_PATH` and `GI_TYPELIB_PATH`, something like this:
+
+```meson
+tests_environment = environment()
+gi_tests_builddir = meson.project_build_root() / 'subprojects' / 'gobject-introspection-tests'
+tests_environment.prepend('LD_LIBRARY_PATH', gi_tests_builddir)
+tests_environment.prepend('GI_TYPELIB_PATH', gi_tests_builddir)
+```
+
+and then pass `env: tests_environment` in your call to `test()`.
+
+If your language binding supports installed tests, you will have to install the
+built modules manually, to a private location where your installed tests can
+find them.
+Do not install them in the default typelibs directory, where they may conflict
+with other language bindings' installed tests.
 Depending on how your build system is structured it might look something like
 this, using GIMarshallingTests as an example:
 
 ```meson
-gimarshallingtests_sources = [
-    'gobject-introspection-tests/gimarshallingtests.c',
-    'gobject-introspection-tests/gimarshallingtests.h',
-]
-libgimarshallingtests = shared_library('gimarshallingtests',
-    sources: gimarshallingtests_sources,
-    dependencies: [glib, gobject, gio],
-    include_directories: 'gobject-introspection-tests')
-gnome.generate_gir(libgimarshallingtests,
-    sources: gimarshallingtests_sources,
-    namespace: 'GIMarshallingTests', nsversion: '1.0',
-    symbol_prefix: 'gi_marshalling_tests',
-    dependencies: [glib, gobject, gio, gmodule],
-    includes: ['Gio-2.0'])
+gi_tests = subproject('gobject-introspection-tests',
+    default_options: ['install_dir=@0@'.format(installed_tests_dir)])
 ```
 
-Now you can write tests that load the GIMarshallingTests library, call each of
-its functions with the expected input, and check for the expected output.
+For build systems other than Meson, simply ignore the `meson.build` file and add
+code to your build system to build the modules as if it was a regular
+subdirectory.

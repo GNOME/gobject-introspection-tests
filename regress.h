@@ -1024,11 +1024,14 @@ void regress_func_obj_null_in (RegressTestObj *obj);
 GI_TEST_EXTERN
 void regress_test_obj_null_out (RegressTestObj **obj);
 
+GI_TEST_EXTERN
 void regress_func_obj_nullable_in (RegressTestObj *obj);
 
+GI_TEST_EXTERN
 void regress_test_obj_not_nullable_typed_gpointer_in (RegressTestObj *obj,
                                                       gpointer input);
 
+GI_TEST_EXTERN
 void regress_test_obj_not_nullable_element_typed_gpointer_in (RegressTestObj *obj,
                                                               gpointer input,
                                                               guint count);
@@ -1643,8 +1646,8 @@ typedef struct
   };
 } RegressAnonymousUnionAndStruct;
 
-GVariant *
-regress_get_variant (void);
+GI_TEST_EXTERN
+GVariant *regress_get_variant (void);
 
 typedef struct _RegressTestReferenceCounters RegressTestReferenceCounters;
 

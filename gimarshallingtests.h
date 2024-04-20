@@ -1781,6 +1781,8 @@ void gi_marshalling_tests_object_overridden_method (GIMarshallingTestsObject *ob
 
 GI_TEST_EXTERN
 GIMarshallingTestsObject *gi_marshalling_tests_object_new (gint int_);
+
+GI_TEST_EXTERN
 GIMarshallingTestsObject *gi_marshalling_tests_object_new_fail (gint int_, GError **error);
 
 GI_TEST_EXTERN

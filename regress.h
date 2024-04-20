@@ -59,9 +59,9 @@ SPDX-FileCopyrightText: 2023 Evan Welsh
 #include <glib-object.h>
 #include <glib.h>
 
-#ifndef _GI_DISABLE_CAIRO
+#ifndef GI_TEST_DISABLE_CAIRO
 #include <cairo.h>
-#endif
+#endif /* GI_TEST_DISABLE_CAIRO */
 
 #include "gitestmacros.h"
 
@@ -375,7 +375,7 @@ GI_TEST_EXTERN
 const GValue *regress_test_value_return (int i);
 
 /* foreign structs */
-#ifndef _GI_DISABLE_CAIRO
+#ifndef GI_TEST_DISABLE_CAIRO
 GI_TEST_EXTERN
 cairo_t *regress_test_cairo_context_full_return (void);
 
@@ -393,7 +393,7 @@ void regress_test_cairo_surface_none_in (cairo_surface_t *surface);
 
 GI_TEST_EXTERN
 void regress_test_cairo_surface_full_out (cairo_surface_t **surface);
-#endif
+#endif /* GI_TEST_DISABLE_CAIRO */
 
 /* versioning (deprecated, since, stability) */
 GI_TEST_EXTERN

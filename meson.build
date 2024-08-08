@@ -66,6 +66,7 @@ regress_sources = [
     'regress.c',
     'regress.h',
 ]
+regress_unix_sources = ['regress-unix.c', 'regress-unix.h']
 warnlib_sources = ['warnlib.c', 'warnlib.h']
 gimarshallingtests_sources = ['gimarshallingtests.c', 'gimarshallingtests.h']
 
@@ -100,7 +101,7 @@ endif
 
 libregress = library(
     'regress',
-    regress_sources,
+    regress_sources + regress_unix_sources,
     dependencies: regress_dependencies,
     gnu_symbol_visibility: 'hidden',
     install: install,
@@ -123,6 +124,24 @@ regress_gir = gnome.generate_gir(
     install_dir_typelib: install_dir,
 )
 regress_typelib = regress_gir[1]
+if host_machine.system() != 'windows'
+    regress_unix_gir = gnome.generate_gir(
+        libregress,
+        sources: regress_unix_sources,
+        includes: regress_gir_includes,
+        namespace: 'RegressUnix',
+        nsversion: '1.0',
+        symbol_prefix: 'regress_unix_',
+        include_directories: meson.current_build_dir(),
+        fatal_warnings: get_option('werror'),
+        install_gir: false,
+        install_typelib: install,
+        install_dir_typelib: install_dir,
+    )
+else
+    regress_unix_gir = [disabler(), disabler()]
+endif
+regress_unix_typelib = regress_unix_gir[1]
 
 libwarnlib = library(
     'warnlib',

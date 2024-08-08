@@ -3,3 +3,5 @@
 option('cairo', type: 'boolean', value: true, description: 'Cairo support')
 option('install_dir', type: 'string',
     description: 'Location to install test libraries and typelibs')
+option('skip_typelibs', type: 'boolean', value: false,
+    description: 'Skip building typelib files (only for gobject-introspection)')

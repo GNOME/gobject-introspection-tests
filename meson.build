@@ -78,19 +78,22 @@ libutility = library(
     install: install,
     install_dir: install_dir,
 )
+if not get_option('skip_typelibs')
 utility_gir = gnome.generate_gir(
     libutility,
     sources: utility_sources,
-    includes: ['GLib-2.0'],
+    includes: ['GObject-2.0'],
     namespace: 'Utility',
     nsversion: '1.0',
     symbol_prefix: 'utility_',
+    header: 'utility.h',
     fatal_warnings: get_option('werror'),
     install_gir: false,
     install_typelib: install,
     install_dir_typelib: install_dir,
 )
 utility_typelib = utility_gir[1]
+endif
 
 regress_dependencies = [glib_dep, gobject_dep, gio_dep]
 regress_gir_includes = ['Gio-2.0', utility_gir[0]]
@@ -108,6 +111,7 @@ libregress = library(
     install_dir: install_dir,
     override_options: ['unity=off'],
 )
+if not get_option('skip_typelibs')
 regress_gir = gnome.generate_gir(
     libregress,
     sources: regress_sources,
@@ -116,6 +120,7 @@ regress_gir = gnome.generate_gir(
     nsversion: '1.0',
     identifier_prefix: 'Regress',
     symbol_prefix: 'regress_',
+    header: 'regress.h',
     extra_args: ['--warn-all'],
     include_directories: meson.current_build_dir(),
     fatal_warnings: get_option('werror'),
@@ -132,6 +137,7 @@ if host_machine.system() != 'windows'
         namespace: 'RegressUnix',
         nsversion: '1.0',
         symbol_prefix: 'regress_unix_',
+        header: 'regress-unix.h',
         include_directories: meson.current_build_dir(),
         fatal_warnings: get_option('werror'),
         install_gir: false,
@@ -142,6 +148,7 @@ else
     regress_unix_gir = [disabler(), disabler()]
 endif
 regress_unix_typelib = regress_unix_gir[1]
+endif
 
 libwarnlib = library(
     'warnlib',
@@ -151,6 +158,7 @@ libwarnlib = library(
     install: install,
     install_dir: install_dir,
 )
+if not get_option('skip_typelibs')
 # This should have --warn-all turned off, but there is currently no way to do so
 # in gnome.generate_gir(). See https://github.com/mesonbuild/meson/issues/5876
 warnlib_gir = gnome.generate_gir(
@@ -167,6 +175,7 @@ warnlib_gir = gnome.generate_gir(
     install_dir_typelib: install_dir,
 )
 warnlib_typelib = warnlib_gir[1]
+endif
 
 libgimarshallingtests = library(
     'gimarshallingtests',
@@ -176,6 +185,7 @@ libgimarshallingtests = library(
     install: install,
     install_dir: install_dir,
 )
+if not get_option('skip_typelibs')
 gimarshallingtests_gir = gnome.generate_gir(
     libgimarshallingtests,
     sources: gimarshallingtests_sources,
@@ -189,6 +199,7 @@ gimarshallingtests_gir = gnome.generate_gir(
     install_dir_typelib: install_dir,
 )
 gimarshallingtests_typelib = gimarshallingtests_gir[1]
+endif
 
 deps = [glib_dep]
 if build_cairo

@@ -81,7 +81,7 @@ libutility = library(
 utility_gir = gnome.generate_gir(
     libutility,
     sources: utility_sources,
-    includes: ['GLib-2.0'],
+    includes: ['GObject-2.0'],
     namespace: 'Utility',
     nsversion: '1.0',
     symbol_prefix: 'utility_',

@@ -58,6 +58,9 @@ typedef struct _GIMarshallingTestsBoxedStruct GIMarshallingTestsBoxedStruct;
                                              0x20, 0x2665, 0x20, 0x75, 0x74, \
                                              0x66, 0x38 }
 
+GI_TEST_EXTERN
+void gi_marshalling_tests_cleanup_unaligned_buffer (void);
+
 /* Booleans */
 
 GI_TEST_EXTERN
@@ -787,6 +790,9 @@ GI_TEST_EXTERN
 const gshort *gi_marshalling_tests_array_fixed_short_return (void);
 
 GI_TEST_EXTERN
+const guint8 *gi_marshalling_tests_array_fixed_return_unaligned (void);
+
+GI_TEST_EXTERN
 void gi_marshalling_tests_array_fixed_int_in (const gint *ints);
 
 GI_TEST_EXTERN
@@ -800,6 +806,9 @@ void gi_marshalling_tests_array_fixed_out (gint **ints);
 
 GI_TEST_EXTERN
 gboolean gi_marshalling_tests_array_fixed_out_uninitialized (gint **v G_GNUC_UNUSED);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_array_fixed_out_unaligned (const guint8 **v);
 
 GI_TEST_EXTERN
 void gi_marshalling_tests_array_fixed_out_struct (GIMarshallingTestsSimpleStruct **structs);
@@ -820,6 +829,9 @@ const gint *gi_marshalling_tests_array_return (gint *length);
 
 GI_TEST_EXTERN
 const gint *gi_marshalling_tests_array_return_etc (gint first, gint *length, gint last, gint *sum);
+
+GI_TEST_EXTERN
+const guint8 *gi_marshalling_tests_array_return_unaligned (gsize *len);
 
 GI_TEST_EXTERN
 void gi_marshalling_tests_array_in (const gint *ints, gint length);
@@ -882,6 +894,9 @@ GI_TEST_EXTERN
 gboolean gi_marshalling_tests_array_out_uninitialized (gint **v G_GNUC_UNUSED, gint *length G_GNUC_UNUSED);
 
 GI_TEST_EXTERN
+void gi_marshalling_tests_array_out_unaligned (const guint8 **v, gsize *len);
+
+GI_TEST_EXTERN
 void gi_marshalling_tests_array_out_etc (gint first, gint **ints, gint *length, gint last, gint *sum);
 
 GI_TEST_EXTERN
@@ -914,6 +929,9 @@ GI_TEST_EXTERN
 gunichar *gi_marshalling_tests_array_zero_terminated_return_unichar (void);
 
 GI_TEST_EXTERN
+const guint8 *gi_marshalling_tests_array_zero_terminated_return_unaligned (void);
+
+GI_TEST_EXTERN
 void gi_marshalling_tests_array_zero_terminated_in (gchar **utf8s);
 
 GI_TEST_EXTERN
@@ -921,6 +939,9 @@ void gi_marshalling_tests_array_zero_terminated_out (const gchar ***utf8s);
 
 GI_TEST_EXTERN
 gboolean gi_marshalling_tests_array_zero_terminated_out_uninitialized (const gchar ***v G_GNUC_UNUSED);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_array_zero_terminated_out_unaligned (const guint8 **v);
 
 GI_TEST_EXTERN
 void gi_marshalling_tests_array_zero_terminated_inout (const gchar ***utf8s);

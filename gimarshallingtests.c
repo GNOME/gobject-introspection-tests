@@ -33,9 +33,44 @@ SPDX-FileCopyrightText: 2020, 2024 Simon McVittie
 SPDX-FileCopyrightText: 2021 Carlos Garnacho
 */
 
+#include <stdint.h>
 #include <string.h>
 
 #include "gimarshallingtests.h"
+
+/* Unaligned buffer, for testing that language bindings can deal with pointers
+ * allocated at arbitrary 1-byte alignments. */
+static guint8 *unaligned_buffer = NULL;
+static const size_t UNALIGNED_BUFFER_SIZE = 33;
+
+/**
+ * gi_marshalling_tests_cleanup_unaligned_buffer:
+ *
+ * It's OK not to call this and just leak the buffer, but if you are running
+ * your tests with AddressSanitizer or valgrind, you should call this after
+ * completing each unaligned buffer test.
+ *
+ * We can't send an unaligned buffer as (transfer full) because g_free() won't
+ * work on it on Windows.
+ */
+void
+gi_marshalling_tests_cleanup_unaligned_buffer (void)
+{
+  g_aligned_free_sized (unaligned_buffer, 8, UNALIGNED_BUFFER_SIZE);
+  unaligned_buffer = NULL;
+}
+
+static const guint8 *
+init_unaligned_buffer (void)
+{
+  if (unaligned_buffer)
+    gi_marshalling_tests_cleanup_unaligned_buffer ();
+
+  unaligned_buffer = g_aligned_alloc0 (1, UNALIGNED_BUFFER_SIZE, 8);
+  for (size_t ix = 0; ix < UNALIGNED_BUFFER_SIZE; ix++)
+    unaligned_buffer[ix] = (uintptr_t) (unaligned_buffer + ix) & 0x07;
+  return unaligned_buffer + 1;
+}
 
 static void gi_marshalling_tests_boxed_struct_free (GIMarshallingTestsBoxedStruct *v);
 
@@ -1733,6 +1768,20 @@ gi_marshalling_tests_array_fixed_short_return (void)
 }
 
 /**
+ * gi_marshalling_tests_array_fixed_return_unaligned:
+ *
+ * Note that the buffer will leak unless you call
+ * gi_marshalling_tests_cleanup_unaligned_buffer().
+ *
+ * Returns: (array fixed-size=32) (transfer none):
+ */
+const guint8 *
+gi_marshalling_tests_array_fixed_return_unaligned (void)
+{
+  return init_unaligned_buffer ();
+}
+
+/**
  * gi_marshalling_tests_array_fixed_int_in:
  * @ints: (array fixed-size=4):
  */
@@ -1790,6 +1839,19 @@ gboolean
 gi_marshalling_tests_array_fixed_out_uninitialized (gint **v G_GNUC_UNUSED)
 {
   return FALSE;
+}
+
+/**
+ * gi_marshalling_tests_array_fixed_out_unaligned:
+ * @v: (out) (array fixed-size=32) (transfer none):
+ *
+ * Note that the buffer will leak unless you call
+ * gi_marshalling_tests_cleanup_unaligned_buffer().
+ */
+void
+gi_marshalling_tests_array_fixed_out_unaligned (const guint8 **v)
+{
+  *v = init_unaligned_buffer ();
 }
 
 /**
@@ -1892,6 +1954,22 @@ gi_marshalling_tests_array_return_etc (gint first, gint *length, gint last, gint
   *sum = first + last;
   *length = 4;
   return ints;
+}
+
+/**
+ * gi_marshalling_tests_array_return_unaligned:
+ * @len: (out):
+ *
+ * Note that the buffer will leak unless you call
+ * gi_marshalling_tests_cleanup_unaligned_buffer().
+ *
+ * Returns: (array length=len):
+ */
+const guint8 *
+gi_marshalling_tests_array_return_unaligned (gsize *len)
+{
+  *len = UNALIGNED_BUFFER_SIZE - 1;
+  return init_unaligned_buffer ();
 }
 
 /**
@@ -2176,6 +2254,21 @@ gi_marshalling_tests_array_out_uninitialized (gint **v G_GNUC_UNUSED, gint *leng
 }
 
 /**
+ * gi_marshalling_tests_array_out_unaligned:
+ * @v: (out) (array length=len) (transfer none):
+ * @len:
+ *
+ * Note that the buffer will leak unless you call
+ * gi_marshalling_tests_cleanup_unaligned_buffer().
+ */
+void
+gi_marshalling_tests_array_out_unaligned (const guint8 **v, gsize *len)
+{
+  *v = init_unaligned_buffer ();
+  *len = UNALIGNED_BUFFER_SIZE - 1;
+}
+
+/**
  * gi_marshalling_tests_array_out_etc:
  * @first:
  * @ints: (out) (array length=length) (transfer none):
@@ -2343,6 +2436,20 @@ gi_marshalling_tests_array_zero_terminated_return_unichar (void)
 }
 
 /**
+ * gi_marshalling_tests_array_zero_terminated_return_unaligned:
+ *
+ * Note that the buffer will leak unless you call
+ * gi_marshalling_tests_cleanup_unaligned_buffer().
+ *
+ * Returns: (array zero-terminated) (transfer none):
+ */
+const guint8 *
+gi_marshalling_tests_array_zero_terminated_return_unaligned (void)
+{
+  return init_unaligned_buffer ();
+}
+
+/**
  * gi_marshalling_tests_array_zero_terminated_in:
  * @utf8s: (array zero-terminated) (transfer none):
  */
@@ -2374,6 +2481,19 @@ gboolean
 gi_marshalling_tests_array_zero_terminated_out_uninitialized (const gchar ***v G_GNUC_UNUSED)
 {
   return FALSE;
+}
+
+/**
+ * gi_marshalling_tests_array_zero_terminated_out_unaligned:
+ * @v: (out) (array zero-terminated) (transfer none):
+ *
+ * Note that the buffer will leak unless you call
+ * gi_marshalling_tests_cleanup_unaligned_buffer().
+ */
+void
+gi_marshalling_tests_array_zero_terminated_out_unaligned (const guint8 **v)
+{
+  *v = init_unaligned_buffer ();
 }
 
 /**

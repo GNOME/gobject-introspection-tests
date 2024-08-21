@@ -35,7 +35,7 @@ SPDX-FileCopyrightText: 2015, 2018 Christoph Reiter
 SPDX-FileCopyrightText: 2015 Debarshi Ray
 SPDX-FileCopyrightText: 2015 Ben Iofel
 SPDX-FileCopyrightText: 2016 Lionel Landwerlin
-SPDX-FileCopyrightText: 2016-2019 Philip Chimento <philip.chimento@gmail.com>
+SPDX-FileCopyrightText: 2016-2019, 2024 Philip Chimento <philip.chimento@gmail.com>
 SPDX-FileCopyrightText: 2017 Endless Mobile, Inc.
 SPDX-FileCopyrightText: 2017 Rico Tzschichholz
 SPDX-FileCopyrightText: 2018-2019 Tomasz Miąsko
@@ -2104,6 +2104,12 @@ regress_test_boxed_c_new (void)
   boxed->another_thing = 42; /* what else */
 
   return boxed;
+}
+
+gboolean
+regress_test_boxed_c_name_conflict (RegressTestBoxedC *boxed)
+{
+  return boxed->name_conflict;
 }
 
 static RegressTestBoxedC *

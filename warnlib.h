@@ -45,3 +45,8 @@ void warnlib_whatever_do_boo (WarnLibWhatever *self, int, gpointer);
 
 GI_TEST_EXTERN
 GType warnlib_whatever_get_type (void) G_GNUC_CONST;
+
+typedef enum
+{
+  WARNLIB_1ST = 1,
+} WarnLibNumericEnum;

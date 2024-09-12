@@ -1,4 +1,5 @@
 /*
+SPDX-License-Identifier: GPL-2.0-or-later AND LGPL-2.0-or-later AND MIT
 SPDX-FileCopyrightText: 2010-2012 Collabora, Ltd.
 SPDX-FileCopyrightText: 2010 Johan Dahlin
 SPDX-FileCopyrightText: 2010 Sugar Labs

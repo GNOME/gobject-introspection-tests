@@ -1,4 +1,5 @@
 /*
+SPDX-License-Identifier: GPL-2.0-or-later AND LGPL-2.0-or-later AND MIT
 SPDX-FileCopyrightText: 2008-2009 Dan Winship
 SPDX-FileCopyrightText: 2008-2010 Colin Walters <walters@verbum.org>
 SPDX-FileCopyrightText: 2008-2011 Johan Dahlin

@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2024 Philip Chimento <philip.chimento@gmail.com>
+
 project(
     'gobject-introspection-tests', 'c', version: 'unversioned',
     meson_version: '>= 0.61',

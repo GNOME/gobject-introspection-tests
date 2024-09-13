@@ -68,10 +68,17 @@ regress_sources = [
     'foo.h',
     'regress.c',
     'regress.h',
+    'regressextra.c',
+    'regressextra.h',
 ]
 regress_unix_sources = ['regress-unix.c', 'regress-unix.h']
 warnlib_sources = ['warnlib.c', 'warnlib.h']
-gimarshallingtests_sources = ['gimarshallingtests.c', 'gimarshallingtests.h']
+gimarshallingtests_sources = [
+    'gimarshallingtests.c',
+    'gimarshallingtests.h',
+    'gimarshallingtestsextra.c',
+    'gimarshallingtestsextra.h',
+]
 
 libutility = library(
     'utility',

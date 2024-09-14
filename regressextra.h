@@ -41,7 +41,8 @@ gboolean regress_test_fundamental_argument_in (RegressTestFundamentalObject *obj
 GI_TEST_EXTERN
 RegressTestFundamentalObject* regress_test_fundamental_argument_out (RegressTestFundamentalObject *obj);
 
-#ifndef _GI_DISABLE_CAIRO
+#ifndef GI_TEST_DISABLE_CAIRO
+
 
 GI_TEST_EXTERN
 cairo_t *regress_test_cairo_context_none_return (void);

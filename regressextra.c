@@ -384,7 +384,7 @@ regress_test_cairo_font_options_full_in (cairo_font_options_t *options)
  * @options: (transfer none):
  */
 void
-regress_test_cairo_font_options_none_in (cairo_font_options_t *options)
+regress_test_cairo_font_options_none_in (cairo_font_options_t *options G_GNUC_UNUSED)
 {
 }
 
@@ -444,7 +444,7 @@ enum
 static guint regress_test_action_signals[LAST_SIGNAL] = { 0 };
 
 static RegressTestAction *
-regress_test_action_do_action (RegressTestAction *self)
+regress_test_action_do_action (RegressTestAction *self G_GNUC_UNUSED)
 {
     RegressTestAction *ret = g_object_new (regress_test_action_get_type (), NULL);
 
@@ -452,13 +452,13 @@ regress_test_action_do_action (RegressTestAction *self)
 }
 
 static RegressTestAction *
-regress_test_action_do_action2 (RegressTestAction *self)
+regress_test_action_do_action2 (RegressTestAction *self G_GNUC_UNUSED)
 {
     return NULL;
 }
 
 static void
-regress_test_action_init (RegressTestAction *self)
+regress_test_action_init (RegressTestAction *self G_GNUC_UNUSED)
 {
 }
 

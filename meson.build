@@ -16,7 +16,7 @@ build_cairo = get_option('cairo')
 install_dir = get_option('install_dir')
 install = (install_dir != '')
 
-glib_version = '>= 2.70'
+glib_version = '>= 2.66.8'
 glib_dep = dependency('glib-2.0', version: glib_version)
 gobject_dep = dependency('gobject-2.0', version: glib_version)
 gio_dep = dependency('gio-2.0', version: glib_version)
@@ -68,10 +68,17 @@ regress_sources = [
     'foo.h',
     'regress.c',
     'regress.h',
+    'regressextra.c',
+    'regressextra.h',
 ]
 regress_unix_sources = ['regress-unix.c', 'regress-unix.h']
 warnlib_sources = ['warnlib.c', 'warnlib.h']
-gimarshallingtests_sources = ['gimarshallingtests.c', 'gimarshallingtests.h']
+gimarshallingtests_sources = [
+    'gimarshallingtests.c',
+    'gimarshallingtests.h',
+    'gimarshallingtestsextra.c',
+    'gimarshallingtestsextra.h',
+]
 
 libutility = library(
     'utility',

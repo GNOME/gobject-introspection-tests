@@ -149,11 +149,11 @@ gi_marshalling_tests_extra_flags_get_type (void)
   if (G_UNLIKELY (type == 0))
     {
       static const GFlagsValue values[] = {
-        {GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE1,
-         "GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE1", "value1"},
-        {GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE2,
-         "GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE2", "value2"},
-        {0, NULL, NULL}
+        { GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE1,
+          "GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE1", "value1" },
+        { GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE2,
+          "GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE2", "value2" },
+        { 0, NULL, NULL }
       };
       type = g_flags_register_static (
         g_intern_static_string ("GIMarshallingTestsExtraFlags"), values);

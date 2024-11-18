@@ -84,11 +84,13 @@ void regress_test_cairo_matrix_out_caller_allocates (cairo_matrix_t *matrix);
 
 /* RegressTestAction */
 
-typedef struct {
+typedef struct
+{
   GInitiallyUnowned parent;
 } RegressTestAction;
 
-typedef struct {
+typedef struct
+{
   GInitiallyUnownedClass parent_class;
 } RegressTestActionClass;
 

@@ -77,11 +77,12 @@ regress_test_array_fixed_boxed_none_out (RegressTestBoxedC ***objs)
 {
   static RegressTestBoxedC **arr;
 
-  if (arr == NULL) {
-    arr = g_new0 (RegressTestBoxedC *, 3);
-    arr[0] = regress_test_boxed_c_new ();
-    arr[1] = regress_test_boxed_c_new ();
-  }
+  if (arr == NULL)
+    {
+      arr = g_new0 (RegressTestBoxedC *, 3);
+      arr[0] = regress_test_boxed_c_new ();
+      arr[1] = regress_test_boxed_c_new ();
+    }
 
   *objs = arr;
 }
@@ -112,12 +113,14 @@ GList *
 regress_test_glist_boxed_none_return (guint count)
 {
   static GList *list = NULL;
-  if (!list) {
-    while (count > 0) {
-      list = g_list_prepend (list, regress_test_boxed_c_new ());
-      count--;
+  if (!list)
+    {
+      while (count > 0)
+        {
+          list = g_list_prepend (list, regress_test_boxed_c_new ());
+          count--;
+        }
     }
-  }
 
   return list;
 }
@@ -130,10 +133,11 @@ GList *
 regress_test_glist_boxed_full_return (guint count)
 {
   GList *list = NULL;
-  while (count > 0) {
-    list = g_list_prepend (list, regress_test_boxed_c_new ());
-    count--;
-  }
+  while (count > 0)
+    {
+      list = g_list_prepend (list, regress_test_boxed_c_new ());
+      count--;
+    }
   return list;
 }
 
@@ -147,11 +151,13 @@ regress_test_array_of_fundamental_objects_in (RegressTestFundamentalObject **lis
 {
   gsize i;
 
-  for (i = 0; i < len; i++) {
-    if (!REGRESS_TEST_IS_FUNDAMENTAL_OBJECT (list[i])) {
-      return FALSE;
+  for (i = 0; i < len; i++)
+    {
+      if (!REGRESS_TEST_IS_FUNDAMENTAL_OBJECT (list[i]))
+        {
+          return FALSE;
+        }
     }
-  }
   return TRUE;
 }
 
@@ -168,9 +174,10 @@ regress_test_array_of_fundamental_objects_out (gsize *len)
 
   objs = g_new (RegressTestFundamentalObject *, 2);
 
-  for (i = 0; i < 2; i++) {
-    objs[i] = (RegressTestFundamentalObject *) regress_test_fundamental_sub_object_new("foo");
-  }
+  for (i = 0; i < 2; i++)
+    {
+      objs[i] = (RegressTestFundamentalObject *) regress_test_fundamental_sub_object_new ("foo");
+    }
   *len = 2;
   return objs;
 }
@@ -208,12 +215,13 @@ regress_test_cairo_context_none_return (void)
 {
   static cairo_t *cr;
 
-  if (cr == NULL) {
-    cairo_surface_t *surface;
-    surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, 10, 10);
-    cr = cairo_create (surface);
-    cairo_surface_destroy (surface);
-  }
+  if (cr == NULL)
+    {
+      cairo_surface_t *surface;
+      surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, 10, 10);
+      cr = cairo_create (surface);
+      cairo_surface_destroy (surface);
+    }
 
   return cr;
 }
@@ -299,9 +307,10 @@ regress_test_cairo_pattern_none_return (void)
 {
   static cairo_pattern_t *pattern;
 
-  if (pattern == NULL) {
-    pattern = cairo_pattern_create_rgb(0.1, 0.2, 0.3);
-  }
+  if (pattern == NULL)
+    {
+      pattern = cairo_pattern_create_rgb (0.1, 0.2, 0.3);
+    }
 
   return pattern;
 }
@@ -535,22 +544,23 @@ regress_bitmask_get_type (void)
 {
   static GType regress_bitmask_type = 0;
 
-  if (g_once_init_enter (&regress_bitmask_type)) {
-    GTypeInfo _info = { 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, &_regress_bitmask_value_table };
-    GTypeFundamentalInfo _finfo = { 0 };
-    GType _type = g_type_register_fundamental (
+  if (g_once_init_enter (&regress_bitmask_type))
+    {
+      GTypeInfo _info = { 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, &_regress_bitmask_value_table };
+      GTypeFundamentalInfo _finfo = { 0 };
+      GType _type = g_type_register_fundamental (
         g_type_fundamental_next (),
         "RegressBitmask", &_info, &_finfo, 0);
 
-    g_once_init_leave(&regress_bitmask_type, _type);
+      g_once_init_leave (&regress_bitmask_type, _type);
 
-    g_value_register_transform_func (
-      REGRESS_TYPE_BITMASK, G_TYPE_UINT64,
-      _value_transform_bitmask_uint64);
-    g_value_register_transform_func (
-      G_TYPE_UINT64, REGRESS_TYPE_BITMASK,
-      _value_transform_uint64_bitmask);
-  }
+      g_value_register_transform_func (
+        REGRESS_TYPE_BITMASK, G_TYPE_UINT64,
+        _value_transform_bitmask_uint64);
+      g_value_register_transform_func (
+        G_TYPE_UINT64, REGRESS_TYPE_BITMASK,
+        _value_transform_uint64_bitmask);
+    }
 
   return regress_bitmask_type;
 }

@@ -17,8 +17,7 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef EXTRA_TESTS
-#define EXTRA_TESTS
+#pragma once
 
 #include <glib-object.h>
 #include <glib.h>
@@ -69,5 +68,3 @@ GI_TEST_EXTERN
 gchar *gi_marshalling_tests_extra_utf8_full_return_invalid (void);
 GI_TEST_EXTERN
 void gi_marshalling_tests_extra_utf8_full_out_invalid (gchar **utf8);
-
-#endif /* EXTRA_TESTS */

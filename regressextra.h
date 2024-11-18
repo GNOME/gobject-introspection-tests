@@ -3,8 +3,7 @@ SPDX-License-Identifier: LGPL-2.1-or-later
 SPDX-FileCopyrightText: 2018 PyGObject contributors
 */
 
-#ifndef REGRESS_EXTRA_H
-#define REGRESS_EXTRA_H
+#pragma once
 
 #include <cairo.h>
 #include <glib-object.h>
@@ -121,5 +120,3 @@ GType regress_test_action_get_type (void);
 
 GI_TEST_EXTERN
 GType regress_bitmask_get_type (void);
-
-#endif /* REGRESS_EXTRA_H */

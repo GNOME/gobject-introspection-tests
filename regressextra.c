@@ -3,10 +3,13 @@ SPDX-License-Identifier: LGPL-2.1-or-later
 SPDX-FileCopyrightText: 2018 PyGObject contributors
 */
 
+#include <string.h>
+
+#include <cairo.h>
+#include <glib-object.h>
+
 #include "regress.h"
 #include "regressextra.h"
-
-#include <glib-object.h>
 
 struct _RegressTestBoxedCWrapper
 {

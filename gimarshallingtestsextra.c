@@ -17,8 +17,9 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "gimarshallingtestsextra.h"
 #include <string.h>
+
+#include "gimarshallingtestsextra.h"
 
 void
 gi_marshalling_tests_compare_two_gerrors_in_gvalue (GValue *v, GValue *v1)

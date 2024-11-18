@@ -6,7 +6,11 @@ SPDX-FileCopyrightText: 2018 PyGObject contributors
 #ifndef REGRESS_EXTRA_H
 #define REGRESS_EXTRA_H
 
+#include <cairo.h>
 #include <glib-object.h>
+#include <glib.h>
+
+#include "gitestmacros.h"
 #include "regress.h"
 
 typedef struct _RegressTestBoxedCWrapper RegressTestBoxedCWrapper;

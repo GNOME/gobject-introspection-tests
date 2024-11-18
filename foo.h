@@ -51,6 +51,8 @@ SPDX-FileCopyrightText: 2024 Simon McVittie
 #define REGRESS_FOO_TYPE_OBJECT (regress_foo_object_get_type ())
 #define REGRESS_FOO_OBJECT(object) (G_TYPE_CHECK_INSTANCE_CAST ((object), REGRESS_FOO_TYPE_OBJECT, RegressFooObject))
 #define REGRESS_FOO_IS_OBJECT(object) (G_TYPE_CHECK_INSTANCE_TYPE ((object), REGRESS_FOO_TYPE_OBJECT))
+#define REGRESS_FOO_IS_OBJECT_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), REGRESS_FOO_TYPE_OBJECT))
+#define REGRESS_FOO_OBJECT_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), REGRESS_FOO_TYPE_OBJECT, RegressFooObjectClass))
 
 #define REGRESS_FOO_TYPE_SUBOBJECT (regress_foo_subobject_get_type ())
 #define REGRESS_FOO_SUBOBJECT(subobject) (G_TYPE_CHECK_INSTANCE_CAST ((subobject), REGRESS_FOO_TYPE_SUBOBJECT, RegressFooSubobject))

@@ -14,6 +14,7 @@ SPDX-FileCopyrightText: 2011 Torsten Schönfeld
 SPDX-FileCopyrightText: 2018 Christoph Reiter
 SPDX-FileCopyrightText: 2020 Centricular
 SPDX-FileCopyrightText: 2024 Simon McVittie
+SPDX-FileCopyrightText: 2024 Philip Chimento <philip.chimento@gmail.com>
 */
 
 #include <time.h>
@@ -270,6 +271,13 @@ regress_foo_object_external_type (RegressFooObject *object G_GNUC_UNUSED)
 }
 
 void
+regress_foo_object_various (RegressFooObject *object G_GNUC_UNUSED,
+                            void *data G_GNUC_UNUSED,
+                            GType some_type G_GNUC_UNUSED)
+{
+}
+
+void
 regress_foo_object_take_all (RegressFooObject *object G_GNUC_UNUSED,
                              int x G_GNUC_UNUSED,
                              ...)
@@ -319,6 +327,20 @@ regress_foo_object_dup_name (RegressFooObject *object G_GNUC_UNUSED)
   return g_strdup ("regress_foo");
 }
 
+void
+regress_foo_object_handle_glyph (RegressFooObject *object G_GNUC_UNUSED, UtilityGlyph glyph G_GNUC_UNUSED)
+{
+}
+
+gboolean
+regress_foo_object_virtual_method (RegressFooObject *object, int first_param)
+{
+  RegressFooObjectClass *klass = REGRESS_FOO_OBJECT_GET_CLASS (object);
+  if (!klass->virtual_method)
+    return FALSE;
+  return klass->virtual_method (object, first_param);
+}
+
 /**
  * regress_foo_object_read: (virtual read_fn)
  * @object: obj
@@ -332,6 +354,17 @@ regress_foo_object_read (RegressFooObject *object G_GNUC_UNUSED,
                          int offset G_GNUC_UNUSED,
                          int length G_GNUC_UNUSED)
 {
+}
+
+/**
+ * regress_foo_object_static_meth:
+ *
+ * Returns:
+ */
+int
+regress_foo_object_static_meth (void)
+{
+  return 77;
 }
 
 /**
@@ -412,6 +445,18 @@ int
 regress_foo_enum_method (RegressFooEnumType regress_foo_enum G_GNUC_UNUSED)
 {
   return 0;
+}
+
+int
+regress_foo_enum_type_method (RegressFooEnumType regress_foo_enum)
+{
+  return (regress_foo_enum + 1) % 3;
+}
+
+RegressFooEnumType
+regress_foo_enum_type_returnv (int x)
+{
+  return (x + 1) % 3;
 }
 
 GType
@@ -531,6 +576,20 @@ regress_foo_brect_get_type (void)
   return our_type;
 }
 
+RegressFooBRect *
+regress_foo_brect_new (double x, double y)
+{
+  RegressFooBRect *retval = g_new(RegressFooBRect, 1);
+  retval->x = x;
+  retval->y = y;
+  return retval;
+}
+
+void
+regress_foo_brect_add (RegressFooBRect *b1 G_GNUC_UNUSED, RegressFooBRect *b2 G_GNUC_UNUSED)
+{
+}
+
 static RegressFooBUnion *
 regress_foo_bunion_copy (const RegressFooBUnion *boxed)
 {
@@ -551,6 +610,12 @@ regress_foo_bunion_get_type (void)
                                              (GBoxedCopyFunc) regress_foo_bunion_copy,
                                              (GBoxedFreeFunc) g_free);
   return our_type;
+}
+
+RegressFooBUnion *
+regress_foo_bunion_new (void)
+{
+  return g_new0(RegressFooBUnion, 1);
 }
 
 void
@@ -612,6 +677,14 @@ regress_foo_rectangle_new (int x, int y, int width, int height)
 void
 regress_foo_rectangle_add (RegressFooRectangle *r1 G_GNUC_UNUSED,
                            const RegressFooRectangle *r2 G_GNUC_UNUSED)
+{
+}
+
+void
+regress_foo_method_external_references (UtilityObject *object G_GNUC_UNUSED,
+                                        UtilityEnumType e G_GNUC_UNUSED,
+                                        UtilityFlagType f G_GNUC_UNUSED,
+                                        UtilityStruct s G_GNUC_UNUSED)
 {
 }
 
@@ -822,6 +895,17 @@ regress_foo_test_varargs_callback2 (RegressFooVarargsCallback callback G_GNUC_UN
 void
 regress_foo_test_varargs_callback3 (RegressFooVarargsCallback callback G_GNUC_UNUSED,
                                     RegressFooVarargsCallback callback2 G_GNUC_UNUSED)
+{
+}
+
+/**
+ * regress_foo_object_a_global_method:
+ * @obj: a #UtilityObject
+ *
+ * This shouldn't be scanned as a method of UtilityObject.
+ */
+void
+regress_foo_object_a_global_method (UtilityObject *obj G_GNUC_UNUSED)
 {
 }
 

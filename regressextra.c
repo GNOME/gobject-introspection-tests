@@ -62,10 +62,10 @@ regress_test_boxed_c_wrapper_get (RegressTestBoxedCWrapper *self)
 gchar**
 regress_test_array_of_non_utf8_strings (void)
 {
-    char **ret = g_new (char *, 2);
-    ret[0] = g_strdup ("Andr\351 Lur\347at");
-    ret[1] = NULL;
-    return ret;
+  char **ret = g_new (char *, 2);
+  ret[0] = g_strdup ("Andr\351 Lur\347at");
+  ret[1] = NULL;
+  return ret;
 }
 
 /**
@@ -111,15 +111,15 @@ regress_test_gvalue_out_boxed (GValue *value, int init)
 GList *
 regress_test_glist_boxed_none_return (guint count)
 {
-    static GList *list = NULL;
-    if (!list) {
-        while (count > 0) {
-            list = g_list_prepend (list, regress_test_boxed_c_new ());
-            count--;
-        }
+  static GList *list = NULL;
+  if (!list) {
+    while (count > 0) {
+      list = g_list_prepend (list, regress_test_boxed_c_new ());
+      count--;
     }
+  }
 
-    return list;
+  return list;
 }
 
 /**
@@ -129,12 +129,12 @@ regress_test_glist_boxed_none_return (guint count)
 GList *
 regress_test_glist_boxed_full_return (guint count)
 {
-    GList *list = NULL;
-    while (count > 0) {
-        list = g_list_prepend (list, regress_test_boxed_c_new ());
-        count--;
-    }
-    return list;
+  GList *list = NULL;
+  while (count > 0) {
+    list = g_list_prepend (list, regress_test_boxed_c_new ());
+    count--;
+  }
+  return list;
 }
 
 /**
@@ -145,14 +145,14 @@ regress_test_glist_boxed_full_return (guint count)
 gboolean
 regress_test_array_of_fundamental_objects_in (RegressTestFundamentalObject **list, gsize len)
 {
-    gsize i;
-  
-    for (i = 0; i < len; i++) {
-        if (!REGRESS_TEST_IS_FUNDAMENTAL_OBJECT (list[i])) {
-            return FALSE;
-        }
+  gsize i;
+
+  for (i = 0; i < len; i++) {
+    if (!REGRESS_TEST_IS_FUNDAMENTAL_OBJECT (list[i])) {
+      return FALSE;
     }
-    return TRUE;
+  }
+  return TRUE;
 }
 
 /**
@@ -163,16 +163,16 @@ regress_test_array_of_fundamental_objects_in (RegressTestFundamentalObject **lis
 RegressTestFundamentalObject **
 regress_test_array_of_fundamental_objects_out (gsize *len)
 {
-    RegressTestFundamentalObject **objs;
-    int i;
+  RegressTestFundamentalObject **objs;
+  int i;
 
-    objs = g_new (RegressTestFundamentalObject *, 2);
-    
-    for (i = 0; i < 2; i++) {
-        objs[i] = (RegressTestFundamentalObject *) regress_test_fundamental_sub_object_new("foo");
-    }
-    *len = 2;
-    return objs;
+  objs = g_new (RegressTestFundamentalObject *, 2);
+
+  for (i = 0; i < 2; i++) {
+    objs[i] = (RegressTestFundamentalObject *) regress_test_fundamental_sub_object_new("foo");
+  }
+  *len = 2;
+  return objs;
 }
 
 /**
@@ -182,7 +182,7 @@ regress_test_array_of_fundamental_objects_out (gsize *len)
 gboolean
 regress_test_fundamental_argument_in (RegressTestFundamentalObject *obj)
 {
-    return REGRESS_TEST_IS_FUNDAMENTAL_OBJECT (obj);
+  return REGRESS_TEST_IS_FUNDAMENTAL_OBJECT (obj);
 }
 
 /**
@@ -193,7 +193,7 @@ regress_test_fundamental_argument_in (RegressTestFundamentalObject *obj)
 RegressTestFundamentalObject*
 regress_test_fundamental_argument_out (RegressTestFundamentalObject *obj)
 {
-    return obj;
+  return obj;
 }
 
 #ifndef GI_TEST_DISABLE_CAIRO
@@ -207,16 +207,16 @@ regress_test_fundamental_argument_out (RegressTestFundamentalObject *obj)
 cairo_t *
 regress_test_cairo_context_none_return (void)
 {
-    static cairo_t *cr;
+  static cairo_t *cr;
 
-    if (cr == NULL) {
-        cairo_surface_t *surface;
-        surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, 10, 10);
-        cr = cairo_create (surface);
-        cairo_surface_destroy (surface);
-    }
+  if (cr == NULL) {
+    cairo_surface_t *surface;
+    surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, 10, 10);
+    cr = cairo_create (surface);
+    cairo_surface_destroy (surface);
+  }
 
-    return cr;
+  return cr;
 }
 
 /**
@@ -226,7 +226,7 @@ regress_test_cairo_context_none_return (void)
 void
 regress_test_cairo_context_full_in (cairo_t *context)
 {
-    cairo_destroy (context);
+  cairo_destroy (context);
 }
 
 
@@ -238,9 +238,9 @@ regress_test_cairo_context_full_in (cairo_t *context)
 cairo_path_t *
 regress_test_cairo_path_full_return (void)
 {
-    cairo_t *cr = regress_test_cairo_context_none_return ();
+  cairo_t *cr = regress_test_cairo_context_none_return ();
 
-    return cairo_copy_path (cr);
+  return cairo_copy_path (cr);
 }
 
 /**
@@ -250,10 +250,10 @@ regress_test_cairo_path_full_return (void)
 void
 regress_test_cairo_path_none_in (cairo_path_t *path)
 {
-    cairo_t *cr = regress_test_cairo_context_full_return ();
-    cairo_append_path (cr, path);
-    g_assert (cairo_status (cr) == CAIRO_STATUS_SUCCESS);
-    cairo_destroy (cr);
+  cairo_t *cr = regress_test_cairo_context_full_return ();
+  cairo_append_path (cr, path);
+  g_assert (cairo_status (cr) == CAIRO_STATUS_SUCCESS);
+  cairo_destroy (cr);
 }
 
 /**
@@ -265,7 +265,7 @@ regress_test_cairo_path_none_in (cairo_path_t *path)
 cairo_path_t *
 regress_test_cairo_path_full_in_full_return (cairo_path_t *path)
 {
-    return path;
+  return path;
 }
 
 /**
@@ -275,7 +275,7 @@ regress_test_cairo_path_full_in_full_return (cairo_path_t *path)
 void
 regress_test_cairo_pattern_full_in (cairo_pattern_t *pattern)
 {
-    cairo_pattern_destroy (pattern);
+  cairo_pattern_destroy (pattern);
 }
 
 /**
@@ -285,10 +285,10 @@ regress_test_cairo_pattern_full_in (cairo_pattern_t *pattern)
 void
 regress_test_cairo_pattern_none_in (cairo_pattern_t *pattern)
 {
-    cairo_t *cr = regress_test_cairo_context_full_return ();
-    cairo_set_source (cr, pattern);
-    g_assert (cairo_status (cr) == CAIRO_STATUS_SUCCESS);
-    cairo_destroy (cr);
+  cairo_t *cr = regress_test_cairo_context_full_return ();
+  cairo_set_source (cr, pattern);
+  g_assert (cairo_status (cr) == CAIRO_STATUS_SUCCESS);
+  cairo_destroy (cr);
 }
 
 /**
@@ -299,13 +299,13 @@ regress_test_cairo_pattern_none_in (cairo_pattern_t *pattern)
 cairo_pattern_t*
 regress_test_cairo_pattern_none_return (void)
 {
-    static cairo_pattern_t *pattern;
+  static cairo_pattern_t *pattern;
 
-    if (pattern == NULL) {
-        pattern = cairo_pattern_create_rgb(0.1, 0.2, 0.3);
-    }
+  if (pattern == NULL) {
+    pattern = cairo_pattern_create_rgb(0.1, 0.2, 0.3);
+  }
 
-    return pattern;
+  return pattern;
 }
 
 /**
@@ -316,8 +316,8 @@ regress_test_cairo_pattern_none_return (void)
 cairo_pattern_t *
 regress_test_cairo_pattern_full_return (void)
 {
-    cairo_pattern_t *pattern = cairo_pattern_create_rgb(0.5, 0.6, 0.7);
-    return pattern;
+  cairo_pattern_t *pattern = cairo_pattern_create_rgb(0.5, 0.6, 0.7);
+  return pattern;
 }
 
 /**
@@ -327,7 +327,7 @@ regress_test_cairo_pattern_full_return (void)
 void
 regress_test_cairo_region_full_in (cairo_region_t *region)
 {
-    cairo_region_destroy (region);
+  cairo_region_destroy (region);
 }
 
 /**
@@ -337,10 +337,10 @@ regress_test_cairo_region_full_in (cairo_region_t *region)
 void
 regress_test_cairo_surface_full_in (cairo_surface_t *surface)
 {
-    g_assert (cairo_image_surface_get_format (surface) == CAIRO_FORMAT_ARGB32);
-    g_assert (cairo_image_surface_get_width (surface) == 10);
-    g_assert (cairo_image_surface_get_height (surface) == 10);
-    cairo_surface_destroy (surface);
+  g_assert (cairo_image_surface_get_format (surface) == CAIRO_FORMAT_ARGB32);
+  g_assert (cairo_image_surface_get_width (surface) == 10);
+  g_assert (cairo_image_surface_get_height (surface) == 10);
+  cairo_surface_destroy (surface);
 }
 
 /**
@@ -351,7 +351,7 @@ regress_test_cairo_surface_full_in (cairo_surface_t *surface)
 cairo_font_options_t *
 regress_test_cairo_font_options_full_return (void)
 {
-    return cairo_font_options_create ();
+  return cairo_font_options_create ();
 }
 
 /**
@@ -362,12 +362,12 @@ regress_test_cairo_font_options_full_return (void)
 cairo_font_options_t *
 regress_test_cairo_font_options_none_return (void)
 {
-    static cairo_font_options_t *options;
+  static cairo_font_options_t *options;
 
-    if (options == NULL)
-        options = cairo_font_options_create ();
+  if (options == NULL)
+    options = cairo_font_options_create ();
 
-    return options;
+  return options;
 }
 
 /**
@@ -377,7 +377,7 @@ regress_test_cairo_font_options_none_return (void)
 void
 regress_test_cairo_font_options_full_in (cairo_font_options_t *options)
 {
-    cairo_font_options_destroy (options);
+  cairo_font_options_destroy (options);
 }
 
 /**
@@ -397,13 +397,13 @@ regress_test_cairo_font_options_none_in (cairo_font_options_t *options G_GNUC_UN
 void
 regress_test_cairo_matrix_none_in (const cairo_matrix_t *matrix)
 {
-    cairo_matrix_t m = *matrix;
-    g_assert (m.x0 == 0);
-    g_assert (m.y0 == 0);
-    g_assert (m.xx == 1);
-    g_assert (m.xy == 0);
-    g_assert (m.yy == 1);
-    g_assert (m.yx == 0);
+  cairo_matrix_t m = *matrix;
+  g_assert (m.x0 == 0);
+  g_assert (m.y0 == 0);
+  g_assert (m.xx == 1);
+  g_assert (m.xy == 0);
+  g_assert (m.yy == 1);
+  g_assert (m.yx == 0);
 }
 
 /**
@@ -413,9 +413,9 @@ regress_test_cairo_matrix_none_in (const cairo_matrix_t *matrix)
 cairo_matrix_t *
 regress_test_cairo_matrix_none_return (void)
 {
-    static cairo_matrix_t matrix;
-    cairo_matrix_init_identity (&matrix);
-    return &matrix;
+  static cairo_matrix_t matrix;
+  cairo_matrix_init_identity (&matrix);
+  return &matrix;
 }
 
 /**
@@ -425,9 +425,9 @@ regress_test_cairo_matrix_none_return (void)
 void
 regress_test_cairo_matrix_out_caller_allocates (cairo_matrix_t *matrix)
 {
-    cairo_matrix_t m;
-    cairo_matrix_init_identity (&m);
-    *matrix = m;
+  cairo_matrix_t m;
+  cairo_matrix_init_identity (&m);
+  *matrix = m;
 }
 
 #endif
@@ -436,10 +436,10 @@ G_DEFINE_TYPE (RegressTestAction, regress_test_action, G_TYPE_INITIALLY_UNOWNED)
 
 enum
 {
-    SIGNAL_0,
-    ACTION_SIGNAL,
-    ACTION2_SIGNAL,
-    LAST_SIGNAL
+  SIGNAL_0,
+  ACTION_SIGNAL,
+  ACTION2_SIGNAL,
+  LAST_SIGNAL
 };
 
 static guint regress_test_action_signals[LAST_SIGNAL] = { 0 };
@@ -447,15 +447,15 @@ static guint regress_test_action_signals[LAST_SIGNAL] = { 0 };
 static RegressTestAction *
 regress_test_action_do_action (RegressTestAction *self G_GNUC_UNUSED)
 {
-    RegressTestAction *ret = g_object_new (regress_test_action_get_type (), NULL);
+  RegressTestAction *ret = g_object_new (regress_test_action_get_type (), NULL);
 
-    return ret;
+  return ret;
 }
 
 static RegressTestAction *
 regress_test_action_do_action2 (RegressTestAction *self G_GNUC_UNUSED)
 {
-    return NULL;
+  return NULL;
 }
 
 static void
@@ -465,31 +465,31 @@ regress_test_action_init (RegressTestAction *self G_GNUC_UNUSED)
 
 static void regress_test_action_class_init (RegressTestActionClass *klass)
 {
-    /**
-     * RegressTestAction::action:
-     *
-     * An action signal.
-     *
-     * Returns: (transfer full): another #RegressTestAction
-     */
-    regress_test_action_signals[ACTION_SIGNAL] =
-        g_signal_new_class_handler ("action",
-        G_TYPE_FROM_CLASS (klass), G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-        G_CALLBACK (regress_test_action_do_action), NULL, NULL,
-        NULL, regress_test_action_get_type (), 0);
+  /**
+   * RegressTestAction::action:
+   *
+   * An action signal.
+   *
+   * Returns: (transfer full): another #RegressTestAction
+   */
+  regress_test_action_signals[ACTION_SIGNAL] =
+    g_signal_new_class_handler ("action",
+    G_TYPE_FROM_CLASS (klass), G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+    G_CALLBACK (regress_test_action_do_action), NULL, NULL,
+    NULL, regress_test_action_get_type (), 0);
 
-    /**
-     * RegressTestAction::action2:
-     *
-     * Another action signal.
-     *
-     * Returns: (transfer full): another #RegressTestAction
-     */
-    regress_test_action_signals[ACTION2_SIGNAL] =
-        g_signal_new_class_handler ("action2",
-        G_TYPE_FROM_CLASS (klass), G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-        G_CALLBACK (regress_test_action_do_action2), NULL, NULL,
-        NULL, regress_test_action_get_type (), 0);
+  /**
+   * RegressTestAction::action2:
+   *
+   * Another action signal.
+   *
+   * Returns: (transfer full): another #RegressTestAction
+   */
+  regress_test_action_signals[ACTION2_SIGNAL] =
+    g_signal_new_class_handler ("action2",
+    G_TYPE_FROM_CLASS (klass), G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+    G_CALLBACK (regress_test_action_do_action2), NULL, NULL,
+    NULL, regress_test_action_get_type (), 0);
 }
 
 /*
@@ -513,24 +513,24 @@ regress_value_copy_bitmask (const GValue * src_value, GValue * dest_value)
 static void
 _value_transform_uint64_bitmask (const GValue * src_value, GValue * dest_value)
 {
-    dest_value->data[0].v_uint64 = src_value->data[0].v_uint64;
+  dest_value->data[0].v_uint64 = src_value->data[0].v_uint64;
 }
 
 static void
 _value_transform_bitmask_uint64 (const GValue * src_value, GValue * dest_value)
 {
-    dest_value->data[0].v_uint64 = src_value->data[0].v_uint64;
+  dest_value->data[0].v_uint64 = src_value->data[0].v_uint64;
 }
 
 static const GTypeValueTable _regress_bitmask_value_table = {
-    regress_value_init_bitmask,
-    NULL,
-    regress_value_copy_bitmask,
-    NULL,
-    (char *) NULL,
-    NULL,
-    (char *) NULL,
-    NULL
+  regress_value_init_bitmask,
+  NULL,
+  regress_value_copy_bitmask,
+  NULL,
+  (char *) NULL,
+  NULL,
+  (char *) NULL,
+  NULL
 };
 
 GType

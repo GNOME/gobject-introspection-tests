@@ -48,7 +48,7 @@ G_DEFINE_BOXED_TYPE (RegressTestBoxedCWrapper,
  * @self: a #RegressTestBoxedCWrapper objects
  *
  * Returns: (transfer none): associated #RegressTestBoxedC
-**/
+ **/
 RegressTestBoxedC *
 regress_test_boxed_c_wrapper_get (RegressTestBoxedCWrapper *self)
 {
@@ -71,7 +71,7 @@ regress_test_array_of_non_utf8_strings (void)
 /**
  * regress_test_array_fixed_boxed_none_out
  * @objs: (out) (array fixed-size=2) (transfer none): An array of #RegressTestBoxedC
-**/
+ **/
 void
 regress_test_array_fixed_boxed_none_out (RegressTestBoxedC ***objs)
 {
@@ -91,7 +91,7 @@ regress_test_array_fixed_boxed_none_out (RegressTestBoxedC ***objs)
  * regress_test_gvalue_out_boxed:
  * @value: (out) (transfer full): the output gvalue
  * @init: (in): the initialisation value
-**/
+ **/
 void
 regress_test_gvalue_out_boxed (GValue *value, int init)
 {
@@ -108,7 +108,7 @@ regress_test_gvalue_out_boxed (GValue *value, int init)
 /**
  * regress_test_glist_boxed_none_return
  * Return value: (element-type RegressTestBoxedC) (transfer none):
-**/
+ **/
 GList *
 regress_test_glist_boxed_none_return (guint count)
 {
@@ -128,7 +128,7 @@ regress_test_glist_boxed_none_return (guint count)
 /**
  * regress_test_glist_boxed_full_return
  * Return value: (element-type RegressTestBoxedC) (transfer full):
-**/
+ **/
 GList *
 regress_test_glist_boxed_full_return (guint count)
 {

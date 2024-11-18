@@ -900,7 +900,7 @@ void regress_test_obj_emit_sig_with_obj (RegressTestObj *obj);
 GI_TEST_EXTERN
 void regress_test_obj_emit_sig_with_obj_full (RegressTestObj *obj);
 
-#if GLIB_CHECK_VERSION (2, 68, 0)
+#if GLIB_CHECK_VERSION(2, 68, 0)
 GI_TEST_EXTERN
 void regress_test_obj_emit_sig_with_gstrv_full (RegressTestObj *obj);
 #endif

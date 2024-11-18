@@ -3005,7 +3005,7 @@ regress_test_obj_emit_sig_with_obj_full (RegressTestObj *obj)
                  0, g_steal_pointer (&obj_param));
 }
 
-#if GLIB_CHECK_VERSION (2, 68, 0)
+#if GLIB_CHECK_VERSION(2, 68, 0)
 void
 regress_test_obj_emit_sig_with_gstrv_full (RegressTestObj *obj)
 {

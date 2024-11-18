@@ -27,21 +27,21 @@ regress_test_boxed_c_wrapper_copy (RegressTestBoxedCWrapper *self)
 {
   RegressTestBoxedCWrapper *ret_boxed;
   ret_boxed = g_slice_new (RegressTestBoxedCWrapper);
-  ret_boxed->cptr = g_boxed_copy (regress_test_boxed_c_get_type(), self->cptr);
+  ret_boxed->cptr = g_boxed_copy (regress_test_boxed_c_get_type (), self->cptr);
   return ret_boxed;
 }
 
 static void
 regress_test_boxed_c_wrapper_free (RegressTestBoxedCWrapper *boxed)
 {
-  g_boxed_free (regress_test_boxed_c_get_type(), boxed->cptr);
+  g_boxed_free (regress_test_boxed_c_get_type (), boxed->cptr);
   g_slice_free (RegressTestBoxedCWrapper, boxed);
 }
 
-G_DEFINE_BOXED_TYPE(RegressTestBoxedCWrapper,
-                    regress_test_boxed_c_wrapper,
-                    regress_test_boxed_c_wrapper_copy,
-                    regress_test_boxed_c_wrapper_free);
+G_DEFINE_BOXED_TYPE (RegressTestBoxedCWrapper,
+                     regress_test_boxed_c_wrapper,
+                     regress_test_boxed_c_wrapper_copy,
+                     regress_test_boxed_c_wrapper_free);
 
 /**
  * regress_test_boxed_c_wrapper_get
@@ -97,7 +97,7 @@ regress_test_gvalue_out_boxed (GValue *value, int init)
   RegressTestBoxed rtb;
   GValue v = G_VALUE_INIT;
 
-  memset(&rtb, 0, sizeof (rtb));
+  memset (&rtb, 0, sizeof (rtb));
   rtb.some_int8 = init;
   g_value_init (&v, REGRESS_TEST_TYPE_BOXED);
   g_value_set_boxed (&v, &rtb);
@@ -316,7 +316,7 @@ regress_test_cairo_pattern_none_return (void)
 cairo_pattern_t *
 regress_test_cairo_pattern_full_return (void)
 {
-  cairo_pattern_t *pattern = cairo_pattern_create_rgb(0.5, 0.6, 0.7);
+  cairo_pattern_t *pattern = cairo_pattern_create_rgb (0.5, 0.6, 0.7);
   return pattern;
 }
 

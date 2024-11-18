@@ -34,7 +34,7 @@ typedef enum
 typedef enum
 {
   GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE1 = 0,
-  GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE2 = (gint)(1 << 31),
+  GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE2 = (gint) (1 << 31),
 } GIMarshallingTestsExtraFlags;
 
 
@@ -45,7 +45,7 @@ GType gi_marshalling_tests_extra_flags_get_type (void) G_GNUC_CONST;
 GI_TEST_EXTERN
 void gi_marshalling_tests_compare_two_gerrors_in_gvalue (GValue *v, GValue *v1);
 GI_TEST_EXTERN
-gboolean gi_marshalling_tests_nullable_gerror(GError *error);
+gboolean gi_marshalling_tests_nullable_gerror (GError *error);
 
 GI_TEST_EXTERN
 void gi_marshalling_tests_ghashtable_enum_none_in (GHashTable *hash_table);

@@ -49,7 +49,7 @@ gi_marshalling_tests_compare_two_gerrors_in_gvalue (GValue *v, GValue *v1)
  * Returns: 1 or 0, depending if the error was set.
  */
 gboolean
-gi_marshalling_tests_nullable_gerror(GError *error)
+gi_marshalling_tests_nullable_gerror (GError *error)
 {
   return error ? 1 : 0;
 }
@@ -110,7 +110,7 @@ gi_marshalling_tests_filename_copy (gchar *path_in)
 gchar *
 gi_marshalling_tests_filename_to_glib_repr (gchar *path_in, gsize *len)
 {
-  *len = strlen(path_in);
+  *len = strlen (path_in);
   return g_strdup (path_in);
 }
 
@@ -134,7 +134,7 @@ gi_marshalling_tests_filename_exists (gchar *path)
 GIMarshallingTestsExtraEnum *
 gi_marshalling_tests_enum_array_return_type (gsize *n_members)
 {
-  GIMarshallingTestsExtraEnum *res = g_new0(GIMarshallingTestsExtraEnum, 3);
+  GIMarshallingTestsExtraEnum *res = g_new0 (GIMarshallingTestsExtraEnum, 3);
 
   *n_members = 3;
 

@@ -113,7 +113,7 @@ GType regress_test_action_get_type (void);
  * Returns: the #GType of RegressBitmask (which is not explicitly typed)
  */
 
-#define REGRESS_TYPE_BITMASK                 (regress_bitmask_get_type())
+#define REGRESS_TYPE_BITMASK (regress_bitmask_get_type ())
 
 GI_TEST_EXTERN
 GType regress_bitmask_get_type (void);

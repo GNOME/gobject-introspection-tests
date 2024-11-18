@@ -23,15 +23,15 @@
 void
 gi_marshalling_tests_compare_two_gerrors_in_gvalue (GValue *v, GValue *v1)
 {
-  GError *error, * error1;
+  GError *error, *error1;
 
   g_assert_cmpstr (g_type_name (G_VALUE_TYPE (v)), ==,
                    g_type_name (G_TYPE_ERROR));
   g_assert_cmpstr (g_type_name (G_VALUE_TYPE (v1)), ==,
                    g_type_name (G_TYPE_ERROR));
 
-  error = (GError*) g_value_get_boxed (v);
-  error1 = (GError*) g_value_get_boxed (v1);
+  error = (GError *) g_value_get_boxed (v);
+  error1 = (GError *) g_value_get_boxed (v1);
 
   g_assert_cmpint (error->domain, ==, error1->domain);
   g_assert_cmpint (error->code, ==, error1->code);

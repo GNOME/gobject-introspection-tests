@@ -10,7 +10,7 @@ SPDX-FileCopyrightText: 2018 PyGObject contributors
 
 struct _RegressTestBoxedCWrapper
 {
-  RegressTestBoxedC * cptr;
+  RegressTestBoxedC *cptr;
 };
 
 RegressTestBoxedCWrapper *
@@ -59,7 +59,7 @@ regress_test_boxed_c_wrapper_get (RegressTestBoxedCWrapper *self)
  * regress_test_array_of_non_utf8_strings
  * Returns: (transfer full) (allow-none) (array zero-terminated=1): Array of strings
  */
-gchar**
+gchar **
 regress_test_array_of_non_utf8_strings (void)
 {
   char **ret = g_new (char *, 2);
@@ -190,7 +190,7 @@ regress_test_fundamental_argument_in (RegressTestFundamentalObject *obj)
  * @obj: (transfer none): A #RegressTestFundamentalObject
  * Returns: (transfer none): Same #RegressTestFundamentalObject
  **/
-RegressTestFundamentalObject*
+RegressTestFundamentalObject *
 regress_test_fundamental_argument_out (RegressTestFundamentalObject *obj)
 {
   return obj;
@@ -296,7 +296,7 @@ regress_test_cairo_pattern_none_in (cairo_pattern_t *pattern)
  *
  * Returns: (transfer none):
  */
-cairo_pattern_t*
+cairo_pattern_t *
 regress_test_cairo_pattern_none_return (void)
 {
   static cairo_pattern_t *pattern;
@@ -499,25 +499,25 @@ static void regress_test_action_class_init (RegressTestActionClass *klass)
  */
 
 static void
-regress_value_init_bitmask (GValue * value)
+regress_value_init_bitmask (GValue *value)
 {
   value->data[0].v_uint64 = 0;
 }
 
 static void
-regress_value_copy_bitmask (const GValue * src_value, GValue * dest_value)
+regress_value_copy_bitmask (const GValue *src_value, GValue *dest_value)
 {
   dest_value->data[0].v_uint64 = src_value->data[0].v_uint64;
 }
 
 static void
-_value_transform_uint64_bitmask (const GValue * src_value, GValue * dest_value)
+_value_transform_uint64_bitmask (const GValue *src_value, GValue *dest_value)
 {
   dest_value->data[0].v_uint64 = src_value->data[0].v_uint64;
 }
 
 static void
-_value_transform_bitmask_uint64 (const GValue * src_value, GValue * dest_value)
+_value_transform_bitmask_uint64 (const GValue *src_value, GValue *dest_value)
 {
   dest_value->data[0].v_uint64 = src_value->data[0].v_uint64;
 }

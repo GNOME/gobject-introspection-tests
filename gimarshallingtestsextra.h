@@ -50,17 +50,17 @@ gboolean gi_marshalling_tests_nullable_gerror(GError *error);
 GI_TEST_EXTERN
 void gi_marshalling_tests_ghashtable_enum_none_in (GHashTable *hash_table);
 GI_TEST_EXTERN
-GHashTable * gi_marshalling_tests_ghashtable_enum_none_return (void);
+GHashTable *gi_marshalling_tests_ghashtable_enum_none_return (void);
 
 GI_TEST_EXTERN
-gchar * gi_marshalling_tests_filename_copy (gchar *path_in);
+gchar *gi_marshalling_tests_filename_copy (gchar *path_in);
 GI_TEST_EXTERN
 gboolean gi_marshalling_tests_filename_exists (gchar *path);
 GI_TEST_EXTERN
-gchar * gi_marshalling_tests_filename_to_glib_repr (gchar *path_in, gsize *len);
+gchar *gi_marshalling_tests_filename_to_glib_repr (gchar *path_in, gsize *len);
 
 GI_TEST_EXTERN
-GIMarshallingTestsExtraEnum * gi_marshalling_tests_enum_array_return_type (gsize *n_members);
+GIMarshallingTestsExtraEnum *gi_marshalling_tests_enum_array_return_type (gsize *n_members);
 
 GI_TEST_EXTERN
 void gi_marshalling_tests_extra_flags_large_in (GIMarshallingTestsExtraFlags value);

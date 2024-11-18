@@ -17,12 +17,12 @@ GType regress_test_boxed_c_wrapper_get_type (void);
 GI_TEST_EXTERN
 RegressTestBoxedCWrapper *regress_test_boxed_c_wrapper_new (void);
 GI_TEST_EXTERN
-RegressTestBoxedCWrapper * regress_test_boxed_c_wrapper_copy (RegressTestBoxedCWrapper *self);
+RegressTestBoxedCWrapper *regress_test_boxed_c_wrapper_copy (RegressTestBoxedCWrapper *self);
 GI_TEST_EXTERN
 RegressTestBoxedC *regress_test_boxed_c_wrapper_get (RegressTestBoxedCWrapper *self);
 
 GI_TEST_EXTERN
-gchar** regress_test_array_of_non_utf8_strings (void);
+gchar **regress_test_array_of_non_utf8_strings (void);
 GI_TEST_EXTERN
 void regress_test_array_fixed_boxed_none_out (RegressTestBoxedC ***objs);
 GI_TEST_EXTERN
@@ -35,11 +35,11 @@ GList *regress_test_glist_boxed_full_return (guint count);
 GI_TEST_EXTERN
 gboolean regress_test_array_of_fundamental_objects_in (RegressTestFundamentalObject **list, gsize len);
 GI_TEST_EXTERN
-RegressTestFundamentalObject** regress_test_array_of_fundamental_objects_out (gsize *len);
+RegressTestFundamentalObject **regress_test_array_of_fundamental_objects_out (gsize *len);
 GI_TEST_EXTERN
 gboolean regress_test_fundamental_argument_in (RegressTestFundamentalObject *obj);
 GI_TEST_EXTERN
-RegressTestFundamentalObject* regress_test_fundamental_argument_out (RegressTestFundamentalObject *obj);
+RegressTestFundamentalObject *regress_test_fundamental_argument_out (RegressTestFundamentalObject *obj);
 
 #ifndef GI_TEST_DISABLE_CAIRO
 
@@ -53,15 +53,15 @@ cairo_path_t *regress_test_cairo_path_full_return (void);
 GI_TEST_EXTERN
 void regress_test_cairo_path_none_in (cairo_path_t *path);
 GI_TEST_EXTERN
-cairo_path_t * regress_test_cairo_path_full_in_full_return (cairo_path_t *path);
+cairo_path_t *regress_test_cairo_path_full_in_full_return (cairo_path_t *path);
 GI_TEST_EXTERN
 void regress_test_cairo_pattern_full_in (cairo_pattern_t *pattern);
 GI_TEST_EXTERN
 void regress_test_cairo_pattern_none_in (cairo_pattern_t *pattern);
 GI_TEST_EXTERN
-cairo_pattern_t* regress_test_cairo_pattern_none_return (void);
+cairo_pattern_t *regress_test_cairo_pattern_none_return (void);
 GI_TEST_EXTERN
-cairo_pattern_t * regress_test_cairo_pattern_full_return (void);
+cairo_pattern_t *regress_test_cairo_pattern_full_return (void);
 GI_TEST_EXTERN
 cairo_font_options_t *regress_test_cairo_font_options_full_return (void);
 GI_TEST_EXTERN

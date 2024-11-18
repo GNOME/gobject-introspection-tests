@@ -208,9 +208,6 @@ GI_TEST_EXTERN
 GType regress_foo_subobject_get_type (void) G_GNUC_CONST;
 
 GI_TEST_EXTERN
-RegressFooSubobject *regress_foo_subobject_new (void);
-
-GI_TEST_EXTERN
 RegressFooObject *regress_foo_object_get_default (void);
 
 GI_TEST_EXTERN

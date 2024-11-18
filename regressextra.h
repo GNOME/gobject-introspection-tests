@@ -43,7 +43,6 @@ RegressTestFundamentalObject *regress_test_fundamental_argument_out (RegressTest
 
 #ifndef GI_TEST_DISABLE_CAIRO
 
-
 GI_TEST_EXTERN
 cairo_t *regress_test_cairo_context_none_return (void);
 GI_TEST_EXTERN
@@ -95,7 +94,6 @@ typedef struct {
 
 GI_TEST_EXTERN
 GType regress_test_action_get_type (void);
-
 
 /**
  * RegressBitmask:

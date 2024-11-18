@@ -54,8 +54,6 @@ gi_marshalling_tests_nullable_gerror (GError *error)
   return error ? 1 : 0;
 }
 
-
-
 /**
  * gi_marshalling_tests_ghashtable_enum_none_in:
  * @hash_table: (element-type gint GIMarshallingTestsExtraEnum) (transfer none):
@@ -124,7 +122,6 @@ gi_marshalling_tests_filename_exists (gchar *path)
   return g_file_test (path, G_FILE_TEST_EXISTS);
 }
 
-
 /**
  * gi_marshalling_tests_enum_array_return_type:
  * @n_members: (out): The number of members
@@ -174,7 +171,6 @@ gi_marshalling_tests_extra_flags_large_in (GIMarshallingTestsExtraFlags value)
   g_assert_cmpint (value, ==, GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE2);
 }
 
-
 /**
  * gi_marshalling_tests_extra_utf8_full_return_invalid:
  */
@@ -183,7 +179,6 @@ gi_marshalling_tests_extra_utf8_full_return_invalid (void)
 {
   return g_strdup ("invalid utf8 \xff\xfe");
 }
-
 
 /**
  * gi_marshalling_tests_extra_utf8_full_out_invalid:

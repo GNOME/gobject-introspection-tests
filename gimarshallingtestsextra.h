@@ -30,13 +30,11 @@ typedef enum
   GI_MARSHALLING_TESTS_EXTRA_ENUM_VALUE3 = 42
 } GIMarshallingTestsExtraEnum;
 
-
 typedef enum
 {
   GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE1 = 0,
   GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE2 = (gint) (1 << 31),
 } GIMarshallingTestsExtraFlags;
-
 
 GI_TEST_EXTERN
 GType gi_marshalling_tests_extra_flags_get_type (void) G_GNUC_CONST;

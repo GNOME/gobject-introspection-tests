@@ -198,7 +198,6 @@ regress_test_fundamental_argument_out (RegressTestFundamentalObject *obj)
 
 #ifndef GI_TEST_DISABLE_CAIRO
 
-
 /**
  * regress_test_cairo_context_none_return:
  *
@@ -228,7 +227,6 @@ regress_test_cairo_context_full_in (cairo_t *context)
 {
   cairo_destroy (context);
 }
-
 
 /**
  * regress_test_cairo_path_full_return:
@@ -388,7 +386,6 @@ void
 regress_test_cairo_font_options_none_in (cairo_font_options_t *options G_GNUC_UNUSED)
 {
 }
-
 
 /**
  * regress_test_cairo_matrix_none_in:

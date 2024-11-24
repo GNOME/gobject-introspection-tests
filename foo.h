@@ -145,6 +145,12 @@ GI_TEST_EXTERN
 gint regress_foo_init (void);
 
 GI_TEST_EXTERN
+int regress_foo_init_argv (int argc, char **argv);
+
+GI_TEST_EXTERN
+int regress_foo_init_argv_address (int *argc, char ***argv);
+
+GI_TEST_EXTERN
 GType regress_foo_object_get_type (void) G_GNUC_CONST;
 
 GI_TEST_EXTERN
@@ -231,6 +237,9 @@ typedef enum
 
 GI_TEST_EXTERN
 GType regress_foo_enum_type_get_type (void);
+
+GI_TEST_EXTERN
+int regress_foo_enum_method (RegressFooEnumType regress_foo_enum);
 
 GI_TEST_EXTERN
 int regress_foo_enum_type_method (RegressFooEnumType regress_foo_enum);
@@ -436,7 +445,7 @@ GI_TEST_EXTERN
 int regress_foo_bunion_get_contained_type (RegressFooBUnion *bunion);
 
 GI_TEST_EXTERN
-void regress_foo_test_unsigned_qualifier (unsigned int unsigned_param);
+void regress_foo_test_unsigned (unsigned int unsigned_param);
 
 GI_TEST_EXTERN
 void regress_foo_test_unsigned_type (unsigned unsigned_param);

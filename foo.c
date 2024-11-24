@@ -32,12 +32,8 @@ SPDX-FileCopyrightText: 2024 Philip Chimento <philip.chimento@gmail.com>
    object */
 typedef struct _RegressFooHidden RegressFooHidden;
 
-int regress_foo_init_argv (int argc, char **argv);
-int regress_foo_init_argv_address (int *argc, char ***argv);
 void regress_foo_private_function (RegressFooObject *regress_foo);
-void regress_foo_test_unsigned (unsigned int uint);
 void regress_foo_do_regress_foo (RegressFooInterface *self, int x);
-int regress_foo_enum_method (RegressFooEnumType regress_foo_enum);
 RegressFooHidden *regress_foo_hidden_copy (const RegressFooHidden *boxed);
 void regress_foo_hidden_free (RegressFooHidden *boxed);
 GType regress_foo_hidden_get_type (void);
@@ -410,6 +406,11 @@ regress_foo_init (void)
   return REGRESS_FOO_SUCCESS_INT;
 }
 
+/**
+ * regress_foo_init_argv:
+ * @argc:
+ * @argv: (array length=argc) (allow-none):
+ */
 int
 regress_foo_init_argv (int argc G_GNUC_UNUSED,
                        char **argv G_GNUC_UNUSED)
@@ -417,6 +418,11 @@ regress_foo_init_argv (int argc G_GNUC_UNUSED,
   return REGRESS_FOO_SUCCESS_INT;
 }
 
+/**
+ * regress_foo_init_argv_address:
+ * @argc: (inout):
+ * @argv: (array length=argc) (inout) (allow-none):
+ */
 int
 regress_foo_init_argv_address (int *argc G_GNUC_UNUSED,
                                char ***argv G_GNUC_UNUSED)

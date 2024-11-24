@@ -41,7 +41,7 @@ SPDX-FileCopyrightText: 2015 Debarshi Ray
 SPDX-FileCopyrightText: 2016 Intel
 SPDX-FileCopyrightText: 2016 Lionel Landwerlin
 SPDX-FileCopyrightText: 2017 Endless Mobile, Inc.
-SPDX-FileCopyrightText: 2016-2019 Philip Chimento <philip.chimento@gmail.com>
+SPDX-FileCopyrightText: 2016-2019, 2024 Philip Chimento <philip.chimento@gmail.com>
 SPDX-FileCopyrightText: 2017 Rico Tzschichholz
 SPDX-FileCopyrightText: 2018-2019 Tomasz Miąsko
 SPDX-FileCopyrightText: 2020 Centricular
@@ -786,6 +786,7 @@ struct _RegressTestBoxedC
 {
   guint refcount;
   guint another_thing;
+  gboolean name_conflict : 1;
 };
 
 GI_TEST_EXTERN
@@ -793,6 +794,9 @@ GType regress_test_boxed_c_get_type (void);
 
 GI_TEST_EXTERN
 RegressTestBoxedC *regress_test_boxed_c_new (void);
+
+GI_TEST_EXTERN
+gboolean regress_test_boxed_c_name_conflict (RegressTestBoxedC *boxed);
 
 /**
  * RegressTestBoxedD: (copy-func regress_test_boxed_d_copy)

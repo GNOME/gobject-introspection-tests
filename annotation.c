@@ -808,7 +808,8 @@ regress_annotation_test_parsing_bug630862 (void)
   return NULL;
 }
 
-/**
+/* clang-format off */
+/** 
  * regress_annotation_space_after_comment_bug631690:
  *
  * Explicitly test having a space after the ** here.
@@ -817,6 +818,7 @@ void
 regress_annotation_space_after_comment_bug631690 (void)
 {
 }
+/* clang-format on */
 
 /**
  * regress_annotation_return_filename:

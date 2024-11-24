@@ -17,21 +17,22 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "gimarshallingtestsextra.h"
 #include <string.h>
+
+#include "gimarshallingtestsextra.h"
 
 void
 gi_marshalling_tests_compare_two_gerrors_in_gvalue (GValue *v, GValue *v1)
 {
-  GError *error, * error1;
+  GError *error, *error1;
 
   g_assert_cmpstr (g_type_name (G_VALUE_TYPE (v)), ==,
                    g_type_name (G_TYPE_ERROR));
   g_assert_cmpstr (g_type_name (G_VALUE_TYPE (v1)), ==,
                    g_type_name (G_TYPE_ERROR));
 
-  error = (GError*) g_value_get_boxed (v);
-  error1 = (GError*) g_value_get_boxed (v1);
+  error = (GError *) g_value_get_boxed (v);
+  error1 = (GError *) g_value_get_boxed (v1);
 
   g_assert_cmpint (error->domain, ==, error1->domain);
   g_assert_cmpint (error->code, ==, error1->code);
@@ -49,12 +50,10 @@ gi_marshalling_tests_compare_two_gerrors_in_gvalue (GValue *v, GValue *v1)
  * Returns: 1 or 0, depending if the error was set.
  */
 gboolean
-gi_marshalling_tests_nullable_gerror(GError *error)
+gi_marshalling_tests_nullable_gerror (GError *error)
 {
-    return error ? 1 : 0;
+  return error ? 1 : 0;
 }
-
-
 
 /**
  * gi_marshalling_tests_ghashtable_enum_none_in:
@@ -110,7 +109,7 @@ gi_marshalling_tests_filename_copy (gchar *path_in)
 gchar *
 gi_marshalling_tests_filename_to_glib_repr (gchar *path_in, gsize *len)
 {
-  *len = strlen(path_in);
+  *len = strlen (path_in);
   return g_strdup (path_in);
 }
 
@@ -124,7 +123,6 @@ gi_marshalling_tests_filename_exists (gchar *path)
   return g_file_test (path, G_FILE_TEST_EXISTS);
 }
 
-
 /**
  * gi_marshalling_tests_enum_array_return_type:
  * @n_members: (out): The number of members
@@ -134,7 +132,7 @@ gi_marshalling_tests_filename_exists (gchar *path)
 GIMarshallingTestsExtraEnum *
 gi_marshalling_tests_enum_array_return_type (gsize *n_members)
 {
-  GIMarshallingTestsExtraEnum *res = g_new0(GIMarshallingTestsExtraEnum, 3);
+  GIMarshallingTestsExtraEnum *res = g_new0 (GIMarshallingTestsExtraEnum, 3);
 
   *n_members = 3;
 
@@ -152,11 +150,11 @@ gi_marshalling_tests_extra_flags_get_type (void)
   if (G_UNLIKELY (type == 0))
     {
       static const GFlagsValue values[] = {
-        {GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE1,
-         "GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE1", "value1"},
-        {GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE2,
-         "GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE2", "value2"},
-        {0, NULL, NULL}
+        { GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE1,
+          "GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE1", "value1" },
+        { GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE2,
+          "GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE2", "value2" },
+        { 0, NULL, NULL }
       };
       type = g_flags_register_static (
         g_intern_static_string ("GIMarshallingTestsExtraFlags"), values);
@@ -174,7 +172,6 @@ gi_marshalling_tests_extra_flags_large_in (GIMarshallingTestsExtraFlags value)
   g_assert_cmpint (value, ==, GI_MARSHALLING_TESTS_EXTRA_FLAGS_VALUE2);
 }
 
-
 /**
  * gi_marshalling_tests_extra_utf8_full_return_invalid:
  */
@@ -183,7 +180,6 @@ gi_marshalling_tests_extra_utf8_full_return_invalid (void)
 {
   return g_strdup ("invalid utf8 \xff\xfe");
 }
-
 
 /**
  * gi_marshalling_tests_extra_utf8_full_out_invalid:

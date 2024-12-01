@@ -677,7 +677,7 @@ regress_foo_rectangle_new (int x, int y, int width, int height)
 
 /**
  * regress_foo_rectangle_add:
- * @r1: (inout): add to this rect
+ * @r1: add to this rect
  * @r2: source rectangle
  */
 void

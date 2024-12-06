@@ -6653,6 +6653,7 @@ enum
   SOME_ENUM_PROPERTY,
   SOME_BYTE_ARRAY_PROPERTY,
   SOME_READONLY_PROPERTY,
+  SOME_DEPRECATED_INT_PROPERTY,
   N_PROPERTIES
 };
 
@@ -6762,6 +6763,9 @@ gi_marshalling_tests_properties_object_get_property (GObject *object,
     case SOME_READONLY_PROPERTY:
       g_value_set_int (value, 42);
       break;
+    case SOME_DEPRECATED_INT_PROPERTY:
+      g_value_set_int (value, self->some_deprecated_int);
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
@@ -6854,6 +6858,9 @@ gi_marshalling_tests_properties_object_set_property (GObject *object,
       if (self->some_byte_array != NULL)
         g_byte_array_unref (self->some_byte_array);
       self->some_byte_array = g_value_dup_boxed (value);
+      break;
+    case SOME_DEPRECATED_INT_PROPERTY:
+      self->some_deprecated_int = g_value_get_int (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -7033,6 +7040,12 @@ gi_marshalling_tests_properties_object_class_init (GIMarshallingTestsPropertiesO
                       G_MININT, G_MAXINT, 0,
                       G_PARAM_READABLE);
 
+  properties_object_properties[SOME_DEPRECATED_INT_PROPERTY] =
+    g_param_spec_int ("some-deprecated-int", "some-deprecated-int",
+                      "some-deprecated-int", G_MININT,
+                      G_MAXINT, 0,
+                      G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT | G_PARAM_DEPRECATED);
+
   g_object_class_install_properties (object_class, N_PROPERTIES, properties_object_properties);
 }
 
@@ -7134,6 +7147,9 @@ gi_marshalling_tests_properties_accessors_object_get_property (GObject *object,
     case SOME_READONLY_PROPERTY:
       g_value_set_int (value, 42);
       break;
+    case SOME_DEPRECATED_INT_PROPERTY:
+      g_value_set_int (value, self->some_deprecated_int);
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
@@ -7227,6 +7243,9 @@ gi_marshalling_tests_properties_accessors_object_set_property (GObject *object,
       if (self->some_byte_array != NULL)
         g_byte_array_unref (self->some_byte_array);
       self->some_byte_array = g_value_dup_boxed (value);
+      break;
+    case SOME_DEPRECATED_INT_PROPERTY:
+      self->some_deprecated_int = g_value_get_int (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -7494,6 +7513,18 @@ gi_marshalling_tests_properties_accessors_object_class_init (GIMarshallingTestsP
                       "some-readonly",
                       G_MININT, G_MAXINT, 0,
                       G_PARAM_READABLE);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-deprecated-int: (setter set_deprecated_int) (getter get_deprecated_int):
+   * Deprecated: 0.1
+   */
+  accessors_object_properties[SOME_DEPRECATED_INT_PROPERTY] =
+    g_param_spec_int ("some-deprecated-int",
+                      "some-deprecated-int",
+                      "some-deprecated-int",
+                      G_MININT, G_MAXINT, 0,
+                      G_PARAM_READWRITE |
+                        G_PARAM_DEPRECATED);
 
   g_object_class_install_properties (object_class, N_PROPERTIES, accessors_object_properties);
 }
@@ -7826,6 +7857,21 @@ gi_marshalling_tests_properties_accessors_object_set_byte_array (GIMarshallingTe
 }
 
 /**
+ * gi_marshalling_tests_properties_accessors_object_set_deprecated_int: (set-property some-deprecated-int)
+ * @self:
+ * @some_deprecated_int:
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_deprecated_int (GIMarshallingTestsPropertiesAccessorsObject *self, gint some_deprecated_int)
+{
+  if (self->some_deprecated_int == some_deprecated_int)
+    return;
+
+  self->some_deprecated_int = some_deprecated_int;
+  g_object_notify (G_OBJECT (self), "some-deprecated-int");
+}
+
+/**
  * gi_marshalling_tests_properties_accessors_object_get_boolean: (get-property some-boolean)
  * @self:
  */
@@ -8057,6 +8103,16 @@ gint
 gi_marshalling_tests_properties_accessors_object_get_readonly (GIMarshallingTestsPropertiesAccessorsObject *self G_GNUC_UNUSED)
 {
   return 42;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_deprecated_int: (get-property some-deprecated-int)
+ * @self:
+ */
+gint
+gi_marshalling_tests_properties_accessors_object_get_deprecated_int (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_deprecated_int;
 }
 
 G_DEFINE_TYPE (GIMarshallingTestsSignalsObject, gi_marshalling_tests_signals_object, G_TYPE_OBJECT);

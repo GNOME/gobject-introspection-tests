@@ -2234,6 +2234,7 @@ struct _GIMarshallingTestsPropertiesObject
   gchar some_char;
   guchar some_uchar;
   gint some_int;
+  gint some_deprecated_int;
   guint some_uint;
   glong some_long;
   gulong some_ulong;
@@ -2284,6 +2285,7 @@ struct _GIMarshallingTestsPropertiesAccessorsObject
   gchar some_char;
   guchar some_uchar;
   gint some_int;
+  gint some_deprecated_int;
   guint some_uint;
   glong some_long;
   gulong some_ulong;
@@ -2435,6 +2437,14 @@ GByteArray *gi_marshalling_tests_properties_accessors_object_get_byte_array (GIM
 
 GI_TEST_EXTERN
 gint gi_marshalling_tests_properties_accessors_object_get_readonly (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+G_DEPRECATED
+gint gi_marshalling_tests_properties_accessors_object_get_deprecated_int (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+G_DEPRECATED
+void gi_marshalling_tests_properties_accessors_object_set_deprecated_int (GIMarshallingTestsPropertiesAccessorsObject *self, gint some_deprecated_int);
 
 /* Signals object */
 

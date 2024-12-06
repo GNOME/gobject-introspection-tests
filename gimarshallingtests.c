@@ -6653,6 +6653,7 @@ enum
   SOME_ENUM_PROPERTY,
   SOME_BYTE_ARRAY_PROPERTY,
   SOME_READONLY_PROPERTY,
+  N_PROPERTIES
 };
 
 G_DEFINE_TYPE (GIMarshallingTestsPropertiesObject, gi_marshalling_tests_properties_object, G_TYPE_OBJECT);
@@ -6860,6 +6861,10 @@ gi_marshalling_tests_properties_object_set_property (GObject *object,
     }
 }
 
+static GParamSpec *properties_object_properties[N_PROPERTIES] = {
+  NULL,
+};
+
 static void
 gi_marshalling_tests_properties_object_class_init (GIMarshallingTestsPropertiesObjectClass *klass)
 {
@@ -6869,164 +6874,166 @@ gi_marshalling_tests_properties_object_class_init (GIMarshallingTestsPropertiesO
   object_class->get_property = gi_marshalling_tests_properties_object_get_property;
   object_class->set_property = gi_marshalling_tests_properties_object_set_property;
 
-  g_object_class_install_property (object_class, SOME_BOOLEAN_PROPERTY,
-                                   g_param_spec_boolean ("some-boolean",
-                                                         "some-boolean",
-                                                         "some-boolean",
-                                                         FALSE,
-                                                         G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+  properties_object_properties[SOME_BOOLEAN_PROPERTY] =
+    g_param_spec_boolean ("some-boolean",
+                          "some-boolean",
+                          "some-boolean",
+                          FALSE,
+                          G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
 
-  g_object_class_install_property (object_class, SOME_CHAR_PROPERTY,
-                                   g_param_spec_char ("some-char",
-                                                      "some-char",
-                                                      "some-char", G_MININT8,
-                                                      G_MAXINT8, 0,
-                                                      G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+  properties_object_properties[SOME_CHAR_PROPERTY] =
+    g_param_spec_char ("some-char",
+                       "some-char",
+                       "some-char", G_MININT8,
+                       G_MAXINT8, 0,
+                       G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
 
-  g_object_class_install_property (object_class, SOME_UCHAR_PROPERTY,
-                                   g_param_spec_uchar ("some-uchar",
-                                                       "some-uchar",
-                                                       "some-uchar", 0,
-                                                       G_MAXUINT8, 0,
-                                                       G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+  properties_object_properties[SOME_UCHAR_PROPERTY] =
+    g_param_spec_uchar ("some-uchar",
+                        "some-uchar",
+                        "some-uchar", 0,
+                        G_MAXUINT8, 0,
+                        G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
 
-  g_object_class_install_property (object_class, SOME_INT_PROPERTY,
-                                   g_param_spec_int ("some-int", "some-int",
-                                                     "some-int", G_MININT,
-                                                     G_MAXINT, 0,
-                                                     G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+  properties_object_properties[SOME_INT_PROPERTY] =
+    g_param_spec_int ("some-int", "some-int",
+                      "some-int", G_MININT,
+                      G_MAXINT, 0,
+                      G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
 
-  g_object_class_install_property (object_class, SOME_UINT_PROPERTY,
-                                   g_param_spec_uint ("some-uint",
-                                                      "some-uint",
-                                                      "some-uint", 0,
-                                                      G_MAXUINT, 0,
-                                                      G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+  properties_object_properties[SOME_UINT_PROPERTY] =
+    g_param_spec_uint ("some-uint",
+                       "some-uint",
+                       "some-uint", 0,
+                       G_MAXUINT, 0,
+                       G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
 
-  g_object_class_install_property (object_class, SOME_LONG_PROPERTY,
-                                   g_param_spec_long ("some-long",
-                                                      "some-long",
-                                                      "some-long", G_MINLONG,
-                                                      G_MAXLONG, 0,
-                                                      G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+  properties_object_properties[SOME_LONG_PROPERTY] =
+    g_param_spec_long ("some-long",
+                       "some-long",
+                       "some-long", G_MINLONG,
+                       G_MAXLONG, 0,
+                       G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
 
-  g_object_class_install_property (object_class, SOME_ULONG_PROPERTY,
-                                   g_param_spec_ulong ("some-ulong",
-                                                       "some-ulong",
-                                                       "some-ulong", 0,
-                                                       G_MAXULONG, 0,
-                                                       G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+  properties_object_properties[SOME_ULONG_PROPERTY] =
+    g_param_spec_ulong ("some-ulong",
+                        "some-ulong",
+                        "some-ulong", 0,
+                        G_MAXULONG, 0,
+                        G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
 
-  g_object_class_install_property (object_class, SOME_INT64_PROPERTY,
-                                   g_param_spec_int64 ("some-int64",
-                                                       "some-int64",
-                                                       "some-int64",
-                                                       G_MININT64, G_MAXINT64,
-                                                       0, G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+  properties_object_properties[SOME_INT64_PROPERTY] =
+    g_param_spec_int64 ("some-int64",
+                        "some-int64",
+                        "some-int64",
+                        G_MININT64, G_MAXINT64,
+                        0, G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
 
-  g_object_class_install_property (object_class, SOME_UINT64_PROPERTY,
-                                   g_param_spec_uint64 ("some-uint64",
-                                                        "some-uint64",
-                                                        "some-uint64", 0,
-                                                        G_MAXUINT64, 0,
-                                                        G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+  properties_object_properties[SOME_UINT64_PROPERTY] =
+    g_param_spec_uint64 ("some-uint64",
+                         "some-uint64",
+                         "some-uint64", 0,
+                         G_MAXUINT64, 0,
+                         G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
 
-  g_object_class_install_property (object_class, SOME_FLOAT_PROPERTY,
-                                   g_param_spec_float ("some-float",
-                                                       "some-float",
-                                                       "some-float",
-                                                       -1 * G_MAXFLOAT,
-                                                       G_MAXFLOAT, 0,
-                                                       G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+  properties_object_properties[SOME_FLOAT_PROPERTY] =
+    g_param_spec_float ("some-float",
+                        "some-float",
+                        "some-float",
+                        -1 * G_MAXFLOAT,
+                        G_MAXFLOAT, 0,
+                        G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
 
-  g_object_class_install_property (object_class, SOME_DOUBLE_PROPERTY,
-                                   g_param_spec_double ("some-double",
-                                                        "some-double",
-                                                        "some-double",
-                                                        -1 * G_MAXDOUBLE,
-                                                        G_MAXDOUBLE, 0,
-                                                        G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+  properties_object_properties[SOME_DOUBLE_PROPERTY] =
+    g_param_spec_double ("some-double",
+                         "some-double",
+                         "some-double",
+                         -1 * G_MAXDOUBLE,
+                         G_MAXDOUBLE, 0,
+                         G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
 
-  g_object_class_install_property (object_class, SOME_STRING_PROPERTY,
-                                   g_param_spec_string ("some-string",
-                                                        "some-string",
-                                                        "some-string",
-                                                        NULL,
-                                                        G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+  properties_object_properties[SOME_STRING_PROPERTY] =
+    g_param_spec_string ("some-string",
+                         "some-string",
+                         "some-string",
+                         NULL,
+                         G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
 
-  g_object_class_install_property (object_class, SOME_STRV_PROPERTY,
-                                   g_param_spec_boxed ("some-strv",
-                                                       "some-strv",
-                                                       "some-strv",
-                                                       G_TYPE_STRV,
-                                                       G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+  properties_object_properties[SOME_STRV_PROPERTY] =
+    g_param_spec_boxed ("some-strv",
+                        "some-strv",
+                        "some-strv",
+                        G_TYPE_STRV,
+                        G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
 
-  g_object_class_install_property (object_class, SOME_BOXED_STRUCT_PROPERTY,
-                                   g_param_spec_boxed ("some-boxed-struct",
-                                                       "some-boxed-struct",
-                                                       "some-boxed-struct",
-                                                       gi_marshalling_tests_boxed_struct_get_type (), G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+  properties_object_properties[SOME_BOXED_STRUCT_PROPERTY] =
+    g_param_spec_boxed ("some-boxed-struct",
+                        "some-boxed-struct",
+                        "some-boxed-struct",
+                        gi_marshalling_tests_boxed_struct_get_type (), G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
 
   /**
    * GIMarshallingTestsPropertiesObject:some-boxed-glist: (type GLib.List(gint)) (transfer none):
    */
-  g_object_class_install_property (object_class, SOME_BOXED_GLIST_PROPERTY,
-                                   g_param_spec_boxed ("some-boxed-glist",
-                                                       "some-boxed-glist",
-                                                       "some-boxed-glist",
-                                                       gi_marshalling_tests_boxed_glist_get_type (), G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+  properties_object_properties[SOME_BOXED_GLIST_PROPERTY] =
+    g_param_spec_boxed ("some-boxed-glist",
+                        "some-boxed-glist",
+                        "some-boxed-glist",
+                        gi_marshalling_tests_boxed_glist_get_type (), G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
 
-  g_object_class_install_property (object_class, SOME_GVALUE_PROPERTY,
-                                   g_param_spec_boxed ("some-gvalue",
-                                                       "some-gvalue",
-                                                       "some-gvalue",
-                                                       G_TYPE_VALUE,
-                                                       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+  properties_object_properties[SOME_GVALUE_PROPERTY] =
+    g_param_spec_boxed ("some-gvalue",
+                        "some-gvalue",
+                        "some-gvalue",
+                        G_TYPE_VALUE,
+                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
 
-  g_object_class_install_property (object_class, SOME_VARIANT_PROPERTY,
-                                   g_param_spec_variant ("some-variant",
-                                                         "some-variant",
-                                                         "some-variant",
-                                                         G_VARIANT_TYPE_ANY,
-                                                         NULL,
-                                                         G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+  properties_object_properties[SOME_VARIANT_PROPERTY] =
+    g_param_spec_variant ("some-variant",
+                          "some-variant",
+                          "some-variant",
+                          G_VARIANT_TYPE_ANY,
+                          NULL,
+                          G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
 
-  g_object_class_install_property (object_class, SOME_OBJECT_PROPERTY,
-                                   g_param_spec_object ("some-object",
-                                                        "some-object",
-                                                        "some-object",
-                                                        G_TYPE_OBJECT,
-                                                        G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+  properties_object_properties[SOME_OBJECT_PROPERTY] =
+    g_param_spec_object ("some-object",
+                         "some-object",
+                         "some-object",
+                         G_TYPE_OBJECT,
+                         G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
 
-  g_object_class_install_property (object_class, SOME_FLAGS_PROPERTY,
-                                   g_param_spec_flags ("some-flags",
-                                                       "some-flags",
-                                                       "some-flags",
-                                                       GI_MARSHALLING_TESTS_TYPE_FLAGS,
-                                                       GI_MARSHALLING_TESTS_FLAGS_VALUE1,
-                                                       G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+  properties_object_properties[SOME_FLAGS_PROPERTY] =
+    g_param_spec_flags ("some-flags",
+                        "some-flags",
+                        "some-flags",
+                        GI_MARSHALLING_TESTS_TYPE_FLAGS,
+                        GI_MARSHALLING_TESTS_FLAGS_VALUE1,
+                        G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
 
-  g_object_class_install_property (object_class, SOME_ENUM_PROPERTY,
-                                   g_param_spec_enum ("some-enum",
-                                                      "some-enum",
-                                                      "some-enum",
-                                                      GI_MARSHALLING_TESTS_TYPE_GENUM,
-                                                      GI_MARSHALLING_TESTS_GENUM_VALUE1,
-                                                      G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT));
+  properties_object_properties[SOME_ENUM_PROPERTY] =
+    g_param_spec_enum ("some-enum",
+                       "some-enum",
+                       "some-enum",
+                       GI_MARSHALLING_TESTS_TYPE_GENUM,
+                       GI_MARSHALLING_TESTS_GENUM_VALUE1,
+                       G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
 
-  g_object_class_install_property (object_class, SOME_BYTE_ARRAY_PROPERTY,
-                                   g_param_spec_boxed ("some-byte-array",
-                                                       "some-byte-array",
-                                                       "some-byte-array",
-                                                       G_TYPE_BYTE_ARRAY,
-                                                       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+  properties_object_properties[SOME_BYTE_ARRAY_PROPERTY] =
+    g_param_spec_boxed ("some-byte-array",
+                        "some-byte-array",
+                        "some-byte-array",
+                        G_TYPE_BYTE_ARRAY,
+                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
 
-  g_object_class_install_property (object_class, SOME_READONLY_PROPERTY,
-                                   g_param_spec_int ("some-readonly",
-                                                     "some-readonly",
-                                                     "some-readonly",
-                                                     G_MININT, G_MAXINT, 0,
-                                                     G_PARAM_READABLE));
+  properties_object_properties[SOME_READONLY_PROPERTY] =
+    g_param_spec_int ("some-readonly",
+                      "some-readonly",
+                      "some-readonly",
+                      G_MININT, G_MAXINT, 0,
+                      G_PARAM_READABLE);
+
+  g_object_class_install_properties (object_class, N_PROPERTIES, properties_object_properties);
 }
 
 GIMarshallingTestsPropertiesObject *

@@ -7042,6 +7042,1023 @@ gi_marshalling_tests_properties_object_new (void)
   return g_object_new (GI_MARSHALLING_TESTS_TYPE_PROPERTIES_OBJECT, NULL);
 }
 
+G_DEFINE_FINAL_TYPE (GIMarshallingTestsPropertiesAccessorsObject,
+                     gi_marshalling_tests_properties_accessors_object,
+                     G_TYPE_OBJECT)
+
+GIMarshallingTestsPropertiesAccessorsObject *
+gi_marshalling_tests_properties_accessors_object_new (void)
+{
+  return g_object_new (GI_MARSHALLING_TESTS_TYPE_ACCESSORS_TESTS_PROPERTIES_OBJECT, NULL);
+}
+
+static void
+gi_marshalling_tests_properties_accessors_object_init (GIMarshallingTestsPropertiesAccessorsObject *self G_GNUC_UNUSED)
+{
+}
+
+static void
+gi_marshalling_tests_properties_accessors_object_get_property (GObject *object,
+                                                               guint property_id,
+                                                               GValue *value,
+                                                               GParamSpec *pspec)
+{
+  GIMarshallingTestsPropertiesAccessorsObject *self;
+  self = GI_MARSHALLING_TESTS_PROPERTIES_ACCESSORS_OBJECT (object);
+
+  switch (property_id)
+    {
+    case SOME_BOOLEAN_PROPERTY:
+      g_value_set_boolean (value, self->some_boolean);
+      break;
+    case SOME_CHAR_PROPERTY:
+      g_value_set_schar (value, self->some_char);
+      break;
+    case SOME_UCHAR_PROPERTY:
+      g_value_set_uchar (value, self->some_uchar);
+      break;
+    case SOME_INT_PROPERTY:
+      g_value_set_int (value, self->some_int);
+      break;
+    case SOME_UINT_PROPERTY:
+      g_value_set_uint (value, self->some_uint);
+      break;
+    case SOME_LONG_PROPERTY:
+      g_value_set_long (value, self->some_long);
+      break;
+    case SOME_ULONG_PROPERTY:
+      g_value_set_ulong (value, self->some_ulong);
+      break;
+    case SOME_INT64_PROPERTY:
+      g_value_set_int64 (value, self->some_int64);
+      break;
+    case SOME_UINT64_PROPERTY:
+      g_value_set_uint64 (value, self->some_uint64);
+      break;
+    case SOME_FLOAT_PROPERTY:
+      g_value_set_float (value, self->some_float);
+      break;
+    case SOME_DOUBLE_PROPERTY:
+      g_value_set_double (value, self->some_double);
+      break;
+    case SOME_STRING_PROPERTY:
+      g_value_set_string (value, self->some_string);
+      break;
+    case SOME_STRV_PROPERTY:
+      g_value_set_boxed (value, self->some_strv);
+      break;
+    case SOME_BOXED_STRUCT_PROPERTY:
+      g_value_set_boxed (value, self->some_boxed_struct);
+      break;
+    case SOME_BOXED_GLIST_PROPERTY:
+      g_value_set_boxed (value, self->some_boxed_glist);
+      break;
+    case SOME_GVALUE_PROPERTY:
+      g_value_set_boxed (value, self->some_gvalue);
+      break;
+    case SOME_VARIANT_PROPERTY:
+      g_value_set_variant (value, self->some_variant);
+      break;
+    case SOME_OBJECT_PROPERTY:
+      g_value_set_object (value, self->some_object);
+      break;
+    case SOME_FLAGS_PROPERTY:
+      g_value_set_flags (value, self->some_flags);
+      break;
+    case SOME_ENUM_PROPERTY:
+      g_value_set_enum (value, self->some_enum);
+      break;
+    case SOME_BYTE_ARRAY_PROPERTY:
+      g_value_set_boxed (value, self->some_byte_array);
+      break;
+    case SOME_READONLY_PROPERTY:
+      g_value_set_int (value, 42);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+      break;
+    }
+}
+
+static void
+gi_marshalling_tests_properties_accessors_object_set_property (GObject *object,
+                                                               guint property_id,
+                                                               const GValue *value,
+                                                               GParamSpec *pspec)
+{
+  GIMarshallingTestsPropertiesAccessorsObject *self;
+  self = GI_MARSHALLING_TESTS_PROPERTIES_ACCESSORS_OBJECT (object);
+
+  switch (property_id)
+    {
+    case SOME_BOOLEAN_PROPERTY:
+      self->some_boolean = g_value_get_boolean (value);
+      break;
+    case SOME_CHAR_PROPERTY:
+      self->some_char = g_value_get_schar (value);
+      break;
+    case SOME_UCHAR_PROPERTY:
+      self->some_uchar = g_value_get_uchar (value);
+      break;
+    case SOME_INT_PROPERTY:
+      self->some_int = g_value_get_int (value);
+      break;
+    case SOME_UINT_PROPERTY:
+      self->some_uint = g_value_get_uint (value);
+      break;
+    case SOME_LONG_PROPERTY:
+      self->some_long = g_value_get_long (value);
+      break;
+    case SOME_ULONG_PROPERTY:
+      self->some_ulong = g_value_get_ulong (value);
+      break;
+    case SOME_INT64_PROPERTY:
+      self->some_int64 = g_value_get_int64 (value);
+      break;
+    case SOME_UINT64_PROPERTY:
+      self->some_uint64 = g_value_get_uint64 (value);
+      break;
+    case SOME_FLOAT_PROPERTY:
+      self->some_float = g_value_get_float (value);
+      break;
+    case SOME_DOUBLE_PROPERTY:
+      self->some_double = g_value_get_double (value);
+      break;
+    case SOME_STRING_PROPERTY:
+      g_clear_pointer (&self->some_string, g_free);
+      self->some_string = g_value_dup_string (value);
+      break;
+    case SOME_STRV_PROPERTY:
+      g_strfreev (self->some_strv);
+      self->some_strv = g_strdupv (g_value_get_boxed (value));
+      break;
+    case SOME_BOXED_STRUCT_PROPERTY:
+      gi_marshalling_tests_boxed_struct_free (self->some_boxed_struct);
+      self->some_boxed_struct = gi_marshalling_tests_boxed_struct_copy (g_value_get_boxed (value));
+      break;
+    case SOME_BOXED_GLIST_PROPERTY:
+      g_list_free (self->some_boxed_glist);
+      self->some_boxed_glist = g_list_copy (g_value_get_boxed (value));
+      break;
+    case SOME_GVALUE_PROPERTY:
+      if (self->some_gvalue)
+        g_boxed_free (G_TYPE_VALUE, self->some_gvalue);
+      self->some_gvalue = g_value_dup_boxed (value);
+      break;
+    case SOME_VARIANT_PROPERTY:
+      if (self->some_variant != NULL)
+        g_variant_unref (self->some_variant);
+      self->some_variant = g_value_get_variant (value);
+      if (self->some_variant != NULL)
+        g_variant_ref (self->some_variant);
+      break;
+    case SOME_OBJECT_PROPERTY:
+      if (self->some_object != NULL)
+        g_object_unref (self->some_object);
+      self->some_object = g_value_dup_object (value);
+      break;
+    case SOME_FLAGS_PROPERTY:
+      self->some_flags = g_value_get_flags (value);
+      break;
+    case SOME_ENUM_PROPERTY:
+      self->some_enum = g_value_get_enum (value);
+      break;
+    case SOME_BYTE_ARRAY_PROPERTY:
+      if (self->some_byte_array != NULL)
+        g_byte_array_unref (self->some_byte_array);
+      self->some_byte_array = g_value_dup_boxed (value);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+      break;
+    }
+}
+
+static void
+gi_marshalling_tests_properties_accessors_object_dispose (GObject *obj)
+{
+  GIMarshallingTestsPropertiesAccessorsObject *self;
+  self = GI_MARSHALLING_TESTS_PROPERTIES_ACCESSORS_OBJECT (obj);
+
+  if (self->some_gvalue)
+    {
+      g_boxed_free (G_TYPE_VALUE, self->some_gvalue);
+      self->some_gvalue = NULL;
+    }
+
+  g_clear_pointer (&self->some_string, g_free);
+  g_clear_pointer (&self->some_strv, g_strfreev);
+  g_clear_pointer (&self->some_boxed_struct, gi_marshalling_tests_boxed_struct_free);
+  g_clear_pointer (&self->some_byte_array, g_byte_array_unref);
+  g_clear_pointer (&self->some_variant, g_variant_unref);
+  g_clear_pointer (&self->some_boxed_glist, g_list_free);
+  g_clear_object (&self->some_object);
+
+  G_OBJECT_CLASS (gi_marshalling_tests_properties_accessors_object_parent_class)->dispose (obj);
+}
+
+static GParamSpec *accessors_object_properties[N_PROPERTIES] = {
+  NULL,
+};
+
+static void
+gi_marshalling_tests_properties_accessors_object_class_init (GIMarshallingTestsPropertiesAccessorsObjectClass *klass)
+{
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+  object_class->dispose = gi_marshalling_tests_properties_accessors_object_dispose;
+  object_class->get_property = gi_marshalling_tests_properties_accessors_object_get_property;
+  object_class->set_property = gi_marshalling_tests_properties_accessors_object_set_property;
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-boolean: (setter set_boolean) (getter get_boolean):
+   */
+  accessors_object_properties[SOME_BOOLEAN_PROPERTY] =
+    g_param_spec_boolean ("some-boolean",
+                          "some-boolean",
+                          "some-boolean",
+                          FALSE,
+                          G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-char: (setter set_char) (getter get_char):
+   */
+  accessors_object_properties[SOME_CHAR_PROPERTY] =
+    g_param_spec_char ("some-char",
+                       "some-char",
+                       "some-char",
+                       G_MININT8,
+                       G_MAXINT8, 0,
+                       G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-uchar: (setter set_uchar) (getter get_uchar):
+   */
+  accessors_object_properties[SOME_UCHAR_PROPERTY] =
+    g_param_spec_uchar ("some-uchar",
+                        "some-uchar",
+                        "some-uchar", 0,
+                        G_MAXUINT8, 0,
+                        G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-int: (setter set_int) (getter get_int):
+   */
+  accessors_object_properties[SOME_INT_PROPERTY] =
+    g_param_spec_int ("some-int", "some-int",
+                      "some-int", G_MININT,
+                      G_MAXINT, 0,
+                      G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-uint: (setter set_uint) (getter get_uint):
+   */
+  accessors_object_properties[SOME_UINT_PROPERTY] =
+    g_param_spec_uint ("some-uint",
+                       "some-uint",
+                       "some-uint", 0,
+                       G_MAXUINT, 0,
+                       G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-long: (setter set_long) (getter get_long):
+   */
+  accessors_object_properties[SOME_LONG_PROPERTY] =
+    g_param_spec_long ("some-long",
+                       "some-long",
+                       "some-long", G_MINLONG,
+                       G_MAXLONG, 0,
+                       G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-ulong: (setter set_ulong) (getter get_ulong):
+   */
+  accessors_object_properties[SOME_ULONG_PROPERTY] =
+    g_param_spec_ulong ("some-ulong",
+                        "some-ulong",
+                        "some-ulong", 0,
+                        G_MAXULONG, 0,
+                        G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-int64: (setter set_int64) (getter get_int64):
+   */
+  accessors_object_properties[SOME_INT64_PROPERTY] =
+    g_param_spec_int64 ("some-int64",
+                        "some-int64",
+                        "some-int64",
+                        G_MININT64, G_MAXINT64,
+                        0, G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-uint64: (setter set_uint64) (getter get_uint64):
+   */
+  accessors_object_properties[SOME_UINT64_PROPERTY] =
+    g_param_spec_uint64 ("some-uint64",
+                         "some-uint64",
+                         "some-uint64", 0,
+                         G_MAXUINT64, 0,
+                         G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-float: (setter set_float) (getter get_float):
+   */
+  accessors_object_properties[SOME_FLOAT_PROPERTY] =
+    g_param_spec_float ("some-float",
+                        "some-float",
+                        "some-float",
+                        -1 * G_MAXFLOAT,
+                        G_MAXFLOAT, 0,
+                        G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-double: (setter set_double) (getter get_double):
+   */
+  accessors_object_properties[SOME_DOUBLE_PROPERTY] =
+    g_param_spec_double ("some-double",
+                         "some-double",
+                         "some-double",
+                         -1 * G_MAXDOUBLE,
+                         G_MAXDOUBLE, 0,
+                         G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-string: (setter set_string) (getter get_string):
+   */
+  accessors_object_properties[SOME_STRING_PROPERTY] =
+    g_param_spec_string ("some-string",
+                         "some-string",
+                         "some-string",
+                         NULL,
+                         G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-strv: (setter set_strv) (getter get_strv):
+   */
+  accessors_object_properties[SOME_STRV_PROPERTY] =
+    g_param_spec_boxed ("some-strv",
+                        "some-strv",
+                        "some-strv",
+                        G_TYPE_STRV,
+                        G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-boxed-struct: (setter set_boxed_struct) (getter get_boxed_struct):
+   */
+  accessors_object_properties[SOME_BOXED_STRUCT_PROPERTY] =
+    g_param_spec_boxed ("some-boxed-struct",
+                        "some-boxed-struct",
+                        "some-boxed-struct",
+                        gi_marshalling_tests_boxed_struct_get_type (),
+                        G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-boxed-glist: (type GLib.List(gint)) (transfer none) (setter set_boxed_glist) (getter get_boxed_glist):
+   */
+  accessors_object_properties[SOME_BOXED_GLIST_PROPERTY] =
+    g_param_spec_boxed ("some-boxed-glist",
+                        "some-boxed-glist",
+                        "some-boxed-glist",
+                        gi_marshalling_tests_boxed_glist_get_type (),
+                        G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-gvalue: (setter set_gvalue) (getter get_gvalue):
+   */
+  accessors_object_properties[SOME_GVALUE_PROPERTY] =
+    g_param_spec_boxed ("some-gvalue",
+                        "some-gvalue",
+                        "some-gvalue",
+                        G_TYPE_VALUE,
+                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-variant: (setter set_variant) (getter get_variant):
+   */
+  accessors_object_properties[SOME_VARIANT_PROPERTY] =
+    g_param_spec_variant ("some-variant",
+                          "some-variant",
+                          "some-variant",
+                          G_VARIANT_TYPE_ANY,
+                          NULL,
+                          G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-object: (setter set_object) (getter get_object):
+   */
+  accessors_object_properties[SOME_OBJECT_PROPERTY] =
+    g_param_spec_object ("some-object",
+                         "some-object",
+                         "some-object",
+                         G_TYPE_OBJECT,
+                         G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-flags: (setter set_flags) (getter get_flags):
+   */
+  accessors_object_properties[SOME_FLAGS_PROPERTY] =
+    g_param_spec_flags ("some-flags",
+                        "some-flags",
+                        "some-flags",
+                        GI_MARSHALLING_TESTS_TYPE_FLAGS,
+                        GI_MARSHALLING_TESTS_FLAGS_VALUE1,
+                        G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-enum: (setter set_enum) (getter get_enum):
+   */
+  accessors_object_properties[SOME_ENUM_PROPERTY] =
+    g_param_spec_enum ("some-enum",
+                       "some-enum",
+                       "some-enum",
+                       GI_MARSHALLING_TESTS_TYPE_GENUM,
+                       GI_MARSHALLING_TESTS_GENUM_VALUE1,
+                       G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-byte_array: (setter set_byte_array) (getter get_byte_array):
+   */
+  accessors_object_properties[SOME_BYTE_ARRAY_PROPERTY] =
+    g_param_spec_boxed ("some-byte-array",
+                        "some-byte-array",
+                        "some-byte-array",
+                        G_TYPE_BYTE_ARRAY,
+                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+
+  /**
+   * GIMarshallingTestsPropertiesAccessorsObject:some-readonly: (getter get_readonly):
+   */
+  accessors_object_properties[SOME_READONLY_PROPERTY] =
+    g_param_spec_int ("some-readonly",
+                      "some-readonly",
+                      "some-readonly",
+                      G_MININT, G_MAXINT, 0,
+                      G_PARAM_READABLE);
+
+  g_object_class_install_properties (object_class, N_PROPERTIES, accessors_object_properties);
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_set_boolean: (set-property some-boolean)
+ * @self:
+ * @some_boolean:
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_boolean (GIMarshallingTestsPropertiesAccessorsObject *self, gboolean some_boolean)
+{
+  if (self->some_boolean == some_boolean)
+    return;
+
+  self->some_boolean = some_boolean;
+  g_object_notify (G_OBJECT (self), "some-boolean");
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_set_char: (set-property some-char)
+ * @self:
+ * @some_char:
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_char (GIMarshallingTestsPropertiesAccessorsObject *self, gchar some_char)
+{
+  if (self->some_char == some_char)
+    return;
+
+  self->some_char = some_char;
+  g_object_notify (G_OBJECT (self), "some-char");
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_set_uchar: (set-property some-uchar)
+ * @self:
+ * @some_uchar:
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_uchar (GIMarshallingTestsPropertiesAccessorsObject *self, guchar some_uchar)
+{
+  if (self->some_uchar == some_uchar)
+    return;
+
+  self->some_uchar = some_uchar;
+  g_object_notify (G_OBJECT (self), "some-uchar");
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_set_int: (set-property some-int)
+ * @self:
+ * @some_int:
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_int (GIMarshallingTestsPropertiesAccessorsObject *self, gint some_int)
+{
+  if (self->some_int == some_int)
+    return;
+
+  self->some_int = some_int;
+  g_object_notify (G_OBJECT (self), "some-int");
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_set_uint: (set-property some-uint)
+ * @self:
+ * @some_uint:
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_uint (GIMarshallingTestsPropertiesAccessorsObject *self, guint some_uint)
+{
+  if (self->some_uint == some_uint)
+    return;
+
+  self->some_uint = some_uint;
+  g_object_notify (G_OBJECT (self), "some-uint");
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_set_long: (set-property some-long)
+ * @self:
+ * @some_long:
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_long (GIMarshallingTestsPropertiesAccessorsObject *self, glong some_long)
+{
+  if (self->some_long == some_long)
+    return;
+
+  self->some_long = some_long;
+  g_object_notify (G_OBJECT (self), "some-long");
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_set_ulong: (set-property some-ulong)
+ * @self:
+ * @some_ulong:
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_ulong (GIMarshallingTestsPropertiesAccessorsObject *self, gulong some_ulong)
+{
+  if (self->some_ulong == some_ulong)
+    return;
+
+  self->some_ulong = some_ulong;
+  g_object_notify (G_OBJECT (self), "some-ulong");
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_set_int64: (set-property some-int64)
+ * @self:
+ * @some_int64:
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_int64 (GIMarshallingTestsPropertiesAccessorsObject *self, gint64 some_int64)
+{
+  if (self->some_int64 == some_int64)
+    return;
+
+  self->some_int64 = some_int64;
+  g_object_notify (G_OBJECT (self), "some-int64");
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_set_uint64: (set-property some-uint64)
+ * @self:
+ * @some_uint64:
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_uint64 (GIMarshallingTestsPropertiesAccessorsObject *self, guint64 some_uint64)
+{
+  if (self->some_uint64 == some_uint64)
+    return;
+
+  self->some_uint64 = some_uint64;
+  g_object_notify (G_OBJECT (self), "some-uint64");
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_set_float: (set-property some-float)
+ * @self:
+ * @some_float:
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_float (GIMarshallingTestsPropertiesAccessorsObject *self, gfloat some_float)
+{
+  if (self->some_float == some_float)
+    return;
+
+  self->some_float = some_float;
+  g_object_notify (G_OBJECT (self), "some-float");
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_set_double: (set-property some-double)
+ * @self:
+ * @some_double:
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_double (GIMarshallingTestsPropertiesAccessorsObject *self, gdouble some_double)
+{
+  if (self->some_double == some_double)
+    return;
+
+  self->some_double = some_double;
+  g_object_notify (G_OBJECT (self), "some-double");
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_set_string: (set-property some-string)
+ * @self:
+ * @some_string:
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_string (GIMarshallingTestsPropertiesAccessorsObject *self, gchar *some_string)
+{
+  if (g_strcmp0 (self->some_string, some_string) == 0)
+    return;
+
+  g_set_str (&self->some_string, some_string);
+  g_object_notify (G_OBJECT (self), "some-string");
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_set_strv: (set-property some-strv)
+ * @self:
+ * @some_strv:
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_strv (GIMarshallingTestsPropertiesAccessorsObject *self, GStrv some_strv)
+{
+  if (self->some_strv == some_strv)
+    return;
+
+  if (self->some_strv && some_strv &&
+      g_strv_equal ((const char **) self->some_strv, (const char **) some_strv))
+    return;
+
+  g_clear_pointer (&self->some_strv, g_strfreev);
+  self->some_strv = g_strdupv (some_strv);
+  g_object_notify (G_OBJECT (self), "some-strv");
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_set_boxed_struct: (set-property some-boxed-struct)
+ * @self:
+ * @some_boxed_struct:
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_boxed_struct (GIMarshallingTestsPropertiesAccessorsObject *self, GIMarshallingTestsBoxedStruct *some_boxed_struct)
+{
+  if (self->some_boxed_struct == some_boxed_struct)
+    return;
+
+  g_clear_pointer (&self->some_boxed_struct, gi_marshalling_tests_boxed_struct_free);
+  self->some_boxed_struct = gi_marshalling_tests_boxed_struct_copy (some_boxed_struct);
+  g_object_notify (G_OBJECT (self), "some-boxed-struct");
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_set_boxed_glist: (set-property some-boxed-glist)
+ * @self:
+ * @some_boxed_glist: (element-type int):
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_boxed_glist (GIMarshallingTestsPropertiesAccessorsObject *self, GList *some_boxed_glist)
+{
+  if (self->some_boxed_glist == some_boxed_glist)
+    return;
+
+  g_clear_pointer (&self->some_boxed_glist, g_list_free);
+  self->some_boxed_glist = g_list_copy (some_boxed_glist);
+  g_object_notify (G_OBJECT (self), "some-boxed-glist");
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_set_gvalue: (set-property some-gvalue)
+ * @self:
+ * @some_gvalue:
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_gvalue (GIMarshallingTestsPropertiesAccessorsObject *self, GValue *some_gvalue)
+{
+  if (self->some_gvalue == some_gvalue)
+    return;
+
+  if (self->some_gvalue)
+    g_boxed_free (G_TYPE_VALUE, self->some_gvalue);
+
+  self->some_gvalue = g_boxed_copy (G_TYPE_VALUE, some_gvalue);
+  g_object_notify (G_OBJECT (self), "some-gvalue");
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_set_variant: (set-property some-variant)
+ * @self:
+ * @some_variant:
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_variant (GIMarshallingTestsPropertiesAccessorsObject *self, GVariant *some_variant)
+{
+  if (self->some_variant == some_variant)
+    return;
+
+  g_clear_pointer (&self->some_variant, g_variant_unref);
+  self->some_variant = g_variant_ref_sink (some_variant);
+  g_object_notify (G_OBJECT (self), "some-variant");
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_set_object: (set-property some-object)
+ * @self:
+ * @some_object:
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_object (GIMarshallingTestsPropertiesAccessorsObject *self, GObject *some_object)
+{
+  if (self->some_object == some_object)
+    return;
+
+  g_set_object (&self->some_object, some_object);
+  g_object_notify (G_OBJECT (self), "some-object");
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_set_flags: (set-property some-flags)
+ * @self:
+ * @some_flags:
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_flags (GIMarshallingTestsPropertiesAccessorsObject *self, GIMarshallingTestsFlags some_flags)
+{
+  if (self->some_flags == some_flags)
+    return;
+
+  self->some_flags = some_flags;
+  g_object_notify (G_OBJECT (self), "some-flags");
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_set_enum: (set-property some-enum)
+ * @self:
+ * @some_enum:
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_enum (GIMarshallingTestsPropertiesAccessorsObject *self, GIMarshallingTestsGEnum some_enum)
+{
+  if (self->some_enum == some_enum)
+    return;
+
+  self->some_enum = some_enum;
+  g_object_notify (G_OBJECT (self), "some-enum");
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_set_byte_array: (set-property some-byte-array)
+ * @self:
+ * @some_byte_array:
+ */
+void
+gi_marshalling_tests_properties_accessors_object_set_byte_array (GIMarshallingTestsPropertiesAccessorsObject *self, GByteArray *some_byte_array)
+{
+  if (self->some_byte_array == some_byte_array)
+    return;
+
+  g_clear_pointer (&self->some_byte_array, g_byte_array_unref);
+  self->some_byte_array = g_byte_array_ref (some_byte_array);
+  g_object_notify (G_OBJECT (self), "some-byte-array");
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_boolean: (get-property some-boolean)
+ * @self:
+ */
+gboolean
+gi_marshalling_tests_properties_accessors_object_get_boolean (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_boolean;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_char: (get-property some-char)
+ * @self:
+ */
+gchar
+gi_marshalling_tests_properties_accessors_object_get_char (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_char;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_uchar: (get-property some-uchar)
+ * @self:
+ */
+guchar
+gi_marshalling_tests_properties_accessors_object_get_uchar (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_uchar;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_int: (get-property some-int)
+ * @self:
+ */
+gint
+gi_marshalling_tests_properties_accessors_object_get_int (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_int;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_uint: (get-property some-uint)
+ * @self:
+ */
+guint
+gi_marshalling_tests_properties_accessors_object_get_uint (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_uint;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_long: (get-property some-long)
+ * @self:
+ */
+glong
+gi_marshalling_tests_properties_accessors_object_get_long (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_long;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_ulong: (get-property some-ulong)
+ * @self:
+ */
+gulong
+gi_marshalling_tests_properties_accessors_object_get_ulong (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_ulong;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_int64: (get-property some-int64)
+ * @self:
+ */
+gint64
+gi_marshalling_tests_properties_accessors_object_get_int64 (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_int64;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_uint64: (get-property some-uint64)
+ * @self:
+ */
+guint64
+gi_marshalling_tests_properties_accessors_object_get_uint64 (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_uint64;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_float: (get-property some-float)
+ * @self:
+ */
+gfloat
+gi_marshalling_tests_properties_accessors_object_get_float (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_float;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_double: (get-property some-double)
+ * @self:
+ */
+gdouble
+gi_marshalling_tests_properties_accessors_object_get_double (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_double;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_string: (get-property some-string)
+ * @self:
+ */
+const gchar *
+gi_marshalling_tests_properties_accessors_object_get_string (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_string;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_strv: (get-property some-strv)
+ * @self:
+ *
+ * Returns: (transfer none):
+ */
+gchar **
+gi_marshalling_tests_properties_accessors_object_get_strv (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_strv;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_boxed_struct: (get-property some-boxed-struct)
+ * @self:
+ *
+ * Returns: (transfer none):
+ */
+GIMarshallingTestsBoxedStruct *
+gi_marshalling_tests_properties_accessors_object_get_boxed_struct (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_boxed_struct;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_boxed_glist: (get-property some-boxed-glist)
+ * @self:
+ *
+ * Returns: (element-type int) (transfer none):
+ */
+GList *
+gi_marshalling_tests_properties_accessors_object_get_boxed_glist (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_boxed_glist;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_gvalue: (get-property some-gvalue)
+ * @self:
+ *
+ * Returns: (transfer none):
+ */
+GValue *
+gi_marshalling_tests_properties_accessors_object_get_gvalue (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_gvalue;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_variant: (get-property some-variant)
+ * @self:
+ *
+ * Returns: (transfer none):
+ */
+GVariant *
+gi_marshalling_tests_properties_accessors_object_get_variant (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_variant;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_object: (get-property some-object)
+ * @self:
+ *
+ * Returns: (transfer none):
+ */
+GObject *
+gi_marshalling_tests_properties_accessors_object_get_object (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_object;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_flags: (get-property some-flags)
+ * @self:
+ */
+GIMarshallingTestsFlags
+gi_marshalling_tests_properties_accessors_object_get_flags (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_flags;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_enum: (get-property some-enum)
+ * @self:
+ */
+GIMarshallingTestsGEnum
+gi_marshalling_tests_properties_accessors_object_get_enum (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_enum;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_byte_array: (get-property some-byte-array)
+ * @self:
+ *
+ * Returns: (transfer none):
+ */
+GByteArray *
+gi_marshalling_tests_properties_accessors_object_get_byte_array (GIMarshallingTestsPropertiesAccessorsObject *self)
+{
+  return self->some_byte_array;
+}
+
+/**
+ * gi_marshalling_tests_properties_accessors_object_get_readonly: (get-property some-readonly)
+ * @self:
+ */
+gint
+gi_marshalling_tests_properties_accessors_object_get_readonly (GIMarshallingTestsPropertiesAccessorsObject *self G_GNUC_UNUSED)
+{
+  return 42;
+}
+
 G_DEFINE_TYPE (GIMarshallingTestsSignalsObject, gi_marshalling_tests_signals_object, G_TYPE_OBJECT);
 
 static void

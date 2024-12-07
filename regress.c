@@ -58,20 +58,6 @@ SPDX-FileCopyrightText: 2024 Simon McVittie
 
 #include "regress.h"
 
-static gboolean abort_on_error = TRUE;
-
-#define ASSERT_VALUE(condition) \
-  if (abort_on_error)           \
-    g_assert (condition);       \
-  else                          \
-    g_warn_if_fail (condition);
-
-void
-regress_set_abort_on_error (gboolean in)
-{
-  abort_on_error = in;
-}
-
 /* return annotations */
 
 /**
@@ -106,14 +92,14 @@ regress_test_boolean (gboolean in)
 gboolean
 regress_test_boolean_true (gboolean in)
 {
-  ASSERT_VALUE (in == TRUE);
+  g_assert_true (in);
   return in;
 }
 
 gboolean
 regress_test_boolean_false (gboolean in)
 {
-  ASSERT_VALUE (in == FALSE);
+  g_assert_false (in);
   return in;
 }
 

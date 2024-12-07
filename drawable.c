@@ -5,6 +5,8 @@ SPDX-FileCopyrightText: 2008 Johan Bilien
 SPDX-FileCopyrightText: 2008 Johan Dahlin
 */
 
+#include <gio/gio.h>
+
 #include "drawable.h"
 
 G_DEFINE_ABSTRACT_TYPE (RegressTestInheritDrawable, regress_test_inherit_drawable, G_TYPE_OBJECT);
@@ -61,5 +63,5 @@ regress_test_inherit_drawable_do_foo_maybe_throw (RegressTestInheritDrawable *dr
                                                   GError **error)
 {
   if (x != 42)
-    g_set_error (error, 0, 12, "The answer should be 42!");
+    g_set_error (error, G_IO_ERROR, 12, "The answer should be 42!");
 }

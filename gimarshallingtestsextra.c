@@ -52,7 +52,9 @@ gi_marshalling_tests_compare_two_gerrors_in_gvalue (GValue *v, GValue *v1)
 gboolean
 gi_marshalling_tests_nullable_gerror (GError *error)
 {
-  return error ? 1 : 0;
+  gboolean retval = error ? 1 : 0;
+  g_clear_error(&error);
+  return retval;
 }
 
 /**

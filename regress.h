@@ -1307,6 +1307,9 @@ void regress_test_function_async (int io_priority,
                                   gpointer user_data);
 
 GI_TEST_EXTERN
+int regress_test_function_thaw_async (void);
+
+GI_TEST_EXTERN
 gboolean regress_test_function_finish (GAsyncResult *res, GError **error);
 
 GI_TEST_EXTERN
@@ -1328,6 +1331,10 @@ void regress_test_obj_new_async (const char *x G_GNUC_UNUSED,
                                  GCancellable *cancellable G_GNUC_UNUSED,
                                  GAsyncReadyCallback callback G_GNUC_UNUSED,
                                  gpointer user_data G_GNUC_UNUSED);
+
+GI_TEST_EXTERN
+int regress_test_obj_constructor_thaw_async (void);
+
 GI_TEST_EXTERN
 RegressTestObj *regress_test_obj_new_finish (GAsyncResult *res G_GNUC_UNUSED,
                                              GError **error G_GNUC_UNUSED);
@@ -1688,6 +1695,9 @@ void regress_test_obj_function_async (RegressTestObj *self,
                                       GCancellable *cancellable,
                                       GAsyncReadyCallback callback,
                                       gpointer user_data);
+
+GI_TEST_EXTERN
+int regress_test_obj_function_thaw_async (RegressTestObj *self);
 
 GI_TEST_EXTERN
 gboolean regress_test_obj_function_finish (RegressTestObj *self, GAsyncResult *res, GError **error);

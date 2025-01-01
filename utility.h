@@ -22,6 +22,9 @@ typedef struct _UtilityObjectClass UtilityObjectClass;
 struct _UtilityObject
 {
   GObject parent_instance;
+  /*< private >*/
+  void *user_data;
+  GDestroyNotify destroy_notify;
 };
 
 struct _UtilityObjectClass

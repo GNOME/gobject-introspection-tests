@@ -192,7 +192,9 @@ regress_test_array_of_fundamental_objects_out (gsize *len)
 gboolean
 regress_test_fundamental_argument_in (RegressTestFundamentalObject *obj)
 {
-  return REGRESS_TEST_IS_FUNDAMENTAL_OBJECT (obj);
+  gboolean retval = REGRESS_TEST_IS_FUNDAMENTAL_OBJECT (obj);
+  regress_test_fundamental_object_unref(obj);
+  return retval;
 }
 
 /**

@@ -3781,6 +3781,34 @@ gi_marshalling_tests_bytearray_none_in (GByteArray *v)
 }
 
 /**
+ * gi_marshalling_tests_bytearray_full_out:
+ * @v: (out) (transfer full):
+ */
+void
+gi_marshalling_tests_bytearray_full_out (GByteArray **v)
+{
+  *v = gi_marshalling_tests_bytearray_full_return ();
+}
+
+/**
+ * gi_marshalling_tests_bytearray_full_inout:
+ * @v: (inout) (transfer full):
+ */
+void
+gi_marshalling_tests_bytearray_full_inout (GByteArray **v)
+{
+  gi_marshalling_tests_bytearray_none_in (*v);
+  g_byte_array_unref (*v);
+
+  guint8 data[] = { 'h', 'e', 'l', '\0', '\xFF' };
+
+  GByteArray *array = g_byte_array_new ();
+  g_byte_array_append (array, (const guint8 *) data, G_N_ELEMENTS (data));
+
+  *v = array;
+}
+
+/**
  * gi_marshalling_tests_gbytes_full_return:
  *
  * Returns: (transfer full):

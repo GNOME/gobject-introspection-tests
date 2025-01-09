@@ -1175,6 +1175,12 @@ GByteArray *gi_marshalling_tests_bytearray_full_return (void);
 GI_TEST_EXTERN
 void gi_marshalling_tests_bytearray_none_in (GByteArray *v);
 
+GI_TEST_EXTERN
+void gi_marshalling_tests_bytearray_full_out (GByteArray **v);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_bytearray_full_inout (GByteArray **v);
+
 /* GBytes */
 
 GI_TEST_EXTERN

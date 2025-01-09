@@ -25,7 +25,7 @@ SPDX-FileCopyrightText: 2014 RIFT.io, Inc.
 SPDX-FileCopyrightText: 2014 SuSE
 SPDX-FileCopyrightText: 2016 Endless Mobile, Inc.
 SPDX-FileCopyrightText: 2017 Christoph Reiter
-SPDX-FileCopyrightText: 2016-2017, 2023 Philip Chimento <philip.chimento@gmail.com>
+SPDX-FileCopyrightText: 2016-2017, 2023, 2025 Philip Chimento
 SPDX-FileCopyrightText: 2018 Tomasz Miąsko
 SPDX-FileCopyrightText: 2019 Stéphane Seng
 SPDX-FileCopyrightText: 2020-2023 Marco Trevisan
@@ -934,6 +934,118 @@ GVariant **gi_marshalling_tests_array_gvariant_container_in (GVariant **variants
 GI_TEST_EXTERN
 GVariant **gi_marshalling_tests_array_gvariant_full_in (GVariant **variants);
 
+/* Full complement of array-of-UTF8 in/out tests for fixed-length array,
+ * explicit-length array, zero-terminated array. GArray, GPtrArray, GList, and
+ * GSList are already covered below. */
+
+GI_TEST_EXTERN
+const gchar *const *gi_marshalling_tests_length_array_utf8_none_return (size_t *out_length);
+
+GI_TEST_EXTERN
+const gchar **gi_marshalling_tests_length_array_utf8_container_return (size_t *out_length);
+
+GI_TEST_EXTERN
+gchar **gi_marshalling_tests_length_array_utf8_full_return (size_t *out_length);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_length_array_utf8_none_in (const gchar *const *array, size_t length);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_length_array_utf8_container_in (const gchar **array, size_t length);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_length_array_utf8_full_in (gchar **array, size_t length);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_length_array_utf8_none_out (const gchar *const **array_out, size_t *out_length);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_length_array_utf8_container_out (const gchar ***array_out, size_t *out_length);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_length_array_utf8_full_out (gchar ***array_out, size_t *out_length);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_length_array_utf8_none_inout (const gchar *const **array_inout, size_t *inout_length);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_length_array_utf8_container_inout (const gchar ***array_inout, size_t *inout_length);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_length_array_utf8_full_inout (gchar ***array_inout, size_t *inout_length);
+
+GI_TEST_EXTERN
+const gchar *const *gi_marshalling_tests_zero_terminated_array_utf8_none_return (void);
+
+GI_TEST_EXTERN
+const gchar **gi_marshalling_tests_zero_terminated_array_utf8_container_return (void);
+
+GI_TEST_EXTERN
+gchar **gi_marshalling_tests_zero_terminated_array_utf8_full_return (void);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_zero_terminated_array_utf8_none_in (const gchar *const *array);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_zero_terminated_array_utf8_container_in (const gchar **array);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_zero_terminated_array_utf8_full_in (gchar **array);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_zero_terminated_array_utf8_none_out (const gchar *const **array_out);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_zero_terminated_array_utf8_container_out (const gchar ***array_out);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_zero_terminated_array_utf8_full_out (gchar ***array_out);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_zero_terminated_array_utf8_none_inout (const gchar *const **array_inout);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_zero_terminated_array_utf8_container_inout (const gchar ***array_inout);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_zero_terminated_array_utf8_full_inout (gchar ***array_inout);
+
+GI_TEST_EXTERN
+const gchar *const *gi_marshalling_tests_fixed_array_utf8_none_return (void);
+
+GI_TEST_EXTERN
+const gchar **gi_marshalling_tests_fixed_array_utf8_container_return (void);
+
+GI_TEST_EXTERN
+gchar **gi_marshalling_tests_fixed_array_utf8_full_return (void);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_fixed_array_utf8_none_in (const gchar *const *array);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_fixed_array_utf8_container_in (const gchar **array);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_fixed_array_utf8_full_in (gchar **array);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_fixed_array_utf8_none_out (const gchar *const **array_out);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_fixed_array_utf8_container_out (const gchar ***array_out);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_fixed_array_utf8_full_out (gchar ***array_out);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_fixed_array_utf8_none_inout (const gchar *const **array_inout);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_fixed_array_utf8_container_inout (const gchar ***array_inout);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_fixed_array_utf8_full_inout (gchar ***array_inout);
+
 /* GArray */
 
 GI_TEST_EXTERN
@@ -962,6 +1074,12 @@ void gi_marshalling_tests_garray_uint64_none_in (GArray *array_);
 
 GI_TEST_EXTERN
 void gi_marshalling_tests_garray_utf8_none_in (GArray *array_);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_garray_utf8_container_in (GArray *array_);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_garray_utf8_full_in (GArray *array_);
 
 GI_TEST_EXTERN
 void gi_marshalling_tests_garray_utf8_none_out (GArray **array_);
@@ -1015,6 +1133,12 @@ GPtrArray *gi_marshalling_tests_gptrarray_boxed_struct_full_return (void);
 
 GI_TEST_EXTERN
 void gi_marshalling_tests_gptrarray_utf8_none_in (GPtrArray *parray_);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_gptrarray_utf8_container_in (GPtrArray *parray_);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_gptrarray_utf8_full_in (GPtrArray *parray_);
 
 GI_TEST_EXTERN
 void gi_marshalling_tests_gptrarray_utf8_none_out (GPtrArray **parray_);
@@ -1213,6 +1337,12 @@ GI_TEST_EXTERN
 void gi_marshalling_tests_glist_utf8_none_in (GList *list);
 
 GI_TEST_EXTERN
+void gi_marshalling_tests_glist_utf8_container_in (GList *list);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_glist_utf8_full_in (GList *list);
+
+GI_TEST_EXTERN
 void gi_marshalling_tests_glist_utf8_none_out (GList **list);
 
 GI_TEST_EXTERN
@@ -1258,6 +1388,12 @@ void gi_marshalling_tests_gslist_int_none_in (GSList *list);
 
 GI_TEST_EXTERN
 void gi_marshalling_tests_gslist_utf8_none_in (GSList *list);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_gslist_utf8_container_in (GSList *list);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_gslist_utf8_full_in (GSList *list);
 
 GI_TEST_EXTERN
 void gi_marshalling_tests_gslist_utf8_none_out (GSList **list);

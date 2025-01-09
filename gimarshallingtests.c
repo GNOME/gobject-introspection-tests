@@ -1602,6 +1602,17 @@ gi_marshalling_tests_utf8_none_in (const gchar *utf8)
 }
 
 /**
+ * gi_marshalling_tests_utf8_full_in:
+ * @utf8: (transfer full):
+ */
+void
+gi_marshalling_tests_utf8_full_in (gchar *utf8)
+{
+  g_assert_cmpstr (GI_MARSHALLING_TESTS_CONSTANT_UTF8, ==, utf8);
+  g_free (utf8);
+}
+
+/**
  * gi_marshalling_tests_utf8_as_uint8array_in:
  * @array: (array length=len) (element-type guint8): Byte data that happens to be UTF-8
  * @len: Length

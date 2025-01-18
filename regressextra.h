@@ -5,7 +5,9 @@ SPDX-FileCopyrightText: 2018 PyGObject contributors
 
 #pragma once
 
+#ifndef GI_TEST_DISABLE_CAIRO
 #include <cairo.h>
+#endif /* GI_TEST_DISABLE_CAIRO */
 #include <glib-object.h>
 #include <glib.h>
 

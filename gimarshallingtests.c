@@ -24,7 +24,7 @@ SPDX-FileCopyrightText: 2014 Lionel Landwerlin
 SPDX-FileCopyrightText: 2014 RIFT.io, Inc.
 SPDX-FileCopyrightText: 2014 SuSE
 SPDX-FileCopyrightText: 2016 Endless Mobile, Inc.
-SPDX-FileCopyrightText: 2016-2018, 2023 Philip Chimento <philip.chimento@gmail.com>
+SPDX-FileCopyrightText: 2016-2018, 2023, 2025 Philip Chimento
 SPDX-FileCopyrightText: 2017 Christoph Reiter
 SPDX-FileCopyrightText: 2018 Tomasz Miąsko
 SPDX-FileCopyrightText: 2019 Stéphane Seng
@@ -1602,6 +1602,17 @@ gi_marshalling_tests_utf8_none_in (const gchar *utf8)
 }
 
 /**
+ * gi_marshalling_tests_utf8_full_in:
+ * @utf8: (transfer full):
+ */
+void
+gi_marshalling_tests_utf8_full_in (gchar *utf8)
+{
+  g_assert_cmpstr (GI_MARSHALLING_TESTS_CONSTANT_UTF8, ==, utf8);
+  g_free (utf8);
+}
+
+/**
  * gi_marshalling_tests_utf8_as_uint8array_in:
  * @array: (array length=len) (element-type guint8): Byte data that happens to be UTF-8
  * @len: Length
@@ -2478,6 +2489,556 @@ gi_marshalling_tests_array_gvariant_full_in (GVariant **variants)
   return container;
 }
 
+/* The following tests expect the following arrays:
+ *   in: 🅰, β, c, d (the first two characters are U+1F170 and U+03B2)
+ *   out/return: a, b, ¢, 🔠 (the last two characters are U+00A2 and U+1F520)
+ * This is intended to test the full capabilities of C arrays of a basic type.
+ * UTF-8 strings and filenames are the only basic types that need to be released
+ * as individual elements, so we test UTF-8 strings. We test ASCII characters,
+ * basic multilingual plane characters, and astral plane characters in both the
+ * in and out arrays.
+ */
+#define SQUARED_A "\xf0\x9f\x85\xb0"
+#define BETA "\xce\xb2"
+#define CENT "\xc2\xa2"
+#define ABCD "\xf0\x9f\x94\xa0"
+
+/**
+ * gi_marshalling_tests_length_array_utf8_none_return:
+ *
+ * Returns: (array length=out_length) (transfer none):
+ */
+const gchar *const *
+gi_marshalling_tests_length_array_utf8_none_return (size_t *out_length)
+{
+  static const gchar *array[] = { "a", "b", CENT, ABCD };
+
+  *out_length = 4;
+  return array;
+}
+
+/**
+ * gi_marshalling_tests_length_array_utf8_container_return:
+ *
+ * Returns: (array length=out_length) (transfer container):
+ */
+const gchar **
+gi_marshalling_tests_length_array_utf8_container_return (size_t *out_length)
+{
+  const gchar **array = g_new0 (const gchar *, 4);
+
+  array[0] = "a";
+  array[1] = "b";
+  array[2] = CENT;
+  array[3] = ABCD;
+
+  *out_length = 4;
+  return array;
+}
+
+/**
+ * gi_marshalling_tests_length_array_utf8_full_return:
+ *
+ * Returns: (array length=out_length) (transfer full):
+ */
+gchar **
+gi_marshalling_tests_length_array_utf8_full_return (size_t *out_length)
+{
+  gchar **array = g_new0 (gchar *, 4);
+  array[0] = g_strdup ("a");
+  array[1] = g_strdup ("b");
+  array[2] = g_strdup (CENT);
+  array[3] = g_strdup (ABCD);
+
+  *out_length = 4;
+  return array;
+}
+
+/**
+ * gi_marshalling_tests_length_array_utf8_none_in:
+ * @array: (array length=length) (transfer none):
+ */
+void
+gi_marshalling_tests_length_array_utf8_none_in (const gchar *const *array, size_t length)
+{
+  g_assert_cmpint (length, ==, 4);
+
+  g_assert_cmpstr (array[0], ==, SQUARED_A);
+  g_assert_cmpstr (array[1], ==, BETA);
+  g_assert_cmpstr (array[2], ==, "c");
+  g_assert_cmpstr (array[3], ==, "d");
+}
+
+/**
+ * gi_marshalling_tests_length_array_utf8_container_in:
+ * @array: (array length=length) (transfer container):
+ */
+void
+gi_marshalling_tests_length_array_utf8_container_in (const gchar **array, size_t length)
+{
+  gi_marshalling_tests_length_array_utf8_none_in (array, length);
+
+  g_clear_pointer (&array, g_free);
+}
+
+/**
+ * gi_marshalling_tests_length_array_utf8_full_in:
+ * @array: (array length=length) (transfer full):
+ */
+void
+gi_marshalling_tests_length_array_utf8_full_in (gchar **array, size_t length)
+{
+  gi_marshalling_tests_length_array_utf8_none_in ((const gchar *const *) array, length);
+
+  g_clear_pointer (&array[0], g_free);
+  g_clear_pointer (&array[1], g_free);
+  g_clear_pointer (&array[2], g_free);
+  g_clear_pointer (&array[3], g_free);
+
+  g_clear_pointer (&array, g_free);
+}
+
+/**
+ * gi_marshalling_tests_length_array_utf8_none_out:
+ * @array_out: (array length=out_length) (out) (transfer none):
+ * @out_length: (out):
+ */
+void
+gi_marshalling_tests_length_array_utf8_none_out (const gchar *const **array_out, size_t *out_length)
+{
+  *array_out = gi_marshalling_tests_length_array_utf8_none_return (out_length);
+}
+
+/**
+ * gi_marshalling_tests_length_array_utf8_container_out:
+ * @array_out: (array length=out_length) (out) (transfer container):
+ */
+void
+gi_marshalling_tests_length_array_utf8_container_out (const gchar ***array_out, size_t *out_length)
+{
+  *array_out = gi_marshalling_tests_length_array_utf8_container_return (out_length);
+}
+
+/**
+ * gi_marshalling_tests_length_array_utf8_full_out:
+ * @array_out: (array length=out_length) (out) (transfer full):
+ */
+void
+gi_marshalling_tests_length_array_utf8_full_out (gchar ***array_out, size_t *out_length)
+{
+  *array_out = gi_marshalling_tests_length_array_utf8_full_return (out_length);
+}
+
+/**
+ * gi_marshalling_tests_length_array_utf8_none_inout:
+ * @array_inout: (array length=inout_length) (inout) (transfer none):
+ * @inout_length: (inout):
+ */
+void
+gi_marshalling_tests_length_array_utf8_none_inout (const gchar *const **array_inout, size_t *inout_length)
+{
+  static const gchar *array_out[] = { "a", "b", CENT, ABCD };
+
+  g_assert_nonnull (inout_length);
+  gi_marshalling_tests_length_array_utf8_none_in (*array_inout, *inout_length);
+
+  *array_inout = array_out;
+  *inout_length = 4;
+}
+
+/**
+ * gi_marshalling_tests_length_array_utf8_container_inout:
+ * @array_inout: (array length=inout_length) (inout) (transfer none):
+ * @inout_length: (inout):
+ */
+void
+gi_marshalling_tests_length_array_utf8_container_inout (const gchar ***array_inout, size_t *inout_length)
+{
+  const gchar **array_out = g_new0 (const gchar *, 4);
+
+  g_assert_nonnull (inout_length);
+  g_assert_nonnull (array_inout);
+  gi_marshalling_tests_length_array_utf8_container_in (*array_inout, *inout_length);
+
+  array_out[0] = "a";
+  array_out[1] = "b";
+  array_out[2] = CENT;
+  array_out[3] = ABCD;
+
+  *array_inout = array_out;
+  *inout_length = 4;
+}
+
+/**
+ * gi_marshalling_tests_length_array_utf8_full_inout:
+ * @array_inout: (array length=inout_length) (inout) (transfer full):
+ * @inout_length: (inout):
+ */
+void
+gi_marshalling_tests_length_array_utf8_full_inout (gchar ***array_inout, size_t *inout_length)
+{
+  gchar **array_out = g_new0 (gchar *, 4);
+
+  g_assert_nonnull (inout_length);
+  g_assert_nonnull (array_inout);
+  gi_marshalling_tests_length_array_utf8_full_in (
+    g_steal_pointer (array_inout), *inout_length);
+
+  array_out[0] = g_strdup ("a");
+  array_out[1] = g_strdup ("b");
+  array_out[2] = g_strdup (CENT);
+  array_out[3] = g_strdup (ABCD);
+
+  *array_inout = array_out;
+  *inout_length = 4;
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_utf8_none_return:
+ *
+ * Returns: (array zero-terminated) (transfer none):
+ */
+const gchar *const *
+gi_marshalling_tests_zero_terminated_array_utf8_none_return (void)
+{
+  static const gchar *array[] = { "a", "b", CENT, ABCD, NULL };
+  return array;
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_utf8_container_return:
+ *
+ * Returns: (array zero-terminated) (transfer container):
+ */
+const gchar **
+gi_marshalling_tests_zero_terminated_array_utf8_container_return (void)
+{
+  const gchar **array = g_new0 (const gchar *, 5);
+
+  array[0] = "a";
+  array[1] = "b";
+  array[2] = CENT;
+  array[3] = ABCD;
+
+  return array;
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_utf8_full_return:
+ *
+ * Returns: (array zero-terminated) (transfer full):
+ */
+gchar **
+gi_marshalling_tests_zero_terminated_array_utf8_full_return (void)
+{
+  gchar **array = g_new0 (gchar *, 5);
+
+  array[0] = g_strdup ("a");
+  array[1] = g_strdup ("b");
+  array[2] = g_strdup (CENT);
+  array[3] = g_strdup (ABCD);
+
+  return array;
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_utf8_none_in:
+ * @array: (array zero-terminated) (transfer none):
+ */
+void
+gi_marshalling_tests_zero_terminated_array_utf8_none_in (const gchar *const *array)
+{
+  g_assert_cmpstr (array[0], ==, SQUARED_A);
+  g_assert_cmpstr (array[1], ==, BETA);
+  g_assert_cmpstr (array[2], ==, "c");
+  g_assert_cmpstr (array[3], ==, "d");
+
+  g_assert_null (array[4]);
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_utf8_container_in:
+ * @array: (array zero-terminated) (transfer container):
+ */
+void
+gi_marshalling_tests_zero_terminated_array_utf8_container_in (const gchar **array)
+{
+  gi_marshalling_tests_zero_terminated_array_utf8_none_in (array);
+
+  g_clear_pointer (&array, g_free);
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_utf8_full_in:
+ * @array: (array zero-terminated) (transfer full):
+ */
+void
+gi_marshalling_tests_zero_terminated_array_utf8_full_in (gchar **array)
+{
+  gi_marshalling_tests_zero_terminated_array_utf8_none_in ((const gchar *const *) array);
+
+  for (size_t i = 0; array && array[i] != NULL; i++)
+    g_clear_pointer (&array[i], g_free);
+
+  g_clear_pointer (&array, g_free);
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_utf8_none_out:
+ * @array_out: (array zero-terminated) (out) (transfer none):
+ */
+void
+gi_marshalling_tests_zero_terminated_array_utf8_none_out (const gchar *const **array_out)
+{
+  *array_out = gi_marshalling_tests_zero_terminated_array_utf8_none_return ();
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_utf8_container_out:
+ * @array_out: (array zero-terminated) (out) (transfer container):
+ */
+void
+gi_marshalling_tests_zero_terminated_array_utf8_container_out (const gchar ***array_out)
+{
+  *array_out = gi_marshalling_tests_zero_terminated_array_utf8_container_return ();
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_utf8_full_out:
+ * @array_out: (array zero-terminated) (out) (transfer full):
+ */
+void
+gi_marshalling_tests_zero_terminated_array_utf8_full_out (gchar ***array_out)
+{
+  *array_out = gi_marshalling_tests_zero_terminated_array_utf8_full_return ();
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_utf8_none_inout:
+ * @array_inout: (array zero-terminated) (inout) (transfer none):
+ */
+void
+gi_marshalling_tests_zero_terminated_array_utf8_none_inout (const gchar *const **array_inout)
+{
+  static const gchar *array_out[] = { "a", "b", CENT, ABCD, NULL };
+
+  gi_marshalling_tests_zero_terminated_array_utf8_none_in (*array_inout);
+
+  *array_inout = array_out;
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_utf8_container_inout:
+ * @array_inout: (array zero-terminated) (inout) (transfer container):
+ */
+void
+gi_marshalling_tests_zero_terminated_array_utf8_container_inout (const gchar ***array_inout)
+{
+  const gchar **array_out = g_new0 (const gchar *, 5);
+
+  gi_marshalling_tests_zero_terminated_array_utf8_container_in (*array_inout);
+
+  array_out[0] = "a";
+  array_out[1] = "b";
+  array_out[2] = CENT;
+  array_out[3] = ABCD;
+
+  *array_inout = array_out;
+}
+
+/**
+ * gi_marshalling_tests_zero_terminated_array_utf8_full_inout:
+ * @array_inout: (array zero-terminated) (inout) (transfer full):
+ */
+void
+gi_marshalling_tests_zero_terminated_array_utf8_full_inout (gchar ***array_inout)
+{
+  gchar **array_out = g_new0 (gchar *, 5);
+
+  gi_marshalling_tests_zero_terminated_array_utf8_full_in (
+    g_steal_pointer (array_inout));
+
+  array_out[0] = g_strdup ("a");
+  array_out[1] = g_strdup ("b");
+  array_out[2] = g_strdup (CENT);
+  array_out[3] = g_strdup (ABCD);
+
+  *array_inout = array_out;
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_utf8_none_return:
+ *
+ * Returns: (array fixed-size=4) (transfer none):
+ */
+const gchar *const *
+gi_marshalling_tests_fixed_array_utf8_none_return (void)
+{
+  static const gchar *array[] = { "a", "b", CENT, ABCD };
+  return array;
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_utf8_container_return:
+ *
+ * Returns: (array fixed-size=4) (transfer container):
+ */
+const gchar **
+gi_marshalling_tests_fixed_array_utf8_container_return (void)
+{
+  const gchar **array = g_new0 (const gchar *, 4);
+
+  array[0] = "a";
+  array[1] = "b";
+  array[2] = CENT;
+  array[3] = ABCD;
+
+  return array;
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_utf8_full_return:
+ *
+ * Returns: (array fixed-size=4) (transfer full):
+ */
+gchar **
+gi_marshalling_tests_fixed_array_utf8_full_return (void)
+{
+  gchar **array = g_new0 (gchar *, 4);
+
+  array[0] = g_strdup ("a");
+  array[1] = g_strdup ("b");
+  array[2] = g_strdup (CENT);
+  array[3] = g_strdup (ABCD);
+
+  return array;
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_utf8_none_in:
+ * @array: (array fixed-size=4) (transfer none):
+ */
+void
+gi_marshalling_tests_fixed_array_utf8_none_in (const gchar *const *array)
+{
+  g_assert_cmpstr (array[0], ==, SQUARED_A);
+  g_assert_cmpstr (array[1], ==, BETA);
+  g_assert_cmpstr (array[2], ==, "c");
+  g_assert_cmpstr (array[3], ==, "d");
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_utf8_container_in:
+ * @array: (array fixed-size=4) (transfer container):
+ */
+void
+gi_marshalling_tests_fixed_array_utf8_container_in (const gchar **array)
+{
+  gi_marshalling_tests_fixed_array_utf8_none_in (array);
+
+  g_clear_pointer (&array, g_free);
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_utf8_full_in:
+ * @array: (array fixed-size=4) (transfer full):
+ */
+void
+gi_marshalling_tests_fixed_array_utf8_full_in (gchar **array)
+{
+  gi_marshalling_tests_fixed_array_utf8_none_in ((const gchar *const *) array);
+
+  g_clear_pointer (&array[0], g_free);
+  g_clear_pointer (&array[1], g_free);
+  g_clear_pointer (&array[2], g_free);
+  g_clear_pointer (&array[3], g_free);
+
+  g_clear_pointer (&array, g_free);
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_utf8_none_out:
+ * @array_out: (array fixed-size=4) (out) (transfer none):
+ */
+void
+gi_marshalling_tests_fixed_array_utf8_none_out (const gchar *const **array_out)
+{
+  *array_out = gi_marshalling_tests_fixed_array_utf8_none_return ();
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_utf8_container_out:
+ * @array_out: (array fixed-size=4) (out) (transfer container):
+ */
+void
+gi_marshalling_tests_fixed_array_utf8_container_out (const gchar ***array_out)
+{
+  *array_out = gi_marshalling_tests_fixed_array_utf8_container_return ();
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_utf8_full_out:
+ * @array_out: (array fixed-size=4) (out) (transfer full):
+ */
+void
+gi_marshalling_tests_fixed_array_utf8_full_out (gchar ***array_out)
+{
+  *array_out = gi_marshalling_tests_fixed_array_utf8_full_return ();
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_utf8_none_inout:
+ * @array_inout: (array fixed-size=4) (inout) (transfer none):
+ */
+void
+gi_marshalling_tests_fixed_array_utf8_none_inout (const gchar *const **array_inout)
+{
+  static const gchar *array_out[] = { "a", "b", CENT, ABCD };
+
+  gi_marshalling_tests_fixed_array_utf8_none_in (*array_inout);
+
+  *array_inout = array_out;
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_utf8_container_inout:
+ * @array_inout: (array fixed-size=4) (inout) (transfer container):
+ */
+void
+gi_marshalling_tests_fixed_array_utf8_container_inout (const gchar ***array_inout)
+{
+  const gchar **array_out = g_new0 (const gchar *, 4);
+
+  gi_marshalling_tests_fixed_array_utf8_container_in (*array_inout);
+
+  array_out[0] = "a";
+  array_out[1] = "b";
+  array_out[2] = CENT;
+  array_out[3] = ABCD;
+
+  *array_inout = array_out;
+}
+
+/**
+ * gi_marshalling_tests_fixed_array_utf8_full_inout:
+ * @array_inout: (array fixed-size=4) (inout) (transfer full):
+ */
+void
+gi_marshalling_tests_fixed_array_utf8_full_inout (gchar ***array_inout)
+{
+  gchar **array_out = g_new0 (gchar *, 4);
+
+  gi_marshalling_tests_fixed_array_utf8_full_in (
+    g_steal_pointer (array_inout));
+
+  array_out[0] = g_strdup ("a");
+  array_out[1] = g_strdup ("b");
+  array_out[2] = g_strdup (CENT);
+  array_out[3] = g_strdup (ABCD);
+
+  *array_inout = array_out;
+}
+
 /**
  * gi_marshalling_tests_garray_int_none_return:
  *
@@ -2647,6 +3208,30 @@ gi_marshalling_tests_garray_utf8_none_in (GArray *array_)
   g_assert_cmpstr (g_array_index (array_, gchar *, 0), ==, "0");
   g_assert_cmpstr (g_array_index (array_, gchar *, 1), ==, "1");
   g_assert_cmpstr (g_array_index (array_, gchar *, 2), ==, "2");
+}
+
+/**
+ * gi_marshalling_tests_garray_utf8_container_in:
+ * @array_: (element-type utf8) (transfer container):
+ */
+void
+gi_marshalling_tests_garray_utf8_container_in (GArray *array_)
+{
+  gi_marshalling_tests_garray_utf8_none_in (array_);
+  g_array_unref (array_);
+}
+
+/**
+ * gi_marshalling_tests_garray_utf8_full_in:
+ * @array_: (element-type utf8) (transfer full):
+ */
+void
+gi_marshalling_tests_garray_utf8_full_in (GArray *array_)
+{
+  gi_marshalling_tests_garray_utf8_none_in (array_);
+  for (size_t ix = 0; ix < 3; ix++)
+    g_clear_pointer (&g_array_index (array_, gchar *, ix), g_free);
+  g_array_unref (array_);
 }
 
 /**
@@ -2968,6 +3553,30 @@ gi_marshalling_tests_gptrarray_utf8_none_in (GPtrArray *parray_)
 }
 
 /**
+ * gi_marshalling_tests_gptrarray_utf8_container_in:
+ * @parray_: (element-type utf8) (transfer container):
+ */
+void
+gi_marshalling_tests_gptrarray_utf8_container_in (GPtrArray *parray_)
+{
+  gi_marshalling_tests_gptrarray_utf8_none_in (parray_);
+  g_ptr_array_unref (parray_);
+}
+
+/**
+ * gi_marshalling_tests_gptrarray_utf8_full_in:
+ * @parray_: (element-type utf8) (transfer full):
+ */
+void
+gi_marshalling_tests_gptrarray_utf8_full_in (GPtrArray *parray_)
+{
+  gi_marshalling_tests_gptrarray_utf8_none_in (parray_);
+  for (size_t ix = 0; ix < 3; ix++)
+    g_clear_pointer (&g_ptr_array_index (parray_, ix), g_free);
+  g_ptr_array_unref (parray_);
+}
+
+/**
  * gi_marshalling_tests_gptrarray_utf8_none_out:
  * @parray_: (out) (element-type utf8) (transfer none):
  */
@@ -3169,6 +3778,34 @@ gi_marshalling_tests_bytearray_none_in (GByteArray *v)
   g_assert_cmpuint (g_array_index (v, unsigned char, 1), ==, 49);
   g_assert_cmpuint (g_array_index (v, unsigned char, 2), ==, 0xFF);
   g_assert_cmpuint (g_array_index (v, unsigned char, 3), ==, 51);
+}
+
+/**
+ * gi_marshalling_tests_bytearray_full_out:
+ * @v: (out) (transfer full):
+ */
+void
+gi_marshalling_tests_bytearray_full_out (GByteArray **v)
+{
+  *v = gi_marshalling_tests_bytearray_full_return ();
+}
+
+/**
+ * gi_marshalling_tests_bytearray_full_inout:
+ * @v: (inout) (transfer full):
+ */
+void
+gi_marshalling_tests_bytearray_full_inout (GByteArray **v)
+{
+  gi_marshalling_tests_bytearray_none_in (*v);
+  g_byte_array_unref (*v);
+
+  guint8 data[] = { 'h', 'e', 'l', '\0', '\xFF' };
+
+  GByteArray *array = g_byte_array_new ();
+  g_byte_array_append (array, (const guint8 *) data, G_N_ELEMENTS (data));
+
+  *v = array;
 }
 
 /**
@@ -4152,6 +4789,28 @@ gi_marshalling_tests_glist_utf8_none_in (GList *list)
 }
 
 /**
+ * gi_marshalling_tests_glist_utf8_container_in:
+ * @list: (element-type utf8) (transfer container):
+ */
+void
+gi_marshalling_tests_glist_utf8_container_in (GList *list)
+{
+  gi_marshalling_tests_glist_utf8_none_in (list);
+  g_list_free (list);
+}
+
+/**
+ * gi_marshalling_tests_glist_utf8_full_in:
+ * @list: (element-type utf8) (transfer full):
+ */
+void
+gi_marshalling_tests_glist_utf8_full_in (GList *list)
+{
+  gi_marshalling_tests_glist_utf8_none_in (list);
+  g_list_free_full (list, g_free);
+}
+
+/**
  * gi_marshalling_tests_glist_utf8_none_out:
  * @list: (out) (element-type utf8) (transfer none):
  */
@@ -4403,6 +5062,28 @@ gi_marshalling_tests_gslist_utf8_none_in (GSList *list)
   g_assert_cmpstr (g_slist_nth_data (list, 0), ==, "0");
   g_assert_cmpstr (g_slist_nth_data (list, 1), ==, "1");
   g_assert_cmpstr (g_slist_nth_data (list, 2), ==, "2");
+}
+
+/**
+ * gi_marshalling_tests_gslist_utf8_container_in:
+ * @list: (element-type utf8) (transfer container):
+ */
+void
+gi_marshalling_tests_gslist_utf8_container_in (GSList *list)
+{
+  gi_marshalling_tests_gslist_utf8_none_in (list);
+  g_slist_free (list);
+}
+
+/**
+ * gi_marshalling_tests_gslist_utf8_full_in:
+ * @list: (element-type utf8) (transfer full):
+ */
+void
+gi_marshalling_tests_gslist_utf8_full_in (GSList *list)
+{
+  gi_marshalling_tests_gslist_utf8_none_in (list);
+  g_slist_free_full (list, g_free);
 }
 
 /**
@@ -4663,6 +5344,42 @@ gi_marshalling_tests_ghashtable_utf8_none_in (GHashTable *hash_table)
   g_assert_cmpstr (g_hash_table_lookup (hash_table, "0"), ==, "0");
   g_assert_cmpstr (g_hash_table_lookup (hash_table, "1"), ==, "-1");
   g_assert_cmpstr (g_hash_table_lookup (hash_table, "2"), ==, "-2");
+}
+
+/**
+ * gi_marshalling_tests_ghashtable_utf8_container_in:
+ * @hash_table: (element-type utf8 utf8) (transfer container):
+ */
+void
+gi_marshalling_tests_ghashtable_utf8_container_in (GHashTable *hash_table)
+{
+  gi_marshalling_tests_ghashtable_utf8_none_in (hash_table);
+  g_hash_table_steal_all (hash_table);
+  g_hash_table_unref (hash_table);
+}
+
+static gboolean
+hash_table_free_helper (gpointer key, gpointer value, gpointer data G_GNUC_UNUSED)
+{
+  g_free (key);
+  g_free (value);
+  return TRUE;
+}
+
+/**
+ * gi_marshalling_tests_ghashtable_utf8_full_in:
+ * @hash_table: (element-type utf8 utf8) (transfer full):
+ */
+void
+gi_marshalling_tests_ghashtable_utf8_full_in (GHashTable *hash_table)
+{
+  gi_marshalling_tests_ghashtable_utf8_none_in (hash_table);
+
+  /* Free the keys and values manually. Do not rely on the binding passing in a
+   * GHashTable with the destroy functions set. */
+  g_hash_table_foreach_steal (hash_table, hash_table_free_helper, NULL);
+
+  g_hash_table_unref (hash_table);
 }
 
 /**

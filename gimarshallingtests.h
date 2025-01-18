@@ -2345,6 +2345,7 @@ struct _GIMarshallingTestsPropertiesObject
   gchar some_char;
   guchar some_uchar;
   gint some_int;
+  gint some_deprecated_int;
   guint some_uint;
   glong some_long;
   gulong some_ulong;
@@ -2374,6 +2375,187 @@ GType gi_marshalling_tests_properties_object_get_type (void) G_GNUC_CONST;
 
 GI_TEST_EXTERN
 GIMarshallingTestsPropertiesObject *gi_marshalling_tests_properties_object_new (void);
+
+/* Object with properties setters/getters */
+
+#define GI_MARSHALLING_TESTS_TYPE_ACCESSORS_TESTS_PROPERTIES_OBJECT \
+  (gi_marshalling_tests_properties_accessors_object_get_type ())
+
+GI_TEST_EXTERN
+G_DECLARE_FINAL_TYPE (GIMarshallingTestsPropertiesAccessorsObject,
+                      gi_marshalling_tests_properties_accessors_object,
+                      GI_MARSHALLING_TESTS,
+                      PROPERTIES_ACCESSORS_OBJECT,
+                      GObject);
+
+struct _GIMarshallingTestsPropertiesAccessorsObject
+{
+  GObject parent_instance;
+
+  gboolean some_boolean;
+  gchar some_char;
+  guchar some_uchar;
+  gint some_int;
+  gint some_deprecated_int;
+  guint some_uint;
+  glong some_long;
+  gulong some_ulong;
+  gint64 some_int64;
+  guint64 some_uint64;
+  gfloat some_float;
+  gdouble some_double;
+  gchar *some_string;
+  gchar **some_strv;
+  GIMarshallingTestsBoxedStruct *some_boxed_struct;
+  GList *some_boxed_glist;
+  GValue *some_gvalue;
+  GVariant *some_variant;
+  GObject *some_object;
+  GIMarshallingTestsFlags some_flags;
+  GIMarshallingTestsGEnum some_enum;
+  GByteArray *some_byte_array;
+};
+
+GI_TEST_EXTERN
+GIMarshallingTestsPropertiesAccessorsObject *
+gi_marshalling_tests_properties_accessors_object_new (void);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_boolean (GIMarshallingTestsPropertiesAccessorsObject *self, gboolean some_boolean);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_char (GIMarshallingTestsPropertiesAccessorsObject *self, gchar some_char);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_uchar (GIMarshallingTestsPropertiesAccessorsObject *self, guchar some_uchar);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_int (GIMarshallingTestsPropertiesAccessorsObject *self, gint some_int);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_uint (GIMarshallingTestsPropertiesAccessorsObject *self, guint some_uint);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_long (GIMarshallingTestsPropertiesAccessorsObject *self, glong some_long);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_ulong (GIMarshallingTestsPropertiesAccessorsObject *self, gulong some_ulong);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_int64 (GIMarshallingTestsPropertiesAccessorsObject *self, gint64 some_int64);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_uint64 (GIMarshallingTestsPropertiesAccessorsObject *self, guint64 some_uint64);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_float (GIMarshallingTestsPropertiesAccessorsObject *self, gfloat some_float);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_double (GIMarshallingTestsPropertiesAccessorsObject *self, gdouble some_double);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_string (GIMarshallingTestsPropertiesAccessorsObject *self, gchar *some_string);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_strv (GIMarshallingTestsPropertiesAccessorsObject *self, GStrv some_strv);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_boxed_struct (GIMarshallingTestsPropertiesAccessorsObject *self, GIMarshallingTestsBoxedStruct *some_boxed_struct);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_boxed_glist (GIMarshallingTestsPropertiesAccessorsObject *self, GList *some_boxed_glist);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_gvalue (GIMarshallingTestsPropertiesAccessorsObject *self, GValue *some_gvalue);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_variant (GIMarshallingTestsPropertiesAccessorsObject *self, GVariant *some_variant);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_object (GIMarshallingTestsPropertiesAccessorsObject *self, GObject *some_object);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_flags (GIMarshallingTestsPropertiesAccessorsObject *self, GIMarshallingTestsFlags some_flags);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_enum (GIMarshallingTestsPropertiesAccessorsObject *self, GIMarshallingTestsGEnum some_enum);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_byte_array (GIMarshallingTestsPropertiesAccessorsObject *self, GByteArray *some_byte_array);
+
+GI_TEST_EXTERN
+gboolean gi_marshalling_tests_properties_accessors_object_get_boolean (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+gchar gi_marshalling_tests_properties_accessors_object_get_char (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+guchar gi_marshalling_tests_properties_accessors_object_get_uchar (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+gint gi_marshalling_tests_properties_accessors_object_get_int (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+guint gi_marshalling_tests_properties_accessors_object_get_uint (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+glong gi_marshalling_tests_properties_accessors_object_get_long (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+gulong gi_marshalling_tests_properties_accessors_object_get_ulong (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+gint64 gi_marshalling_tests_properties_accessors_object_get_int64 (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+guint64 gi_marshalling_tests_properties_accessors_object_get_uint64 (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+gfloat gi_marshalling_tests_properties_accessors_object_get_float (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+gdouble gi_marshalling_tests_properties_accessors_object_get_double (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+const gchar *gi_marshalling_tests_properties_accessors_object_get_string (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+gchar **gi_marshalling_tests_properties_accessors_object_get_strv (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+GIMarshallingTestsBoxedStruct *gi_marshalling_tests_properties_accessors_object_get_boxed_struct (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+GList *gi_marshalling_tests_properties_accessors_object_get_boxed_glist (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+GValue *gi_marshalling_tests_properties_accessors_object_get_gvalue (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+GVariant *gi_marshalling_tests_properties_accessors_object_get_variant (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+GObject *gi_marshalling_tests_properties_accessors_object_get_object (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+GIMarshallingTestsFlags gi_marshalling_tests_properties_accessors_object_get_flags (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+GIMarshallingTestsGEnum gi_marshalling_tests_properties_accessors_object_get_enum (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+GByteArray *gi_marshalling_tests_properties_accessors_object_get_byte_array (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+gint gi_marshalling_tests_properties_accessors_object_get_readonly (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+G_DEPRECATED
+gint gi_marshalling_tests_properties_accessors_object_get_deprecated_int (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+G_DEPRECATED
+void gi_marshalling_tests_properties_accessors_object_set_deprecated_int (GIMarshallingTestsPropertiesAccessorsObject *self, gint some_deprecated_int);
 
 /* Signals object */
 

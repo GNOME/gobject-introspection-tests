@@ -7492,6 +7492,81 @@ gi_marshalling_tests_object_vfunc_return_flags (GIMarshallingTestsObject *self)
 }
 
 /**
+ * gi_marshalling_tests_object_vfunc_static_name:
+ */
+gchar *
+gi_marshalling_tests_object_vfunc_static_name (void)
+{
+  GIMarshallingTestsObjectClass *klass;
+  klass = g_type_class_peek_static (GI_MARSHALLING_TESTS_TYPE_OBJECT);
+  if (klass->vfunc_static_name)
+    return klass->vfunc_static_name ();
+
+  return g_strdup (g_type_name (GI_MARSHALLING_TESTS_TYPE_OBJECT));
+}
+
+/**
+ * gi_marshalling_tests_object_vfunc_static_typed_name:
+ * @gtype:
+ */
+gchar *
+gi_marshalling_tests_object_vfunc_static_typed_name (GType gtype)
+{
+  GIMarshallingTestsObjectClass *klass;
+
+  g_return_val_if_fail (g_type_is_a (gtype, GI_MARSHALLING_TESTS_TYPE_OBJECT),
+                        NULL);
+
+  klass = g_type_class_peek_static (gtype);
+  if (klass->vfunc_static_name)
+    return klass->vfunc_static_name ();
+
+  return g_strdup (g_type_name (GI_MARSHALLING_TESTS_TYPE_OBJECT));
+}
+
+/**
+ * gi_marshalling_tests_object_vfunc_static_create_new:
+ * @gtype:
+ * @int_:
+ */
+GIMarshallingTestsObject *
+gi_marshalling_tests_object_vfunc_static_create_new (GType gtype, gint int_)
+{
+  GIMarshallingTestsObjectClass *klass;
+
+  g_return_val_if_fail (g_type_is_a (gtype, GI_MARSHALLING_TESTS_TYPE_OBJECT),
+                        NULL);
+
+  klass = g_type_class_peek (gtype);
+  if (klass->vfunc_static_create_new)
+    return klass->vfunc_static_create_new (int_);
+
+  return gi_marshalling_tests_object_new (int_);
+}
+
+/**
+ * gi_marshalling_tests_object_vfunc_static_create_new_out:
+ * @out: (out): We keep this as first parameter to ensure it's parsed properly
+ * @gtype:
+ * @int_:
+ */
+void
+gi_marshalling_tests_object_vfunc_static_create_new_out (GIMarshallingTestsObject **out,
+                                                         GType gtype,
+                                                         gint int_)
+{
+  GIMarshallingTestsObjectClass *klass;
+
+  g_return_if_fail (g_type_is_a (gtype, GI_MARSHALLING_TESTS_TYPE_OBJECT));
+
+  klass = g_type_class_peek (gtype);
+  if (klass->vfunc_static_create_new_out)
+    return klass->vfunc_static_create_new_out (out, int_);
+
+  *out = gi_marshalling_tests_object_new (int_);
+}
+
+/**
  * gi_marshalling_tests_object_vfunc_out_flags:
  * @flags: (out):
  */

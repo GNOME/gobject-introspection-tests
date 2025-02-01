@@ -2033,6 +2033,26 @@ struct _GIMarshallingTestsObjectClass
    * @flags: (out):
    */
   void (*vfunc_out_flags) (GIMarshallingTestsObject *self, GIMarshallingTestsFlags *flags);
+
+  /**
+   * GIMarshallingTestsObjectClass::vfunc_static_name:
+   */
+  gchar *(*vfunc_static_name) (void);
+
+  /**
+   * GIMarshallingTestsObjectClass::vfunc_static_create_new:
+   * @int_:
+   *
+   * Returns: (transfer full):
+   */
+  GIMarshallingTestsObject *(*vfunc_static_create_new) (gint int_);
+
+  /**
+   * GIMarshallingTestsObjectClass::vfunc_static_create_new_out:
+   * @out: (out):
+   * @int_:
+   */
+  void (*vfunc_static_create_new_out) (GIMarshallingTestsObject **out, gint int_);
 };
 
 struct _GIMarshallingTestsObject
@@ -2140,6 +2160,18 @@ GIMarshallingTestsFlags gi_marshalling_tests_object_vfunc_return_flags (GIMarsha
 
 GI_TEST_EXTERN
 void gi_marshalling_tests_object_vfunc_out_flags (GIMarshallingTestsObject *self, GIMarshallingTestsFlags *flags);
+
+GI_TEST_EXTERN
+gchar *gi_marshalling_tests_object_vfunc_static_name (void);
+
+GI_TEST_EXTERN
+gchar *gi_marshalling_tests_object_vfunc_static_typed_name (GType gtype);
+
+GI_TEST_EXTERN
+GIMarshallingTestsObject *gi_marshalling_tests_object_vfunc_static_create_new (GType gtype, gint int_);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_object_vfunc_static_create_new_out (GIMarshallingTestsObject **out, GType gtype, gint int_);
 
 GI_TEST_EXTERN
 void gi_marshalling_tests_object_get_ref_info_for_vfunc_return_object_transfer_none (GIMarshallingTestsObject *self, guint *ref_count, gboolean *is_floating);

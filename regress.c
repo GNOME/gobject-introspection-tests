@@ -5181,3 +5181,27 @@ regress_test_obj_function_sync (RegressTestObj *self G_GNUC_UNUSED, int io_prior
 {
   return TRUE;
 }
+
+G_DEFINE_FLAGS_TYPE (RegressTestDiscontinuousFlags, regress_test_discontinuous_flags, G_DEFINE_ENUM_VALUE (REGRESS_TEST_DISCONTINUOUS_FLAG1, "discontinuous1"), G_DEFINE_ENUM_VALUE (REGRESS_TEST_DISCONTINUOUS_FLAG2, "discontinuous2"))
+
+/**
+ * regress_test_discontinuous_1_with_private_values:
+ *
+ * Returns: REGRESS_TEST_DISCONTINUOUS_FLAG1 with a private value lower than the smallest RegressTestDiscontinuousFlags enum value.
+ */
+RegressTestDiscontinuousFlags
+regress_test_discontinuous_1_with_private_values (void)
+{
+  return 1 << 3 | REGRESS_TEST_DISCONTINUOUS_FLAG1;
+}
+
+/**
+ * regress_test_discontinuous_2_with_private_values:
+ *
+ * Returns: REGRESS_TEST_DISCONTINUOUS_FLAG2 with a private value higher than the largest RegressTestDiscontinuousFlags enum value.
+ */
+RegressTestDiscontinuousFlags
+regress_test_discontinuous_2_with_private_values (void)
+{
+  return 1 << 31 | REGRESS_TEST_DISCONTINUOUS_FLAG2;
+}

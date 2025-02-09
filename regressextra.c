@@ -404,6 +404,34 @@ regress_test_cairo_font_options_none_in (cairo_font_options_t *options G_GNUC_UN
 }
 
 /**
+ * regress_test_cairo_font_face_full_return:
+ * @cairo: (transfer none):
+ *
+ * Returns: (transfer full):
+ */
+cairo_font_face_t *
+regress_test_cairo_font_face_full_return (cairo_t *cairo)
+{
+  cairo_font_face_t *font_face = cairo_get_font_face (cairo);
+
+  return cairo_font_face_reference (font_face);
+}
+
+/**
+ * regress_test_cairo_scaled_font_full_return:
+ * @cairo: (transfer none):
+ *
+ * Returns: (transfer full):
+ */
+cairo_scaled_font_t *
+regress_test_cairo_scaled_font_full_return (cairo_t *cairo)
+{
+  cairo_scaled_font_t *scaled_font = cairo_get_scaled_font (cairo);
+
+  return cairo_scaled_font_reference (scaled_font);
+}
+
+/**
  * regress_test_cairo_matrix_none_in:
  * @matrix: (transfer none):
  */

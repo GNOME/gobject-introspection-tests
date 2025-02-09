@@ -75,6 +75,10 @@ void regress_test_cairo_font_options_full_in (cairo_font_options_t *options);
 GI_TEST_EXTERN
 void regress_test_cairo_font_options_none_in (cairo_font_options_t *options);
 GI_TEST_EXTERN
+cairo_font_face_t *regress_test_cairo_font_face_full_return (cairo_t *cairo);
+GI_TEST_EXTERN
+cairo_scaled_font_t *regress_test_cairo_scaled_font_full_return (cairo_t *cairo);
+GI_TEST_EXTERN
 void regress_test_cairo_region_full_in (cairo_region_t *region);
 GI_TEST_EXTERN
 void regress_test_cairo_surface_full_in (cairo_surface_t *surface);

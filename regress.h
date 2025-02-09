@@ -451,7 +451,7 @@ typedef enum
 typedef enum
 {
   REGRESS_TEST_DISCONTINUOUS_FLAG1 = 1 << 9,
-  REGRESS_TEST_DISCONTINUOUS_FLAG2 = 1 << 30
+  REGRESS_TEST_DISCONTINUOUS_FLAG2 = 1 << 29
 } RegressTestDiscontinuousFlags;
 
 GI_TEST_EXTERN

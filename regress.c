@@ -5203,5 +5203,5 @@ regress_test_discontinuous_1_with_private_values (void)
 RegressTestDiscontinuousFlags
 regress_test_discontinuous_2_with_private_values (void)
 {
-  return 1 << 31 | REGRESS_TEST_DISCONTINUOUS_FLAG2;
+  return 1 << 30 | REGRESS_TEST_DISCONTINUOUS_FLAG2;
 }

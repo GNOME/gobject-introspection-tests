@@ -804,7 +804,7 @@ struct _RegressTestBoxedC
 {
   guint refcount;
   guint another_thing;
-  gboolean name_conflict : 1;
+  gboolean name_conflict;
 };
 
 GI_TEST_EXTERN

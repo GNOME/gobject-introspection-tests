@@ -2768,7 +2768,7 @@ gi_marshalling_tests_length_array_utf8_none_inout (const gchar *const **array_in
 
 /**
  * gi_marshalling_tests_length_array_utf8_container_inout:
- * @array_inout: (array length=inout_length) (inout) (transfer none):
+ * @array_inout: (array length=inout_length) (inout) (transfer container):
  * @inout_length: (inout):
  */
 void

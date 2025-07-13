@@ -6044,6 +6044,18 @@ gi_marshalling_tests_gvalue_flat_array_round_trip (const GValue one, const GValu
 }
 
 /**
+ * gi_marshalling_tests_gvalue_float:
+ * @float: A G_TYPE_FLOAT GValue
+ * @double: A G_TYPE_DOUBLE GValue
+ */
+void
+gi_marshalling_tests_gvalue_float (const GValue *float_value, const GValue *double_value)
+{
+  g_assert_cmpfloat_with_epsilon (g_value_get_float (float_value), 3.14, 0.001);
+  g_assert_cmpfloat_with_epsilon (g_value_get_double (double_value), 3.14, 0.001);
+}
+
+/**
  * gi_marshalling_tests_gclosure_in:
  * @closure: (transfer none):
  */

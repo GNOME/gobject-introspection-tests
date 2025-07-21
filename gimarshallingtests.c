@@ -6045,8 +6045,8 @@ gi_marshalling_tests_gvalue_flat_array_round_trip (const GValue one, const GValu
 
 /**
  * gi_marshalling_tests_gvalue_float:
- * @float: A G_TYPE_FLOAT GValue
- * @double: A G_TYPE_DOUBLE GValue
+ * @float_value: A G_TYPE_FLOAT GValue
+ * @double_value: A G_TYPE_DOUBLE GValue
  */
 void
 gi_marshalling_tests_gvalue_float (const GValue *float_value, const GValue *double_value)

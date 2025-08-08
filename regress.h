@@ -1735,6 +1735,26 @@ void regress_test_obj_function_async (RegressTestObj *self,
                                       gpointer user_data);
 
 GI_TEST_EXTERN
+void regress_test_obj_function2 (RegressTestObj *self,
+                                 int io_priority,
+                                 GCancellable *cancellable,
+                                 RegressTestCallbackUserData test_cb,
+                                 gpointer test_data,
+                                 GDestroyNotify test_destroy,
+                                 GAsyncReadyCallback callback,
+                                 gpointer user_data);
+
+GI_TEST_EXTERN
+gboolean regress_test_obj_function2_finish (RegressTestObj *self,
+                                            GAsyncResult *result,
+                                            gboolean *match,
+                                            GObject **some_obj,
+                                            GError **error);
+
+GI_TEST_EXTERN
+gboolean regress_test_obj_function2_sync (RegressTestObj *self, int io_priority);
+
+GI_TEST_EXTERN
 int regress_test_obj_function_thaw_async (RegressTestObj *self);
 
 GI_TEST_EXTERN

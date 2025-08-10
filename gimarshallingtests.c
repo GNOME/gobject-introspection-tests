@@ -2433,6 +2433,23 @@ gi_marshalling_tests_array_zero_terminated_return_struct (void)
 }
 
 /**
+ * gi_marshalling_tests_array_zero_terminated_return_sequential_struct:
+ *
+ * Returns: (array zero-terminated) (transfer full):
+ */
+GIMarshallingTestsBoxedStruct *
+gi_marshalling_tests_array_zero_terminated_return_sequential_struct (void)
+{
+  GIMarshallingTestsBoxedStruct *ret = (GIMarshallingTestsBoxedStruct *) g_new0 (GIMarshallingTestsBoxedStruct, 4);
+
+  ret[0].long_ = 42;
+  ret[1].long_ = 43;
+  ret[2].long_ = 44;
+
+  return ret;
+}
+
+/**
  * gi_marshalling_tests_array_zero_terminated_return_unichar:
  *
  * Returns: (array zero-terminated) (transfer full):

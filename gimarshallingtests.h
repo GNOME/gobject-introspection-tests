@@ -926,6 +926,9 @@ GI_TEST_EXTERN
 GIMarshallingTestsBoxedStruct **gi_marshalling_tests_array_zero_terminated_return_struct (void);
 
 GI_TEST_EXTERN
+GIMarshallingTestsBoxedStruct *gi_marshalling_tests_array_zero_terminated_return_sequential_struct (void);
+
+GI_TEST_EXTERN
 gunichar *gi_marshalling_tests_array_zero_terminated_return_unichar (void);
 
 GI_TEST_EXTERN

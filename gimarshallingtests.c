@@ -2785,7 +2785,7 @@ gi_marshalling_tests_length_array_utf8_none_inout (const gchar *const **array_in
 
 /**
  * gi_marshalling_tests_length_array_utf8_container_inout:
- * @array_inout: (array length=inout_length) (inout) (transfer none):
+ * @array_inout: (array length=inout_length) (inout) (transfer container):
  * @inout_length: (inout):
  */
 void
@@ -4283,7 +4283,7 @@ gi_marshalling_tests_length_array_of_gstrv_transfer_none_inout (GStrv **array_in
 
 /**
  * gi_marshalling_tests_length_array_of_gstrv_transfer_container_inout:
- * @array_inout: (array length=inout_length) (inout) (element-type GStrv) (transfer none):
+ * @array_inout: (array length=inout_length) (inout) (element-type GStrv) (transfer container):
  * @inout_length: (inout):
  */
 void

@@ -279,10 +279,10 @@ GI_TEST_EXTERN
 void regress_test_glist_nothing_in2 (GList *in);
 
 GI_TEST_EXTERN
-void regress_test_glist_null_in (GSList *in);
+void regress_test_glist_null_in (GList *in);
 
 GI_TEST_EXTERN
-void regress_test_glist_null_out (GSList **out_list);
+void regress_test_glist_null_out (GList **out_list);
 
 /* GSList */
 GI_TEST_EXTERN

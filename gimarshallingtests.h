@@ -999,6 +999,9 @@ GI_TEST_EXTERN
 void gi_marshalling_tests_length_array_utf8_full_inout (gchar ***array_inout, size_t *inout_length);
 
 GI_TEST_EXTERN
+void gi_marshalling_tests_length_array_utf8_optional_inout (int *inout_length, char **array_inout[]);
+
+GI_TEST_EXTERN
 const gchar *const *gi_marshalling_tests_zero_terminated_array_utf8_none_return (void);
 
 GI_TEST_EXTERN

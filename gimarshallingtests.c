@@ -2831,6 +2831,32 @@ gi_marshalling_tests_length_array_utf8_full_inout (gchar ***array_inout, size_t 
 }
 
 /**
+ * gi_marshalling_tests_length_array_utf8_optional_inout:
+ * @inout_length: (inout) (optional): @array_inout's length
+ * @array_inout: (inout) (array length=inout_length) (optional): array ["🅰", "β", "c", "d"]
+ *
+ * See https://gitlab.freedesktop.org/gstreamer/gstreamer/-/merge_requests/9524
+ */
+void
+gi_marshalling_tests_length_array_utf8_optional_inout (int *inout_length, char **array_inout[])
+{
+  if (*inout_length > 0)
+    gi_marshalling_tests_length_array_utf8_full_inout (array_inout, (size_t *) inout_length);
+  else {
+    gchar **array_out = g_new0 (gchar *, 2);
+
+    g_assert_nonnull (inout_length);
+    g_assert_nonnull (array_inout);
+
+    array_out[0] = g_strdup ("a");
+    array_out[1] = g_strdup ("b");
+
+    *array_inout = array_out;
+    *inout_length = 2;
+  }
+}
+
+/**
  * gi_marshalling_tests_zero_terminated_array_utf8_none_return:
  *
  * Returns: (array zero-terminated) (transfer none):

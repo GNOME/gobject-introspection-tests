@@ -1125,7 +1125,7 @@ regress_test_glist_nothing_in2 (GList *in)
  * @in: (element-type utf8) (allow-none):
  */
 void
-regress_test_glist_null_in (GSList *in)
+regress_test_glist_null_in (GList *in)
 {
   g_assert (in == NULL);
 }
@@ -1135,7 +1135,7 @@ regress_test_glist_null_in (GSList *in)
  * @out_list: (out) (element-type utf8) (allow-none):
  */
 void
-regress_test_glist_null_out (GSList **out_list)
+regress_test_glist_null_out (GList **out_list)
 {
   *out_list = NULL;
 }

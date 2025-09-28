@@ -5227,7 +5227,7 @@ regress_test_obj_function2 (RegressTestObj *self,
  *
  * Finish function for `regress_test_obj_function2_async()`.
  *
- * Returns: (type void): %FALSE on error, %TRUE otherwise
+ * Returns: %FALSE on error, %TRUE otherwise
  */
 gboolean
 regress_test_obj_function2_finish (RegressTestObj *self G_GNUC_UNUSED,

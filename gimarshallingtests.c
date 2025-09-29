@@ -2841,19 +2841,26 @@ void
 gi_marshalling_tests_length_array_utf8_optional_inout (int *inout_length, char **array_inout[])
 {
   if (*inout_length > 0)
-    gi_marshalling_tests_length_array_utf8_full_inout (array_inout, (size_t *) inout_length);
-  else {
-    gchar **array_out = g_new0 (gchar *, 2);
+    {
+      size_t size = *inout_length;
+      gi_marshalling_tests_length_array_utf8_full_inout (array_inout, &size);
+      *inout_length = size;
+    }
+  else
+    {
+      g_free (*array_inout);
 
-    g_assert_nonnull (inout_length);
-    g_assert_nonnull (array_inout);
+      gchar **array_out = g_new0 (gchar *, 2);
 
-    array_out[0] = g_strdup ("a");
-    array_out[1] = g_strdup ("b");
+      g_assert_nonnull (inout_length);
+      g_assert_nonnull (array_inout);
 
-    *array_inout = array_out;
-    *inout_length = 2;
-  }
+      array_out[0] = g_strdup ("a");
+      array_out[1] = g_strdup ("b");
+
+      *array_inout = array_out;
+      *inout_length = 2;
+    }
 }
 
 /**

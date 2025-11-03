@@ -1082,6 +1082,9 @@ GI_TEST_EXTERN
 GArray *gi_marshalling_tests_garray_uint64_none_return (void);
 
 GI_TEST_EXTERN
+GArray *gi_marshalling_tests_garray_enum_none_return (void);
+
+GI_TEST_EXTERN
 GArray *gi_marshalling_tests_garray_utf8_none_return (void);
 
 GI_TEST_EXTERN

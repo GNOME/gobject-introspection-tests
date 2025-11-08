@@ -3254,6 +3254,31 @@ gi_marshalling_tests_garray_uint64_none_return (void)
 }
 
 /**
+ * gi_marshalling_tests_garray_enum_none_return:
+ *
+ * Returns: (element-type GIMarshallingTestsGEnum) (transfer none):
+ */
+GArray *
+gi_marshalling_tests_garray_enum_none_return (void)
+{
+  static GArray *array = NULL;
+  GIMarshallingTestsGEnum value;
+
+  if (array == NULL)
+    {
+      array = g_array_new (TRUE, TRUE, sizeof (GIMarshallingTestsGEnum));
+      value = GI_MARSHALLING_TESTS_GENUM_VALUE1;
+      g_array_append_val (array, value);
+      value = GI_MARSHALLING_TESTS_GENUM_VALUE2;
+      g_array_append_val (array, value);
+      value = GI_MARSHALLING_TESTS_GENUM_VALUE3;
+      g_array_append_val (array, value);
+    }
+
+  return array;
+}
+
+/**
  * gi_marshalling_tests_garray_utf8_none_return:
  *
  * Returns: (element-type utf8) (transfer none):

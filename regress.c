@@ -4805,6 +4805,38 @@ regress_test_torture_signature_2 (int x,
   notify (user_data);
 }
 
+
+/**
+ * regress_test_torture_signature_3:
+ * @data: (array length=size) (element-type guint8) (transfer none): data to wrap
+ * @size: size of valid data
+ * @user_data: (allow-none): user_data
+ * @notify: (allow-none) (scope async) (closure user_data): called with @user_data when the memory is freed
+ *
+ * A function with similar signature as `gst_buffer_new_wrapped_full()`.
+ */
+gsize
+regress_test_torture_signature_3 (gpointer data,
+                                  gsize size,
+                                  gpointer user_data,
+                                  GDestroyNotify notify)
+{
+  gsize i;
+  gsize sum = 0;
+  guint8 *ints = (guint8*) data;
+
+  g_assert (data != NULL);
+  g_assert_cmpint (strlen(data), ==, size);
+
+  for (i = 0; i < size; i++)
+    sum += ints[i];
+
+  if (user_data && notify)
+    notify (user_data);
+
+  return sum;
+}
+
 /**
  * regress_test_date_in_gvalue:
  *

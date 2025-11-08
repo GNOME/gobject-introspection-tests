@@ -1499,6 +1499,12 @@ void regress_test_torture_signature_2 (int x,
                                        guint m);
 
 GI_TEST_EXTERN
+gsize regress_test_torture_signature_3 (gpointer data,
+                                        gsize size,
+                                        gpointer user_data,
+                                        GDestroyNotify notify);
+
+GI_TEST_EXTERN
 GValue *regress_test_date_in_gvalue (void);
 
 GI_TEST_EXTERN

@@ -866,6 +866,7 @@ struct _RegressTestObj
   GType gtype;
   gint name_conflict;
   GByteArray *byte_array;
+  gunichar unichar;
 
   /* < private > */
   void (*function_ptr) (void);

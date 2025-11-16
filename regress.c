@@ -2185,6 +2185,7 @@ enum
   PROP_TEST_OBJ_GTYPE,
   PROP_TEST_OBJ_NAME_CONFLICT,
   PROP_TEST_OBJ_BYTE_ARRAY,
+  PROP_TEST_OBJ_UNICHAR,
   PROP_TEST_OBJ_WRITE_ONLY,
 };
 
@@ -2250,6 +2251,10 @@ regress_test_obj_set_property (GObject *object,
 
     case PROP_TEST_OBJ_BYTE_ARRAY:
       self->byte_array = g_value_get_boxed (value);
+      break;
+
+    case PROP_TEST_OBJ_UNICHAR:
+      self->unichar = g_value_get_uint (value);
       break;
 
     case PROP_TEST_OBJ_WRITE_ONLY:
@@ -2320,6 +2325,10 @@ regress_test_obj_get_property (GObject *object,
 
     case PROP_TEST_OBJ_BYTE_ARRAY:
       g_value_set_boxed (value, self->byte_array);
+      break;
+
+    case PROP_TEST_OBJ_UNICHAR:
+      g_value_set_uint (value, self->unichar);
       break;
 
     default:
@@ -2884,6 +2893,18 @@ regress_test_obj_class_init (RegressTestObjClass *klass)
                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
   g_object_class_install_property (gobject_class,
                                    PROP_TEST_OBJ_BYTE_ARRAY,
+                                   pspec);
+
+  /**
+   * RegressTestObj:unichar:
+   */
+  pspec = g_param_spec_unichar ("unichar",
+                                "unichar property",
+                                "An unichar (UTF-32 or UCS-4) property",
+                                0,
+                                G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+  g_object_class_install_property (gobject_class,
+                                   PROP_TEST_OBJ_UNICHAR,
                                    pspec);
 
   /**

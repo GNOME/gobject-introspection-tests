@@ -2899,8 +2899,8 @@ regress_test_obj_class_init (RegressTestObjClass *klass)
    * RegressTestObj:unichar:
    */
   pspec = g_param_spec_unichar ("unichar",
-                                "unichar property",
-                                "An unichar (UTF-32 or UCS-4) property",
+                                "unichar code point",
+                                "An unichar (UTF-32 or UCS-4) code point",
                                 0,
                                 G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
   g_object_class_install_property (gobject_class,

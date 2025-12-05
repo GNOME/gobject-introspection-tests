@@ -2840,9 +2840,17 @@ gi_marshalling_tests_length_array_utf8_full_inout (gchar ***array_inout, size_t 
 void
 gi_marshalling_tests_length_array_utf8_optional_inout (int *inout_length, char **array_inout[])
 {
-  if (*inout_length > 0)
+  if (inout_length == NULL)
+    {
+      g_assert_null (array_inout);
+    }
+  else if (*inout_length > 0)
     {
       size_t size = *inout_length;
+
+      g_assert_nonnull (array_inout);
+      g_assert_nonnull (*array_inout);
+
       gi_marshalling_tests_length_array_utf8_full_inout (array_inout, &size);
       *inout_length = size;
     }

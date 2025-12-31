@@ -2570,6 +2570,7 @@ struct _GIMarshallingTestsPropertiesObject
   GIMarshallingTestsFlags some_flags;
   GIMarshallingTestsGEnum some_enum;
   GByteArray *some_byte_array;
+  GHashTable *some_hash_table;
 };
 
 struct _GIMarshallingTestsPropertiesObjectClass
@@ -2621,6 +2622,7 @@ struct _GIMarshallingTestsPropertiesAccessorsObject
   GIMarshallingTestsFlags some_flags;
   GIMarshallingTestsGEnum some_enum;
   GByteArray *some_byte_array;
+  GHashTable *some_hash_table;
 };
 
 GI_TEST_EXTERN
@@ -2691,6 +2693,9 @@ GI_TEST_EXTERN
 void gi_marshalling_tests_properties_accessors_object_set_byte_array (GIMarshallingTestsPropertiesAccessorsObject *self, GByteArray *some_byte_array);
 
 GI_TEST_EXTERN
+void gi_marshalling_tests_properties_accessors_object_set_hash_table (GIMarshallingTestsPropertiesAccessorsObject *self, GHashTable *some_hash_table);
+
+GI_TEST_EXTERN
 gboolean gi_marshalling_tests_properties_accessors_object_get_boolean (GIMarshallingTestsPropertiesAccessorsObject *self);
 
 GI_TEST_EXTERN
@@ -2752,6 +2757,9 @@ GIMarshallingTestsGEnum gi_marshalling_tests_properties_accessors_object_get_enu
 
 GI_TEST_EXTERN
 GByteArray *gi_marshalling_tests_properties_accessors_object_get_byte_array (GIMarshallingTestsPropertiesAccessorsObject *self);
+
+GI_TEST_EXTERN
+GHashTable *gi_marshalling_tests_properties_accessors_object_get_hash_table (GIMarshallingTestsPropertiesAccessorsObject *self);
 
 GI_TEST_EXTERN
 gint gi_marshalling_tests_properties_accessors_object_get_readonly (GIMarshallingTestsPropertiesAccessorsObject *self);

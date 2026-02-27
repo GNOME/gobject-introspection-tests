@@ -1014,13 +1014,13 @@ GI_TEST_EXTERN
 gchar **gi_marshalling_tests_zero_terminated_array_utf8_full_return (void);
 
 GI_TEST_EXTERN
-void gi_marshalling_tests_zero_terminated_array_utf8_none_in (const gchar *const *array);
+void gi_marshalling_tests_zero_terminated_array_utf8_none_in (const gchar *const *array, gchar *extra);
 
 GI_TEST_EXTERN
-void gi_marshalling_tests_zero_terminated_array_utf8_container_in (const gchar **array);
+void gi_marshalling_tests_zero_terminated_array_utf8_container_in (const gchar **array, gchar *extra);
 
 GI_TEST_EXTERN
-void gi_marshalling_tests_zero_terminated_array_utf8_full_in (gchar **array);
+void gi_marshalling_tests_zero_terminated_array_utf8_full_in (gchar **array, gchar *extra);
 
 GI_TEST_EXTERN
 void gi_marshalling_tests_zero_terminated_array_utf8_none_out (const gchar *const **array_out);

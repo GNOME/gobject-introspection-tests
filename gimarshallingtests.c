@@ -2939,10 +2939,15 @@ gi_marshalling_tests_zero_terminated_array_utf8_full_return (void)
 
 /**
  * gi_marshalling_tests_zero_terminated_array_utf8_none_in:
+ *
+ * The extra parameter can be used to trigger marshalling errors,
+ * so you can test the cleanup of array in case of invalid parameters.
+ *
  * @array: (array zero-terminated) (transfer none):
+ * @extra: (nullable) (transfer none):
  */
 void
-gi_marshalling_tests_zero_terminated_array_utf8_none_in (const gchar *const *array)
+gi_marshalling_tests_zero_terminated_array_utf8_none_in (const gchar *const *array, gchar *extra)
 {
   g_assert_cmpstr (array[0], ==, SQUARED_A);
   g_assert_cmpstr (array[1], ==, BETA);
@@ -2950,28 +2955,39 @@ gi_marshalling_tests_zero_terminated_array_utf8_none_in (const gchar *const *arr
   g_assert_cmpstr (array[3], ==, "d");
 
   g_assert_null (array[4]);
+  g_assert_null (extra);
 }
 
 /**
  * gi_marshalling_tests_zero_terminated_array_utf8_container_in:
+ *
+ * The extra parameter can be used to trigger marshalling errors,
+ * so you can test the cleanup of array in case of invalid parameters.
+ *
  * @array: (array zero-terminated) (transfer container):
+ * @extra: (nullable) (transfer none):
  */
 void
-gi_marshalling_tests_zero_terminated_array_utf8_container_in (const gchar **array)
+gi_marshalling_tests_zero_terminated_array_utf8_container_in (const gchar **array, gchar *extra)
 {
-  gi_marshalling_tests_zero_terminated_array_utf8_none_in (array);
+  gi_marshalling_tests_zero_terminated_array_utf8_none_in (array, extra);
 
   g_clear_pointer (&array, g_free);
 }
 
 /**
  * gi_marshalling_tests_zero_terminated_array_utf8_full_in:
+ *
+ * The extra parameter can be used to trigger marshalling errors,
+ * so you can test the cleanup of array in case of invalid parameters.
+ *
  * @array: (array zero-terminated) (transfer full):
+ * @extra: (nullable) (transfer none):
  */
 void
-gi_marshalling_tests_zero_terminated_array_utf8_full_in (gchar **array)
+gi_marshalling_tests_zero_terminated_array_utf8_full_in (gchar **array, gchar *extra)
 {
-  gi_marshalling_tests_zero_terminated_array_utf8_none_in ((const gchar *const *) array);
+  gi_marshalling_tests_zero_terminated_array_utf8_none_in ((const gchar *const *) array, extra);
 
   for (size_t i = 0; array && array[i] != NULL; i++)
     g_clear_pointer (&array[i], g_free);
@@ -3018,7 +3034,7 @@ gi_marshalling_tests_zero_terminated_array_utf8_none_inout (const gchar *const *
 {
   static const gchar *array_out[] = { "a", "b", CENT, ABCD, NULL };
 
-  gi_marshalling_tests_zero_terminated_array_utf8_none_in (*array_inout);
+  gi_marshalling_tests_zero_terminated_array_utf8_none_in (*array_inout, NULL);
 
   *array_inout = array_out;
 }
@@ -3032,7 +3048,7 @@ gi_marshalling_tests_zero_terminated_array_utf8_container_inout (const gchar ***
 {
   const gchar **array_out = g_new0 (const gchar *, 5);
 
-  gi_marshalling_tests_zero_terminated_array_utf8_container_in (*array_inout);
+  gi_marshalling_tests_zero_terminated_array_utf8_container_in (*array_inout, NULL);
 
   array_out[0] = "a";
   array_out[1] = "b";
@@ -3052,7 +3068,7 @@ gi_marshalling_tests_zero_terminated_array_utf8_full_inout (gchar ***array_inout
   gchar **array_out = g_new0 (gchar *, 5);
 
   gi_marshalling_tests_zero_terminated_array_utf8_full_in (
-    g_steal_pointer (array_inout));
+    g_steal_pointer (array_inout), NULL);
 
   array_out[0] = g_strdup ("a");
   array_out[1] = g_strdup ("b");

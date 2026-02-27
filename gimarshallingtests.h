@@ -864,6 +864,9 @@ GI_TEST_EXTERN
 void gi_marshalling_tests_array_struct_in (GIMarshallingTestsBoxedStruct **structs, gint length);
 
 GI_TEST_EXTERN
+void gi_marshalling_tests_array_struct_full_in (GIMarshallingTestsBoxedStruct **structs, gint length);
+
+GI_TEST_EXTERN
 void gi_marshalling_tests_array_struct_value_in (GIMarshallingTestsBoxedStruct *structs, gint length);
 
 GI_TEST_EXTERN

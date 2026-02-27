@@ -2128,6 +2128,24 @@ gi_marshalling_tests_array_struct_in (GIMarshallingTestsBoxedStruct **structs, g
 }
 
 /**
+ * gi_marshalling_tests_array_struct_full_in:
+ * @structs: (array length=length) (transfer full):
+ */
+void
+gi_marshalling_tests_array_struct_full_in (GIMarshallingTestsBoxedStruct **structs, gint length)
+{
+  g_assert_cmpint (length, ==, 3);
+  g_assert_cmpint (structs[0]->long_, ==, 1);
+  g_assert_cmpint (structs[1]->long_, ==, 2);
+  g_assert_cmpint (structs[2]->long_, ==, 3);
+
+  for (int i = 0; i < length; i++)
+    g_free (structs[i]);
+
+  g_free (structs);
+}
+
+/**
  * gi_marshalling_tests_array_struct_value_in:
  * @structs: (array length=length):
  */

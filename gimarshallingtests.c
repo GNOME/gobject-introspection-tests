@@ -2939,12 +2939,10 @@ gi_marshalling_tests_zero_terminated_array_utf8_full_return (void)
 
 /**
  * gi_marshalling_tests_zero_terminated_array_utf8_none_in:
- *
- * The extra parameter can be used to trigger marshalling errors,
- * so you can test the cleanup of array in case of invalid parameters.
- *
  * @array: (array zero-terminated) (transfer none):
  * @extra: (nullable) (transfer none):
+ *    The extra parameter can be used to trigger marshalling errors,
+ *    so you can test the cleanup of array in case of invalid parameters.
  */
 void
 gi_marshalling_tests_zero_terminated_array_utf8_none_in (const gchar *const *array, gchar *extra)
@@ -2960,12 +2958,10 @@ gi_marshalling_tests_zero_terminated_array_utf8_none_in (const gchar *const *arr
 
 /**
  * gi_marshalling_tests_zero_terminated_array_utf8_container_in:
- *
- * The extra parameter can be used to trigger marshalling errors,
- * so you can test the cleanup of array in case of invalid parameters.
- *
  * @array: (array zero-terminated) (transfer container):
  * @extra: (nullable) (transfer none):
+ *    The extra parameter can be used to trigger marshalling errors,
+ *    so you can test the cleanup of array in case of invalid parameters.
  */
 void
 gi_marshalling_tests_zero_terminated_array_utf8_container_in (const gchar **array, gchar *extra)
@@ -2977,12 +2973,10 @@ gi_marshalling_tests_zero_terminated_array_utf8_container_in (const gchar **arra
 
 /**
  * gi_marshalling_tests_zero_terminated_array_utf8_full_in:
- *
- * The extra parameter can be used to trigger marshalling errors,
- * so you can test the cleanup of array in case of invalid parameters.
- *
  * @array: (array zero-terminated) (transfer full):
  * @extra: (nullable) (transfer none):
+ *    The extra parameter can be used to trigger marshalling errors,
+ *    so you can test the cleanup of array in case of invalid parameters.
  */
 void
 gi_marshalling_tests_zero_terminated_array_utf8_full_in (gchar **array, gchar *extra)

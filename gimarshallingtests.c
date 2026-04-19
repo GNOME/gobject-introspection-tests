@@ -4669,7 +4669,7 @@ gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_none_inout (GStrv *
 void
 gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_container_inout (GStrv **array_inout)
 {
-  GStrv *array = g_new0 (GStrv, 4);
+  GStrv *array = g_new0 (GStrv, 5);
 
   static const gchar *values0[] = { "-1", "0", "1", "2", NULL };
   static const gchar *values1[] = { "-1", "3", "4", "5", NULL };
@@ -4682,6 +4682,7 @@ gi_marshalling_tests_zero_terminated_array_of_gstrv_transfer_container_inout (GS
   array[1] = (GStrv) values1;
   array[2] = (GStrv) values2;
   array[3] = (GStrv) values3;
+  array[4] = NULL;
 
   *array_inout = (GStrv *) array;
 }

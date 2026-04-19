@@ -21,7 +21,7 @@ warnlib_throw_unpaired (GError **error)
 }
 
 typedef WarnLibWhateverIface WarnLibWhateverInterface;
-G_DEFINE_INTERFACE (WarnLibWhatever, warnlib_whatever, G_TYPE_OBJECT)
+G_DEFINE_INTERFACE (WarnLibWhatever, warnlib_whatever, G_TYPE_OBJECT);
 
 static void
 warnlib_whatever_default_init (WarnLibWhateverIface *iface G_GNUC_UNUSED)

@@ -23,8 +23,7 @@ G_DEFINE_TYPE (RegressAnnotationObject, regress_annotation_object, G_TYPE_OBJECT
 
 enum
 {
-  PROP_0,
-  PROP_STRING_PROPERTY,
+  PROP_STRING_PROPERTY = 1,
   PROP_FUNCTION_PROPERTY,
   PROP_TAB_PROPERTY
 };
@@ -83,10 +82,10 @@ regress_annotation_object_get_property (GObject *object,
 static void
 regress_annotation_object_finalize (GObject *gobj)
 {
-  RegressAnnotationObject *self = (RegressAnnotationObject *)gobj;
+  RegressAnnotationObject *self = (RegressAnnotationObject *) gobj;
   if (self->destroy_notify)
-    self->destroy_notify(self->user_data);
-  G_OBJECT_CLASS(regress_annotation_object_parent_class)->finalize(gobj);
+    self->destroy_notify (self->user_data);
+  G_OBJECT_CLASS (regress_annotation_object_parent_class)->finalize (gobj);
 }
 
 static void
@@ -189,7 +188,7 @@ regress_annotation_object_class_init (RegressAnnotationObjectClass *klass)
                                                         "String property",
                                                         "This property is a string",
                                                         NULL,
-                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS));
   /**
    * RegressAnnotationObject:function-property: (type RegressAnnotationCallback)
    */
@@ -198,7 +197,7 @@ regress_annotation_object_class_init (RegressAnnotationObjectClass *klass)
                                    g_param_spec_pointer ("function-property",
                                                          "Function property",
                                                          "This property is a function pointer",
-                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS));
 
   /* clang-format off */
 
@@ -216,7 +215,7 @@ regress_annotation_object_class_init (RegressAnnotationObjectClass *klass)
                                                         "Tab property",
                                                         "This property is a thing",
                                                         NULL,
-                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS));
 
   /* clang-format on */
 }
@@ -767,7 +766,7 @@ void
 regress_annotation_custom_destroy_cleanup (void)
 {
   if (regress_annotation_destroy_notify)
-    regress_annotation_destroy_notify(regress_annotation_user_data);
+    regress_annotation_destroy_notify (regress_annotation_user_data);
 }
 
 /**
@@ -839,7 +838,7 @@ regress_annotation_test_parsing_bug630862 (void)
 }
 
 /* clang-format off */
-/** 
+/**
  * regress_annotation_space_after_comment_bug631690:
  *
  * Explicitly test having a space after the ** here.

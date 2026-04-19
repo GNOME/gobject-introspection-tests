@@ -1727,8 +1727,7 @@ void
 gi_marshalling_tests_utf8_full_inout (gchar **utf8)
 {
   g_assert_cmpstr (GI_MARSHALLING_TESTS_CONSTANT_UTF8, ==, *utf8);
-  g_free (*utf8);
-  *utf8 = g_strdup ("");
+  g_set_str (utf8, "");
 }
 
 /**
@@ -8009,7 +8008,7 @@ gi_marshalling_tests_test_interface_test_int8_in (GIMarshallingTestsInterface *t
 
 static void test_interface_init (GIMarshallingTestsInterfaceIface *iface);
 
-G_DEFINE_TYPE_WITH_CODE (GIMarshallingTestsInterfaceImpl, gi_marshalling_tests_interface_impl, G_TYPE_OBJECT, G_IMPLEMENT_INTERFACE (GI_MARSHALLING_TESTS_TYPE_INTERFACE, test_interface_init))
+G_DEFINE_TYPE_WITH_CODE (GIMarshallingTestsInterfaceImpl, gi_marshalling_tests_interface_impl, G_TYPE_OBJECT, G_IMPLEMENT_INTERFACE (GI_MARSHALLING_TESTS_TYPE_INTERFACE, test_interface_init));
 
 static void
 gi_marshalling_tests_interface_impl_test_int8_in (GIMarshallingTestsInterface *self G_GNUC_UNUSED,
@@ -8919,7 +8918,7 @@ gi_marshalling_tests_properties_object_new (void)
 
 G_DEFINE_FINAL_TYPE (GIMarshallingTestsPropertiesAccessorsObject,
                      gi_marshalling_tests_properties_accessors_object,
-                     G_TYPE_OBJECT)
+                     G_TYPE_OBJECT);
 
 GIMarshallingTestsPropertiesAccessorsObject *
 gi_marshalling_tests_properties_accessors_object_new (void)

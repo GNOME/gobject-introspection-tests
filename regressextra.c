@@ -195,7 +195,7 @@ gboolean
 regress_test_fundamental_argument_in (RegressTestFundamentalObject *obj)
 {
   gboolean retval = REGRESS_TEST_IS_FUNDAMENTAL_OBJECT (obj);
-  regress_test_fundamental_object_unref(obj);
+  regress_test_fundamental_object_unref (obj);
   return retval;
 }
 
@@ -473,7 +473,7 @@ regress_test_cairo_matrix_out_caller_allocates (cairo_matrix_t *matrix)
 
 #endif
 
-G_DEFINE_TYPE (RegressTestAction, regress_test_action, G_TYPE_INITIALLY_UNOWNED)
+G_DEFINE_TYPE (RegressTestAction, regress_test_action, G_TYPE_INITIALLY_UNOWNED);
 
 enum
 {

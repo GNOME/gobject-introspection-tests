@@ -1741,6 +1741,22 @@ gboolean gi_marshalling_tests_boxed_struct_out_uninitialized (GIMarshallingTests
 GI_TEST_EXTERN
 void gi_marshalling_tests_boxed_struct_inout (GIMarshallingTestsBoxedStruct **struct_);
 
+/**
+ * GIMarshallingTestsPointerArrayStruct:
+ * @array: a #GArray of #guint8 elements.
+ */
+typedef struct
+{
+  GArray *array;
+  gint ref_count;
+} GIMarshallingTestsPointerArrayStruct;
+
+GI_TEST_EXTERN
+GType gi_marshalling_tests_pointer_array_struct_get_type (void) G_GNUC_CONST;
+
+GI_TEST_EXTERN
+GIMarshallingTestsPointerArrayStruct *gi_marshalling_tests_pointer_array_struct_with_uint8_array (void);
+
 typedef union
 {
   glong long_;

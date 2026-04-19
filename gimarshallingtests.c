@@ -6745,6 +6745,63 @@ gi_marshalling_tests_boxed_struct_inout (GIMarshallingTestsBoxedStruct **struct_
   (*struct_)->long_ = 0;
 }
 
+static GIMarshallingTestsPointerArrayStruct *
+gi_marshalling_tests_pointer_array_struct_copy (GIMarshallingTestsPointerArrayStruct *struct_)
+{
+  struct_->ref_count += 1;
+  return struct_;
+}
+
+static void
+gi_marshalling_tests_pointer_array_struct_free (GIMarshallingTestsPointerArrayStruct *struct_)
+{
+  if (struct_ && struct_->ref_count > 0)
+    {
+      struct_->ref_count -= 1;
+      if (struct_->ref_count == 0)
+        {
+          g_clear_pointer (&struct_->array, g_array_unref);
+          g_free (struct_);
+        }
+    }
+}
+
+GType
+gi_marshalling_tests_pointer_array_struct_get_type (void)
+{
+  static GType type = 0;
+
+  if (type == 0)
+    {
+      type = g_boxed_type_register_static ("GIMarshallingTestsPointerArrayStruct",
+                                           (GBoxedCopyFunc) gi_marshalling_tests_pointer_array_struct_copy,
+                                           (GBoxedFreeFunc) gi_marshalling_tests_pointer_array_struct_free);
+    }
+
+  return type;
+}
+
+/**
+ * gi_marshalling_tests_pointer_array_struct_with_uint8_array:
+ * Returns: (transfer full):
+ */
+GIMarshallingTestsPointerArrayStruct *
+gi_marshalling_tests_pointer_array_struct_with_uint8_array (void)
+{
+  GIMarshallingTestsPointerArrayStruct *struct_;
+  static const gchar values[] = "0123456789";
+  gint i;
+
+  struct_ = g_new0 (GIMarshallingTestsPointerArrayStruct, 1);
+
+  struct_->array = g_array_new (TRUE, TRUE, sizeof (guint8));
+  for (i = 0; values[i]; i++)
+    g_array_append_val (struct_->array, values[i]);
+
+  struct_->ref_count = 1;
+  return struct_;
+}
+
 static GIMarshallingTestsUnion *
 gi_marshalling_tests_union_copy (GIMarshallingTestsUnion *union_)
 {

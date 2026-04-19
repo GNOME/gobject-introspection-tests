@@ -17,16 +17,16 @@ G_DEFINE_TYPE (UtilityObject, utility_object, G_TYPE_OBJECT);
 static void
 utility_object_finalize (GObject *gobj)
 {
-  UtilityObject *self = UTILITY_OBJECT(gobj);
+  UtilityObject *self = UTILITY_OBJECT (gobj);
   if (self->destroy_notify)
-    self->destroy_notify(self->user_data);
-  G_OBJECT_CLASS(utility_object_parent_class)->finalize(gobj);
+    self->destroy_notify (self->user_data);
+  G_OBJECT_CLASS (utility_object_parent_class)->finalize (gobj);
 }
 
 static void
 utility_object_class_init (UtilityObjectClass *klass G_GNUC_UNUSED)
 {
-  G_OBJECT_CLASS(klass)->finalize = utility_object_finalize;
+  G_OBJECT_CLASS (klass)->finalize = utility_object_finalize;
 }
 
 static void

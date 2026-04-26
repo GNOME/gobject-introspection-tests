@@ -9770,7 +9770,7 @@ gi_marshalling_tests_properties_accessors_object_set_byte_array (GIMarshallingTe
 /**
  * gi_marshalling_tests_properties_accessors_object_set_hash_table: (set-property some-hash-table)
  * @self:
- * @some_hash_table:
+ * @some_hash_table: (type GLib.HashTable(gint32,utf8)):
  */
 void
 gi_marshalling_tests_properties_accessors_object_set_hash_table (GIMarshallingTestsPropertiesAccessorsObject *self, GHashTable *some_hash_table)
@@ -10037,7 +10037,7 @@ gi_marshalling_tests_properties_accessors_object_get_byte_array (GIMarshallingTe
  * gi_marshalling_tests_properties_accessors_object_get_hash_table: (get-property some-hash-table)
  * @self:
  *
- * Returns: (transfer none):
+ * Returns: (type GLib.HashTable(gint32,utf8)) (transfer none):
  */
 GHashTable *
 gi_marshalling_tests_properties_accessors_object_get_hash_table (GIMarshallingTestsPropertiesAccessorsObject *self)

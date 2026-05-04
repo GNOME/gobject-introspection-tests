@@ -7620,6 +7620,38 @@ gi_marshalling_tests_callback_owned_boxed (GIMarshallingTestsCallbackOwnedBoxed 
   return ret;
 }
 
+/**
+ * gi_marshalling_tests_callback_user_data_after_callback:
+ * @a:
+ * @b:
+ * @callback: (scope call) (closure user_data):
+ * @user_data:
+ */
+void
+gi_marshalling_tests_callback_user_data_after_callback (gint a,
+                                                        gint b,
+                                                        GIMarshallingTestsCallbackWithTwoParametersAndUserData callback,
+                                                        gpointer user_data)
+{
+  callback (a, b, user_data);
+}
+
+/**
+ * gi_marshalling_tests_callback_user_data_before_callback:
+ * @a:
+ * @b:
+ * @user_data:
+ * @callback: (scope call) (closure user_data):
+ */
+void
+gi_marshalling_tests_callback_user_data_before_callback (gint a,
+                                                         gint b,
+                                                         gpointer user_data,
+                                                         GIMarshallingTestsCallbackWithTwoParametersAndUserData callback)
+{
+  callback (a, b, user_data);
+}
+
 gboolean
 gi_marshalling_tests_object_vfunc_meth_with_error (GIMarshallingTestsObject *self, gint x, GError **error)
 {
@@ -10286,7 +10318,7 @@ gi_marshalling_tests_signals_object_emit_boxed_struct (GIMarshallingTestsSignals
   GIMarshallingTestsBoxedStruct *boxed = gi_marshalling_tests_boxed_struct_new ();
   boxed->long_ = 99;
   boxed->string_ = g_strdup ("a string");
-  boxed->g_strv = g_strdupv ((GStrv) (const char *[]){ "foo", "bar", "baz", NULL });
+  boxed->g_strv = g_strdupv ((GStrv) (const char *[]) { "foo", "bar", "baz", NULL });
 
   g_signal_emit_by_name (object, "some-boxed-struct", boxed);
   g_clear_pointer (&boxed, gi_marshalling_tests_boxed_struct_free);
@@ -10299,6 +10331,6 @@ gi_marshalling_tests_signals_object_emit_boxed_struct_full (GIMarshallingTestsSi
 
   boxed->long_ = 99;
   boxed->string_ = g_strdup ("a string");
-  boxed->g_strv = g_strdupv ((GStrv) (const char *[]){ "foo", "bar", "baz", NULL });
+  boxed->g_strv = g_strdupv ((GStrv) (const char *[]) { "foo", "bar", "baz", NULL });
   g_signal_emit_by_name (object, "some-boxed-struct-full", g_steal_pointer (&boxed));
 }

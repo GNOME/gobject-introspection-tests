@@ -1667,6 +1667,28 @@ GI_TEST_EXTERN
 glong gi_marshalling_tests_callback_owned_boxed (GIMarshallingTestsCallbackOwnedBoxed callback,
                                                  void *callback_data);
 
+/**
+ * GIMarshallingTestsCallbackWithTwoParametersAndUserData:
+ * @a:
+ * @b:
+ * @user_data: (closure):
+ */
+typedef void (*GIMarshallingTestsCallbackWithTwoParametersAndUserData) (gint a,
+                                                                        gint b,
+                                                                        gpointer user_data);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_callback_user_data_after_callback (gint a,
+                                                             gint b,
+                                                             GIMarshallingTestsCallbackWithTwoParametersAndUserData callback,
+                                                             gpointer user_data);
+
+GI_TEST_EXTERN
+void gi_marshalling_tests_callback_user_data_before_callback (gint a,
+                                                              gint b,
+                                                              gpointer user_data,
+                                                              GIMarshallingTestsCallbackWithTwoParametersAndUserData callback);
+
 /* Pointer */
 
 GI_TEST_EXTERN

@@ -8741,7 +8741,23 @@ gi_marshalling_tests_properties_object_set_property (GObject *object,
       break;
     case SOME_HASH_TABLE_PROPERTY:
       g_clear_pointer (&self->some_hash_table, g_hash_table_unref);
-      self->some_hash_table = g_value_dup_boxed (value);
+
+      GHashTable *table = g_value_get_boxed (value);
+      if (table)
+        {
+          self->some_hash_table = g_hash_table_new_full (NULL, NULL, NULL, g_free);
+
+          GHashTableIter iter;
+          g_hash_table_iter_init (&iter, table);
+
+          void *k, *v;
+          while (g_hash_table_iter_next (&iter, &k, &v))
+            {
+              char *new_value = g_strdup (v);
+              g_hash_table_insert (self->some_hash_table, k, new_value);
+            }
+        }
+
       break;
     case SOME_DEPRECATED_INT_PROPERTY:
       self->some_deprecated_int = g_value_get_int (value);
@@ -9143,7 +9159,23 @@ gi_marshalling_tests_properties_accessors_object_set_property (GObject *object,
       break;
     case SOME_HASH_TABLE_PROPERTY:
       g_clear_pointer (&self->some_hash_table, g_hash_table_unref);
-      self->some_hash_table = g_value_dup_boxed (value);
+
+      GHashTable *table = g_value_get_boxed (value);
+      if (table)
+        {
+          self->some_hash_table = g_hash_table_new_full (NULL, NULL, NULL, g_free);
+
+          GHashTableIter iter;
+          g_hash_table_iter_init (&iter, table);
+
+          void *k, *v;
+          while (g_hash_table_iter_next (&iter, &k, &v))
+            {
+              char *new_value = g_strdup (v);
+              g_hash_table_insert (self->some_hash_table, k, new_value);
+            }
+        }
+
       break;
     case SOME_DEPRECATED_INT_PROPERTY:
       self->some_deprecated_int = g_value_get_int (value);
@@ -9770,7 +9802,7 @@ gi_marshalling_tests_properties_accessors_object_set_byte_array (GIMarshallingTe
 /**
  * gi_marshalling_tests_properties_accessors_object_set_hash_table: (set-property some-hash-table)
  * @self:
- * @some_hash_table:
+ * @some_hash_table: (type GLib.HashTable(gint32,utf8)):
  */
 void
 gi_marshalling_tests_properties_accessors_object_set_hash_table (GIMarshallingTestsPropertiesAccessorsObject *self, GHashTable *some_hash_table)
@@ -9779,7 +9811,18 @@ gi_marshalling_tests_properties_accessors_object_set_hash_table (GIMarshallingTe
     return;
 
   g_clear_pointer (&self->some_hash_table, g_hash_table_unref);
-  self->some_hash_table = g_hash_table_ref (some_hash_table);
+  self->some_hash_table = g_hash_table_new_full (NULL, NULL, NULL, g_free);
+
+  GHashTableIter iter;
+  g_hash_table_iter_init (&iter, some_hash_table);
+
+  void *key, *value;
+  while (g_hash_table_iter_next (&iter, &key, &value))
+    {
+      char *new_value = g_strdup (value);
+      g_hash_table_insert (self->some_hash_table, key, new_value);
+    }
+
   g_object_notify (G_OBJECT (self), "some-hash-table");
 }
 
@@ -10026,7 +10069,7 @@ gi_marshalling_tests_properties_accessors_object_get_byte_array (GIMarshallingTe
  * gi_marshalling_tests_properties_accessors_object_get_hash_table: (get-property some-hash-table)
  * @self:
  *
- * Returns: (transfer none):
+ * Returns: (type GLib.HashTable(gint32,utf8)) (transfer none):
  */
 GHashTable *
 gi_marshalling_tests_properties_accessors_object_get_hash_table (GIMarshallingTestsPropertiesAccessorsObject *self)

@@ -2168,7 +2168,7 @@ G_DEFINE_BOXED_TYPE (RegressTestBoxedD,
 
 G_DEFINE_TYPE (RegressTestObj, regress_test_obj, G_TYPE_OBJECT);
 
-enum
+typedef enum
 {
   PROP_TEST_OBJ_BARE = 1,
   PROP_TEST_OBJ_BOXED,
@@ -2186,7 +2186,7 @@ enum
   PROP_TEST_OBJ_BYTE_ARRAY,
   PROP_TEST_OBJ_UNICHAR,
   PROP_TEST_OBJ_WRITE_ONLY,
-};
+} RegressTestObjProps;
 
 static void
 regress_test_obj_set_property (GObject *object,
@@ -2197,7 +2197,7 @@ regress_test_obj_set_property (GObject *object,
   RegressTestObj *self = REGRESS_TEST_OBJECT (object);
   GList *list;
 
-  switch (property_id)
+  switch ((RegressTestObjProps) property_id)
     {
     case PROP_TEST_OBJ_BARE:
       regress_test_obj_set_bare (self, g_value_get_object (value));
@@ -2276,7 +2276,7 @@ regress_test_obj_get_property (GObject *object,
 {
   RegressTestObj *self = REGRESS_TEST_OBJECT (object);
 
-  switch (property_id)
+  switch ((RegressTestObjProps) property_id)
     {
     case PROP_TEST_OBJ_BARE:
       g_value_set_object (value, self->bare);
@@ -2977,7 +2977,7 @@ regress_test_obj_set_string (RegressTestObj *obj, const char *str)
     return;
 
   g_set_str (&obj->string, str);
-  /* goblint-ignore-next-line: use_g_object_notify_by_pspec */
+  /* gobject-linter-ignore-next-line: use_g_object_notify_by_pspec */
   g_object_notify (G_OBJECT (obj), "string");
 }
 
@@ -3469,11 +3469,11 @@ regress_test_sub_obj_iface_init (RegressTestInterfaceIface *iface G_GNUC_UNUSED)
 {
 }
 
-enum
+typedef enum
 {
   PROP_TEST_SUB_OBJ_NUMBER = 1,
   PROP_TEST_SUB_OBJ_BOOLEAN,
-};
+} RegressTestSubObjProps;
 
 G_DEFINE_TYPE_WITH_CODE (RegressTestSubObj, regress_test_sub_obj, REGRESS_TEST_TYPE_OBJ, G_IMPLEMENT_INTERFACE (REGRESS_TEST_TYPE_INTERFACE, regress_test_sub_obj_iface_init));
 
@@ -3485,7 +3485,7 @@ regress_test_sub_obj_set_property (GObject *object,
 {
   RegressTestSubObj *self = REGRESS_TEST_SUB_OBJECT (object);
 
-  switch (property_id)
+  switch ((RegressTestSubObjProps) property_id)
     {
     case PROP_TEST_SUB_OBJ_NUMBER:
       self->number = g_value_get_int (value);
@@ -3508,7 +3508,7 @@ regress_test_sub_obj_get_property (GObject *object,
 {
   RegressTestSubObj *self = REGRESS_TEST_SUB_OBJECT (object);
 
-  switch (property_id)
+  switch ((RegressTestSubObjProps) property_id)
     {
     case PROP_TEST_SUB_OBJ_NUMBER:
       g_value_set_int (value, self->number);
@@ -4592,10 +4592,10 @@ regress_test_interface_emit_signal (RegressTestInterface *self)
 /* gobject with non-standard prefix */
 G_DEFINE_TYPE (RegressTestWi8021x, regress_test_wi_802_1x, G_TYPE_OBJECT);
 
-enum
+typedef enum
 {
   PROP_TEST_WI_802_1X_TESTBOOL = 1
-};
+} RegressTestWi8021xProps;
 
 static void
 regress_test_wi_802_1x_set_property (GObject *object,
@@ -4605,7 +4605,7 @@ regress_test_wi_802_1x_set_property (GObject *object,
 {
   RegressTestWi8021x *self = REGRESS_TEST_WI_802_1X (object);
 
-  switch (property_id)
+  switch ((RegressTestWi8021xProps) property_id)
     {
     case PROP_TEST_WI_802_1X_TESTBOOL:
       regress_test_wi_802_1x_set_testbool (self, g_value_get_boolean (value));
@@ -4626,7 +4626,7 @@ regress_test_wi_802_1x_get_property (GObject *object,
 {
   RegressTestWi8021x *self = REGRESS_TEST_WI_802_1X (object);
 
-  switch (property_id)
+  switch ((RegressTestWi8021xProps) property_id)
     {
     case PROP_TEST_WI_802_1X_TESTBOOL:
       g_value_set_boolean (value, regress_test_wi_802_1x_get_testbool (self));

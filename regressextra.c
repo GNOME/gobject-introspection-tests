@@ -477,8 +477,7 @@ G_DEFINE_TYPE (RegressTestAction, regress_test_action, G_TYPE_INITIALLY_UNOWNED)
 
 enum
 {
-  SIGNAL_0,
-  ACTION_SIGNAL,
+  ACTION_SIGNAL = 1,
   ACTION2_SIGNAL,
   LAST_SIGNAL
 };

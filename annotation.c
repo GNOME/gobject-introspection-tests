@@ -21,12 +21,12 @@ char backslash_parsing_tester = '\\';
 
 G_DEFINE_TYPE (RegressAnnotationObject, regress_annotation_object, G_TYPE_OBJECT);
 
-enum
+typedef enum
 {
   PROP_STRING_PROPERTY = 1,
   PROP_FUNCTION_PROPERTY,
   PROP_TAB_PROPERTY
-};
+} RegressAnnotationObjectProps;
 
 enum
 {
@@ -45,7 +45,7 @@ regress_annotation_object_set_property (GObject *object,
                                         const GValue *value G_GNUC_UNUSED,
                                         GParamSpec *pspec)
 {
-  switch (prop_id)
+  switch ((RegressAnnotationObjectProps) prop_id)
     {
     case PROP_STRING_PROPERTY:
       break;
@@ -65,7 +65,7 @@ regress_annotation_object_get_property (GObject *object,
                                         GValue *value G_GNUC_UNUSED,
                                         GParamSpec *pspec)
 {
-  switch (prop_id)
+  switch ((RegressAnnotationObjectProps) prop_id)
     {
     case PROP_STRING_PROPERTY:
       break;

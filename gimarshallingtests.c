@@ -1748,8 +1748,7 @@ gi_marshalling_tests_init_function (gint *n_args, char ***argv)
   (*n_args)--;
   g_assert (argv != NULL);
   /* we have transfer ownership full, so we need to free the element ourself */
-  g_free ((*argv)[*n_args]);
-  (*argv)[*n_args] = NULL;
+  g_clear_pointer (argv[*n_args], g_free);
   return TRUE;
 }
 

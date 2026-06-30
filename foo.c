@@ -81,11 +81,11 @@ regress_foo_interface_static_method (int x G_GNUC_UNUSED)
 {
 }
 
-enum
+typedef enum
 {
   PROP_STRING = 1,
   PROP_HIDDEN
-};
+} RegressFooObjectProps;
 
 enum
 {
@@ -172,7 +172,7 @@ regress_foo_object_set_property (GObject *object,
                                  const GValue *value G_GNUC_UNUSED,
                                  GParamSpec *pspec)
 {
-  switch (prop_id)
+  switch ((RegressFooObjectProps) prop_id)
     {
     case PROP_STRING:
       break;
@@ -190,7 +190,7 @@ regress_foo_object_get_property (GObject *object,
                                  GValue *value G_GNUC_UNUSED,
                                  GParamSpec *pspec)
 {
-  switch (prop_id)
+  switch ((RegressFooObjectProps) prop_id)
     {
     case PROP_STRING:
       break;

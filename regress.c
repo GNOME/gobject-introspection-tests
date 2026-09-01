@@ -2343,19 +2343,8 @@ regress_test_obj_dispose (GObject *gobject)
   RegressTestObj *self = REGRESS_TEST_OBJECT (gobject);
 
   g_clear_object (&self->bare);
-
-  if (self->boxed)
-    {
-      regress_test_boxed_free (self->boxed);
-      self->boxed = NULL;
-    }
-
-  if (self->list)
-    {
-      g_list_free_full (self->list, g_free);
-      self->list = NULL;
-    }
-
+  g_clear_pointer (&self->boxed, regress_test_boxed_free);
+  g_clear_list (&self->list, g_free);
   g_clear_pointer (&self->hash_table, g_hash_table_unref);
   g_clear_pointer (&self->string, g_free);
 

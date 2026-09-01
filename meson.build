@@ -229,3 +229,10 @@ endif
 if install
     summary('Install location', install_dir)
 endif
+summary({
+  'gimarshallingtests_typelib': gimarshallingtests_typelib.full_path(),
+  'regress_typelib': regress_typelib.full_path(),
+  'regress_unix_typelib': regress_unix_typelib.full_path(),
+  'utility_typelib': utility_typelib.full_path(),
+  'warnlib_typelib': warnlib_typelib.full_path(),
+}, section: 'Exports')

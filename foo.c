@@ -81,12 +81,11 @@ regress_foo_interface_static_method (int x G_GNUC_UNUSED)
 {
 }
 
-enum
+typedef enum
 {
-  PROP_0,
-  PROP_STRING,
+  PROP_STRING = 1,
   PROP_HIDDEN
-};
+} RegressFooObjectProps;
 
 enum
 {
@@ -173,7 +172,7 @@ regress_foo_object_set_property (GObject *object,
                                  const GValue *value G_GNUC_UNUSED,
                                  GParamSpec *pspec)
 {
-  switch (prop_id)
+  switch ((RegressFooObjectProps) prop_id)
     {
     case PROP_STRING:
       break;
@@ -191,7 +190,7 @@ regress_foo_object_get_property (GObject *object,
                                  GValue *value G_GNUC_UNUSED,
                                  GParamSpec *pspec)
 {
-  switch (prop_id)
+  switch ((RegressFooObjectProps) prop_id)
     {
     case PROP_STRING:
       break;
@@ -219,14 +218,14 @@ regress_foo_object_class_init (RegressFooObjectClass *klass)
                                                         "String nick",
                                                         "The String Property Blurb",
                                                         NULL,
-                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS));
   g_object_class_install_property (gobject_class,
                                    PROP_HIDDEN,
                                    g_param_spec_boxed ("hidden",
                                                        "hidden property",
                                                        "should not be exposed",
                                                        regress_foo_hidden_get_type (),
-                                                       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+                                                       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
   regress_foo_object_signals[SIGNAL] =
     g_signal_new ("signal",
                   G_OBJECT_CLASS_TYPE (gobject_class),
@@ -585,7 +584,7 @@ regress_foo_brect_get_type (void)
 RegressFooBRect *
 regress_foo_brect_new (double x, double y)
 {
-  RegressFooBRect *retval = g_new(RegressFooBRect, 1);
+  RegressFooBRect *retval = g_new (RegressFooBRect, 1);
   retval->x = x;
   retval->y = y;
   return retval;
@@ -621,7 +620,7 @@ regress_foo_bunion_get_type (void)
 RegressFooBUnion *
 regress_foo_bunion_new (void)
 {
-  return g_new0(RegressFooBUnion, 1);
+  return g_new0 (RegressFooBUnion, 1);
 }
 
 void

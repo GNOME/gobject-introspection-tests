@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2026 Arjan Molenaar <gaphor@gmail.com>
+
+min_glib_version = "2.66"
+msvc_compatible = true
+
+[rules]
+include_order = false
+g_param_spec_null_nick_blurb = false
+missing_autoptr_cleanup = false
+missing_g_begin_decls = false
+property_switch_exhaustiveness = false
+type_style = false
+use_g_object_class_install_properties = false
+# Goblint trips over the GI_TEST_EXTERN macro
+missing_implementation = false
+# Can't use g_autoptr for MSVC
+use_g_autofree = false
+use_g_autoptr_error = false
+use_g_autoptr_goto_cleanup = false
+use_g_autoptr_inline_cleanup = false

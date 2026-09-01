@@ -34,3 +34,16 @@ license-check:
   script:
     - reuse --version
     - reuse lint
+
+gobject-linter:
+  stage: check
+  allow_failure: true
+  image:
+    name: "ghcr.io/bilelmoussaoui/gobject-linter:latest"
+    entrypoint: [""]
+  script:
+    - gobject-linter --format gitlab-codequality > gobject-linter-codequality.json
+  artifacts:
+    expire_in: "1 week"
+    reports:
+      codequality: gobject-linter-codequality.json

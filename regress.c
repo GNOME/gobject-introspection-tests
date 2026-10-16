@@ -3809,8 +3809,6 @@ regress_test_value_get_fundamental_object (const GValue *value)
   return value->data[0].v_pointer;
 }
 
-static RegressTestFundamentalObjectClass *parent_class = NULL;
-
 G_DEFINE_TYPE (RegressTestFundamentalSubObject, regress_test_fundamental_sub_object, REGRESS_TEST_TYPE_FUNDAMENTAL_OBJECT);
 
 static RegressTestFundamentalSubObject *
@@ -3835,8 +3833,6 @@ regress_test_fundamental_sub_object_finalize (RegressTestFundamentalSubObject *f
 static void
 regress_test_fundamental_sub_object_class_init (RegressTestFundamentalSubObjectClass *klass)
 {
-  parent_class = g_type_class_peek_parent (klass);
-
   klass->fundamental_object_class.copy = (RegressTestFundamentalObjectCopyFunction) _regress_test_fundamental_sub_object_copy;
   klass->fundamental_object_class.finalize =
     (RegressTestFundamentalObjectFinalizeFunction) regress_test_fundamental_sub_object_finalize;

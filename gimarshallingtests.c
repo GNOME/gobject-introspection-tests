@@ -9202,6 +9202,7 @@ gi_marshalling_tests_properties_accessors_object_dispose (GObject *obj)
   g_clear_pointer (&self->some_byte_array, g_byte_array_unref);
   g_clear_pointer (&self->some_variant, g_variant_unref);
   g_clear_pointer (&self->some_boxed_glist, g_list_free);
+  g_clear_pointer (&self->some_hash_table, g_hash_table_unref);
   g_clear_object (&self->some_object);
 
   G_OBJECT_CLASS (gi_marshalling_tests_properties_accessors_object_parent_class)->dispose (obj);
